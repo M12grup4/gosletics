@@ -1,6 +1,7 @@
 /**
  * Aquest script controla l'enviament de peticions per part de l'usuari des del client i la recepció d'informació del servidor al client i l'organitza
  * per a ser visualitzada a la interfície d'usuari. 
+ * @author Albert Garcia Llorca <albertgarcia20@gmail.com>
  */
 
 /**
@@ -42,18 +43,27 @@ function showActivitiesOnDate(selectedDate) {
     resultats.html("");
     $("<p>Carregant horaris, sisplau espera...</p>").appendTo(resultats);
 
-    let llistat = null;
+    let llistat = [];
     $.getJSON(GET_HORARI,
         { dia: selectedDate },
         (data) => {
             assignDateToButtons();
-            //TODO handle results - generate as many HTML elements as necessary and save them in a collection "llistat"
+            //TODO test
+            //Tracta els resultats obtinguts. Genera tants elements HTML com activitats rebudes.
+            //Desa en una col·lecció per tal d'afegir-les de cop al final.
+            if (data.length > 0) {
+                data.forEach(element => {
+                    llistat.push(createActivity(element));
+                });
+            }
         })
         .catch((error) => console.log(error))
-        .done((llistat) => {
-            //Attach the generated results to the DOM
+        .done(() => {
+            //Finalment afegeix els resultats al DOM
             resultats.html("");
-            $("<p>Col·lecció d'elements HTML</p>").appendTo(resultats);
+            llistat.forEach(element => {
+                element.appendTo(resultats);
+            });
         });
 
 }
@@ -64,7 +74,7 @@ function showActivitiesOnDate(selectedDate) {
  * a paràmetre al mètode i és l'ID de l'activitat a la base de dades.
  * Retorna un element HTML que s'afegeix al contenidor amb ID detall del DOM.
  * @param {String} selectedActivity ID de l'activitat seleccionada per l'usuari
- * @returns {HTMLElement}
+ * 
  */
 function showActivityDetail(selectedActivity) {
     //Elimina text anterior
@@ -75,26 +85,43 @@ function showActivityDetail(selectedActivity) {
     $.getJSON(GET_HORARI,
         { activitat: selectedActivity },
         (data) => {
-            //TODO handle results - generate new HTML element and save to "llistat"
+            //TODO test
+            //Genera element HTML amb la informació obtinguda
+            info = createActivityDetail(data);
         })
         .catch((error) => console.log(error))
-        .done((info) => {
-            //Attach the generated results to the DOM
+        .done(() => {
+            //Afegeix els resultats al DOM
             detall.html("");
-            $("<p>" + info.descripcion + "</p>").appendTo(detall);
-            detall.css('display', 'inline-block');
+            $("<a>Tancar</a>").click(() => {/*TODO*/}).appendTo(detall);
+            info.appendTo(detall);
         });
 
 }
 
 /**
  * Genera un element HTML per a l'activitat passada per paràmetre en format JSON.
- * Aquest element es podrà afegir al DOM posteriorment.
+ * Afegeix event listener de click per mostrar detall de l'activitat.
  * @param {json} activityData La informació continguda dins de l'objecte de l'activitat.
  * @returns {HTMLElement} Element HTML per afegir
  */
 function createActivity(activityData) {
-    //TODO
+    //TODO test
+    return $("<div> <div>" + activityData.hora + "</div> <div>" + activityData.tiempo_actividad + " min.</div> <div>" + activityData.nombre + "</div> <div>Reserves " + activityData.plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
+        .click(() => {
+            showActivityDetail(activityData.id);
+        });
+}
+
+/**
+ * Genera un element HTML per al detall de l'activitat passada per paràmetre en format JSON.
+ * 
+ * @param {json} activityData La informació continguda dins de l'objecte de l'activitat.
+ * @returns {HTMLElement} Element HTML per afegir
+ */
+function createActivityDetail(activityData) {
+    //TODO test
+    return $("<div> <div>" + activityData.descripcion + "</div> </div>");
 }
 
 /**
