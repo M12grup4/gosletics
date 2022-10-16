@@ -52,7 +52,7 @@ function showActivitiesOnDate(selectedDate) {
         .catch((error) => console.log(error))
         .done((llistat) => {
             //Attach the generated results to the DOM
-            resultats.html() = "";
+            resultats.html("");
             $("<p>Col·lecció d'elements HTML</p>").appendTo(resultats);
         });
 
@@ -80,7 +80,7 @@ function showActivityDetail(selectedActivity) {
         .catch((error) => console.log(error))
         .done((info) => {
             //Attach the generated results to the DOM
-            detall.html() = "";
+            detall.html("");
             $("<p>" + info.descripcion + "</p>").appendTo(detall);
             detall.css('display', 'inline-block');
         });
@@ -106,36 +106,39 @@ function assignDateToButtons() {
     //Determinem quin dia és diumenge
     const DIA_EN_MILISEGONS = 86400000;
     let diumenge = new Date(DATA_ACTUAL - (DIA_SETMANA * DIA_EN_MILISEGONS));
-    
-    //Afegim els atributs de dia a cada botó i n'actualitzem l'etiqueta.
-    //Afegim 24h entre dia i dia
 
-    $('.Sunday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Sunday').html("DG "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    //Afegim els atributs de dia a cada botó i n'actualitzem l'etiqueta.
+    //Afegim 24h entre dia i dia. Com que el primer diumenge és el de la setmana anterior,
+    //sumarem un dia més per començar, i al final també per al diumenge de la
+    //setmana vigent.
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Monday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Monday').html("DL "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    $('.Monday').html("DL " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Tuesday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Tuesday').html("DT "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    $('.Tuesday').html("DT " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Wednesday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Wednesday').html("DC "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    $('.Wednesday').html("DC " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Thursday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Thursday').html("DJ "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    $('.Thursday').html("DJ " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Friday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Friday').html("DV "+ diumenge.getDate()+"/"+ diumenge.getMonth());
-    diumenge.setTime(diumenge.getTime()+DIA_EN_MILISEGONS);
+    $('.Friday').html("DV " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
 
     $('.Saturday').attr('dia', diumenge.toISOString().split("T")[0]);
-    $('.Saturday').html("DS "+ diumenge.getDate()+"/"+ diumenge.getMonth());
+    $('.Saturday').html("DS " + diumenge.getDate() + "/" + diumenge.getMonth());
+    diumenge.setTime(diumenge.getTime() + DIA_EN_MILISEGONS);
+
+    $('.Sunday').attr('dia', diumenge.toISOString().split("T")[0]);
+    $('.Sunday').html("DG " + diumenge.getDate() + "/" + diumenge.getMonth());
 
     //Assignem els comportaments de cada botó per al dia que representen
     assignBehaviourToDayButtons();
@@ -145,9 +148,12 @@ function assignDateToButtons() {
  * Assigna els comportaments de click a cada botó de dia de la setmana
  * per tal de fer la petició GET corresponent.
  */
-function assignBehaviourToDayButtons(){
-    let botons = [...$('#dayButtons').children()];
-    for (let i = 0; i < botons.length; i++){
-        botons[i].addEventListener("onclick", ()=>showActivitiesOnDate(botons[i].getAttribute('dia')));
-    }
+function assignBehaviourToDayButtons() {
+    $('.Monday').click(() => { showActivitiesOnDate($('.Monday').attr('dia')) });
+    $('.Tuesday').click(() => { showActivitiesOnDate($('.Tuesday').attr('dia')) });
+    $('.Wednesday').click(() => { showActivitiesOnDate($('.Wednesday').attr('dia')) });
+    $('.Thursday').click(() => { showActivitiesOnDate($('.Thursday').attr('dia')) });
+    $('.Friday').click(() => { showActivitiesOnDate($('.Friday').attr('dia')) });
+    $('.Saturday').click(() => { showActivitiesOnDate($('.Saturday').attr('dia')) });
+    $('.Sunday').click(() => { showActivitiesOnDate($('.Sunday').attr('dia')) });
 }
