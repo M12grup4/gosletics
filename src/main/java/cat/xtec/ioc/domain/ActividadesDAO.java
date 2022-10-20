@@ -94,7 +94,7 @@ public ActividadesDAO() {
         String qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
                 + "FROM GL_ACTIVIDADES A INNER JOIN GL_HORARIO H ON H.ID_ACTIVIDAD = A.ID " 
                 + "WHERE h.fecha='"+ dia_param2+ "'"
-                + "GROUP BY FECHA ORDER by h.HORA";        
+                + "ORDER by h.HORA";        
         System.out.println(qry);
         
         //es passa a Date la cadena del paràmetre dia_param2
@@ -120,7 +120,6 @@ public ActividadesDAO() {
 
                 Activitats_dia activitats_dia = new Activitats_dia(id,nombre,fecha,hora,tiempo_actividad,plazas_ocupadas,n_participantes_max);
                 activitats_dia_list.add(activitats_dia);  
-               //System.out.println("llista del dia: " + activitats_dia.getA_id());
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -128,7 +127,7 @@ public ActividadesDAO() {
         return activitats_dia_list;
     }
 }
-    
+   
 
 /*
  Field               | Type        | Null | Key | Default             | Extra |

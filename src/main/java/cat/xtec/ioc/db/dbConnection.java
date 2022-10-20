@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class dbConnection {
     
     
-
+    
 public  Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
         InputStream resourceAsStream = null;
