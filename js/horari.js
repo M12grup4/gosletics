@@ -86,7 +86,6 @@ function showActivityDetail(selectedActivity) {
     let info = null;
     $.getJSON(GET_DETALL + "/" + selectedActivity,
         (data) => {
-            //TODO test
             //Genera element HTML amb la informació obtinguda
             info = createActivityDetail(data);
         })
@@ -107,17 +106,11 @@ function showActivityDetail(selectedActivity) {
  * @returns {HTMLElement} Element HTML per afegir
  */
 function createActivity(activityData) {
-    //TODO test
     let activitat = $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>");
     activitat.click(() => {
         showActivityDetail(activityData.a_id);
     });
     return activitat;
-    //TODO test
-    /* return $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
-        .click(() => {
-            showActivityDetail(activityData.a_id);
-        }); */
 }
 
 /**
