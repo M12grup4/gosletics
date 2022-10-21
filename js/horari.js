@@ -1,5 +1,5 @@
 /**
- * Aquest script controla l'enviament de peticions per part de l'usuari des del client i la recepció d'informació del servidor al client i l'organitza
+ * @file Aquest script controla l'enviament de peticions per part de l'usuari des del client i la recepció d'informació del servidor al client i l'organitza
  * per a ser visualitzada a la interfície d'usuari. 
  * @author Albert Garcia Llorca <albertgarcia20@gmail.com>
  */
@@ -14,8 +14,9 @@ const DIA_SETMANA = new Date(DATA_ACTUAL).getDay();
 /**
  * Establim constants de la nostra API per tenir una gestió centralitzada en cas de canvis.
  */
-const WEBROOT = "http://127.0.0.1";
-const GET_HORARI = WEBROOT + "/actividades";
+const WEBROOT = "http://127.0.0.1/gosletic";
+const GET_HORARI = WEBROOT + "/horario";
+const GET_DETALL = WEBROOT + "/actividades";
 
 /**
  * Obtenim del DOM el contenidor a on aniran els resultats rebuts del servidor a cada petició.
@@ -82,7 +83,7 @@ function showActivityDetail(selectedActivity) {
     $("<p>Carregant informació, sisplau espera...</p>").appendTo(detall);
 
     let info = null;
-    $.getJSON(GET_HORARI,
+    $.getJSON(GET_DETALL,
         { activitat: selectedActivity },
         (data) => {
             //TODO test
