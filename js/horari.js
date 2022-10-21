@@ -48,7 +48,6 @@ function showActivitiesOnDate(selectedDate) {
     $.getJSON(GET_HORARI + "/" + selectedDate,
         (data) => {
             assignDateToButtons();
-            //TODO test
             //Tracta els resultats obtinguts. Genera tants elements HTML com activitats rebudes.
             //Desa en una col·lecció per tal d'afegir-les de cop al final.
             if (data.length > 0) {
@@ -109,10 +108,16 @@ function showActivityDetail(selectedActivity) {
  */
 function createActivity(activityData) {
     //TODO test
-    return $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
+    let activitat = $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>");
+    activitat.click(() => {
+        showActivityDetail(activityData.a_id);
+    });
+    return activitat;
+    //TODO test
+    /* return $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
         .click(() => {
             showActivityDetail(activityData.a_id);
-        });
+        }); */
 }
 
 /**
