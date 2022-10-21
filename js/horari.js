@@ -45,8 +45,7 @@ function showActivitiesOnDate(selectedDate) {
     $("<p>Carregant horaris, sisplau espera...</p>").appendTo(resultats);
 
     let llistat = [];
-    $.getJSON(GET_HORARI,
-        { dia: selectedDate },
+    $.getJSON(GET_HORARI + "/" + selectedDate,
         (data) => {
             assignDateToButtons();
             //TODO test
@@ -56,6 +55,9 @@ function showActivitiesOnDate(selectedDate) {
                 data.forEach(element => {
                     llistat.push(createActivity(element));
                 });
+            } else {
+                //TODO test
+                llistat = [$("<p>No hay actividades para este día</p>")];
             }
         })
         .catch((error) => console.log(error))
@@ -83,8 +85,7 @@ function showActivityDetail(selectedActivity) {
     $("<p>Carregant informació, sisplau espera...</p>").appendTo(detall);
 
     let info = null;
-    $.getJSON(GET_DETALL,
-        { activitat: selectedActivity },
+    $.getJSON(GET_DETALL + "/" + selectedActivity,
         (data) => {
             //TODO test
             //Genera element HTML amb la informació obtinguda
@@ -94,7 +95,7 @@ function showActivityDetail(selectedActivity) {
         .done(() => {
             //Afegeix els resultats al DOM
             detall.html("");
-            $("<a>Tancar</a>").click(() => {/*TODO*/}).appendTo(detall);
+            //$("<a>Tancar</a>").click(() => {/*TODO*/}).appendTo(detall);
             info.appendTo(detall);
         });
 
@@ -108,9 +109,9 @@ function showActivityDetail(selectedActivity) {
  */
 function createActivity(activityData) {
     //TODO test
-    return $("<div> <div>" + activityData.hora + "</div> <div>" + activityData.tiempo_actividad + " min.</div> <div>" + activityData.nombre + "</div> <div>Reserves " + activityData.plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
+    return $("<div> <div>" + formatTime(activityData.h_hora) + "</div> <div>" + activityData.h_tiempo_actividad + " min.</div> <div>" + activityData.a_nombre + "</div> <div>Reservadas " + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> </div>")
         .click(() => {
-            showActivityDetail(activityData.id);
+            showActivityDetail(activityData.a_id);
         });
 }
 
@@ -122,7 +123,7 @@ function createActivity(activityData) {
  */
 function createActivityDetail(activityData) {
     //TODO test
-    return $("<div> <div>" + activityData.descripcion + "</div> </div>");
+    return $("<div> <div>" + activityData.nombre + "</div> <div>" + activityData.descripcion + "</div> <div>De " + activityData.n_participantes_min + " a " + activityData.n_participantes_max + " participantes</div></div>");
 }
 
 /**
@@ -184,4 +185,18 @@ function assignBehaviourToDayButtons() {
     $('.Friday').click(() => { showActivitiesOnDate($('.Friday').attr('dia')) });
     $('.Saturday').click(() => { showActivitiesOnDate($('.Saturday').attr('dia')) });
     $('.Sunday').click(() => { showActivitiesOnDate($('.Sunday').attr('dia')) });
+}
+
+/**
+ * Converteix les hores rebudes per JSON a un format d'impressió HTML
+ * @param {String} hora l'hora a tractar
+ * @returns {String} L'hora en format d'impressió
+ * 
+ */
+function formatTime(hora) {
+    if (hora.length == 4) {
+        return hora.substring(0, 2) + ":" + hora.substring(2);
+    } else {
+        return "0" + hora.charAt(0) + ":" + hora.substring(1);
+    }
 }
