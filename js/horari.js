@@ -14,7 +14,7 @@ const DIA_SETMANA = new Date(DATA_ACTUAL).getDay();
 /**
  * Establim constants de la nostra API per tenir una gestió centralitzada en cas de canvis.
  */
-const WEBROOT = "http://127.0.0.1/gosletic";
+const WEBROOT = "http://localhost/gosletic";
 const GET_HORARI = WEBROOT + "/horario";
 const GET_DETALL = WEBROOT + "/actividades";
 
@@ -194,9 +194,10 @@ function assignBehaviourToDayButtons() {
  * 
  */
 function formatTime(hora) {
-    if (hora.length == 4) {
-        return hora.substring(0, 2) + ":" + hora.substring(2);
+    let conversio = hora.toString();
+    if (conversio.length == 4) {
+        return conversio.substring(0, 2) + ":" + conversio.substring(2);
     } else {
-        return "0" + hora.charAt(0) + ":" + hora.substring(1);
+        return "0" + conversio.charAt(0) + ":" + conversio.substring(1);
     }
 }
