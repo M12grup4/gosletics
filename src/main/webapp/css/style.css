@@ -1,0 +1,381 @@
+/*****************
+* GOSLÈTICS CSS **
+*****************/
+
+/*** 0.General ***/
+/*** Font styles ***/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+/*** General settings ***/
+.html, .body {
+    height: auto;
+    width : 100%;
+}
+
+/*** 1.Navbar ***/
+.navbar {
+    background-color: #222529;
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 20px;
+    font-weight     : 300;
+}
+
+/*** Logo settings ***/
+.navbar .navbar-logo {
+    width: 200px;
+}
+
+/*** Lenguage button settings ***/
+.navbar .navbar-img {
+    height: 30px;
+    width : 30px;
+}
+.navbar .buttonLenguage {
+    background-color: transparent;
+    border          : transparent;
+}
+
+/*** Links settings ***/
+.navbar .nav-link {
+    color: white;
+}
+
+.navbar .nav-link:hover {
+    color          : white;
+    font-weight    : 600;
+    text-decoration: overline 
+                     #D4E4F2;
+}
+
+/*** Incription button settings ***/
+.navbar .buttonNavFirst {
+    padding-left : 10px;
+    padding-right: 10px;
+}
+
+.navbar #buttonNavFirst {
+	background-color: #D4E4F2;
+	border          : 1.5px 
+                      solid 
+                      #D4E4F2;
+    border-radius   : 30px;
+	color           : #222529;
+    display         : inline-block;
+	font-weight     : 600;
+    font-size       : 20px;
+    padding         : 7px 15px;
+}
+
+.navbar #buttonNavFirst:hover {
+	background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #ffffff;
+}
+
+/*** Client button settings ***/
+.navbar #buttonNavSecond {
+	background-color: transparent;
+	border          : 1.5px 
+                      solid 
+                      #222529;
+	color           : #ffffff;
+    font-weight     : 600;
+    font-size       : 20px;
+}
+
+.navbar #buttonNavSecond:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #D4E4F2;
+    color           : #222529;
+}
+
+/*** 3.Home ***/
+.home {
+    background-image   : url(../assets/home.png );
+    background-size    : cover;
+    background-position: center;
+    background-repeat  : no-repeat;
+    min-height         : 100vh; 
+}
+
+/*** Slogan settings ***/
+.home .home-div{
+    text-align : center;
+    padding-top: 200px;
+}
+
+.home-img {
+    text-align : center;
+    width      : 900px;
+}
+
+/*** 4.Info ***/
+/*** Text settings ***/
+.info .infoText {
+    text-align : center;
+    padding-top: 100px;
+}
+
+.info h1 {
+    font-family   : "Montserrat", sans-serif;
+    font-weight   : 800;
+    font-size     : 70px;
+    padding-bottom: 50px;
+}
+
+.info p {
+    font-family: "Montserrat", sans-serif;
+    font-size  : 25px;
+    font-weight: 300;
+}
+
+/*** "" settings***/
+.info .fa-quote-left, .fa-quote-right{
+    color    : #222529;
+    font-size: 30px;
+}
+
+.info .info-img {
+    padding-top: 50px ;
+    width      : 700px;
+}
+
+/*** 5.Schedule ***/
+.schedule {
+    background-color: #edf2f4;
+    text-align      : center;
+}
+
+/*** Text settings ***/
+.schedule h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size  : 60px;
+    padding-top: 50px;
+}
+
+.schedule p {
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 25px;
+    font-weight   : 300;
+    padding-top   : 30px;
+    padding-bottom: 30px;
+}
+
+/*** Day buttons settings ***/
+.schedule button {
+    background-color: #222529;
+	border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 50%;
+	color           : #edf2f4;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 20px;
+    height          : 85px;
+    width           : 85px;
+}
+
+.schedule button:hover {
+    background-color: #edf2f4;
+	border          : 3px 
+                      solid 
+                      #222529;
+    border-radius   : 50%;
+	color           : #222529;
+}
+
+/*** Schedule table header ***/
+.schedule .col-3 {
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #edf2f4;
+    color           : #edf2f4;
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 22px;
+    font-weight     : 300;
+}
+
+/*** Schedule table info ***/
+.schedule .col {
+    background-color: #ffffff;
+    border          : 5px 
+                      solid 
+                      #edf2f4;
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 20px;
+    font-weight     : 300;
+}
+
+/*** Schedule table info ***/
+.schedule .activity:hover {
+    font-weight: 600;
+}
+
+/*** Schedule table text settings ***/
+.schedule .activityName {
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 22px;
+    font-weight     : 600;
+}
+
+.schedule .activityDescription {
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 18px;
+    font-weight     : 300;
+}
+
+.schedule .activityParticinats {
+    font-family     : "Montserrat", sans-serif;
+    font-size       : 18px;
+    font-weight     : 600;
+}
+
+/*** 6.News ***/
+/*** Text settings ***/
+.news h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size  : 60px;
+    padding-top: 30px;
+    text-align : center;
+}
+
+.news p {
+    font-family: "Montserrat", sans-serif;
+    font-size  : 25px;
+    font-weight: 300;
+    text-align : center;
+}
+ 
+/*** 7.Contact ***/
+.contact {
+    background-image   : url(../assets/Contact.png);
+    background-size    : cover;
+    background-position: center;
+    background-repeat  : no-repeat;
+    min-height         : 85vh; 
+}
+
+/*** Text settings ***/
+.contact h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size  : 60px;
+    padding-top: 30px;
+    text-align : center;
+}
+
+.contact p {
+    font-family: "Montserrat", sans-serif;
+    font-size  : 25px;
+    font-weight: 300;
+    text-align : center;
+}
+
+/*** Card settings***/
+.contact .container {
+    background-color: #ffffff;
+    border-radius   : 30px;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position        : relative;
+    top             : 50px;
+}
+
+/*** Form settings***/
+.contact form {
+    padding-left : 100px;
+    padding-right: 100px;
+}
+
+.contact label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size  : 18px;
+    padding-top: 20px;
+}
+
+.contact input {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.contact textarea {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+#contactButton {
+	background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 15px;
+    padding         : 7px 15px;
+    
+}
+
+#contactButton:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+
+/*** 8.Footer ***/
+.footer {
+    background-color: #222529;
+}
+
+/*** Logo settings ***/
+.footer img {
+    padding-bottom: 50px;
+    padding-top   : 50px;
+    width         : 300px;
+}
+
+/*** Text settings ***/
+.footer h1 {
+    color      : #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size  : 30px;
+    padding-top: 50px;
+}
+
+.footer p {
+    color      : #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size  : 18px;
+    font-weight: 300;
+ }
+
+/*** Social media icons ***/
+.footer .fa-brands {
+    color        : #ffffff;
+    padding-right: 20px;
+ }
