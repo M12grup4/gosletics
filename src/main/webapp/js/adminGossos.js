@@ -24,7 +24,7 @@ import showNotification from './tools.js';
  * Comprova que les dades dels camps siguin correctes i les saneja.
  * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
  */
-function createDog(){}
+function createDog() { }
 
 /**
  * @function updateDog
@@ -34,12 +34,14 @@ function createDog(){}
  * Comprova que les dades dels camps siguin correctes i les saneja.
  * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
  */
- function updateDog(id){}
+function updateDog(id) { }
 
- /**
- * @function deleteDog
- * Aquesta funció elimina de manera definitiva un gos de la base de dades mitjançant DELETE.
- * @param int {id} ID del gos target a la BD.
- * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
- */
-function deleteDog(id){}
+/**
+* @function deleteDog
+* Aquesta funció elimina de manera definitiva un gos de la base de dades mitjançant DELETE.
+* @param int {id} ID del gos target a la BD.
+* Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
+*/
+function deleteDog(id) { }
+
+setTimeout(() => { showNotification("x"); console.log("fired") }, 2000);
