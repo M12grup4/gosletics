@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<?php
+header('Access-Control-Allow-Origin: *');
+header('Content-type: application/json');
+?>
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Grup04">
+    <meta name="description" content="Goslètics">
+
+    <!-- Title -->
+    <title>Goslètics</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Styles -->
+    <!-- CSS Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous">
+    <!-- CSS Costum -->
+    <link href="./css/style.css" rel="stylesheet">
+  
+    <!-- Scripts -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous">
+        </script>
+    <!-- Fontawesome5 -->
+    <script src="https://kit.fontawesome.com/1ddb8a8c43.js"
+        crossorigin="anonymous">
+        </script>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+    <!--Custom JS-->
+    <script src="./js/horari.js" ></script>
+</head>
+
+<body>
+    <section class="dashborad" id="sidebar">
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+
+                <!-- Sidebar Start -->
+                <div class="content col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <!-- Menu -->
+                        <a href="/userDashborad.html" class="menu d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-bars fa-fw"></i>
+                            <span class="ms-1 d-none d-sm-inline">MENU</span>
+                            <br>
+                            <br>
+                        </a>
+                        <!-- Action links -->
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <!-- User control link -->
+                            <li>
+                                <hr>
+                                <a href="userManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-user fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió d'usuaris</span>
+                                </a>
+                            </li>
+                            <!-- Dog control link -->
+                            <li>
+                                <hr>
+                                <a href="dogManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-dog fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió de gossos</span>
+                                </a>
+                            </li>
+                            <!-- Activities control link -->
+                            <li>
+                                <hr>
+                                <a href="bookingManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-calendar-days fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió d'activitats</span>
+                                </a>
+                                <hr>
+                            </li>
+                        </ul>
+                        <!-- User settings -->
+                        <div class="dropdown pb-4">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-u fa-xl fa-fw"></i>
+                                <span class="d-none d-sm-inline mx-1">Admin</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar Ends -->
+                
+                <!-- Content Start -->
+                <div class="userContent container-fluid col">
+                    <!-- Topbar -->
+                    <div class="top container-fluid bg-dark">
+                       <img class="dashborad-logo" src="assets/Navbar-logo.png">
+                    </div>
+                    <!-- Dashboard panel -->
+                    <div class="options container-fluid">
+                        <h1>Benvingut: #Admin</h1>
+                        <div class="container-fluid sapcer">
+                            <div class="spacerContent">
+                                <i class="fa-solid fa-user fa-xl fa-fw"></i>
+                                <span class="ms-1 d-none d-sm-inline">Gestió d'Usuaris</span>
+                            </div>
+                        </div>
+                        <h2>xxxx</h2>
+                        <!-- User options -->
+                        <!-- IMPLANTACIO SEGUENT TEA -->
+                    </div>
+                </div>
+                <!-- Content ends -->
+            </div>
+            
+        </div>
+    </section>
+</body>
+</html>
