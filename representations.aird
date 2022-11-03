@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" uid="_3hlUAFKVEe2XC_d9WA_PPg" version="14.5.0.202104161500">
+  <semanticResources>gosletic.uml</semanticResources>
+  <semanticResources>My.uml</semanticResources>
+  <semanticResources>gosletic.di</semanticResources>
+</viewpoint:DAnalysis>
