@@ -14,15 +14,15 @@ export default function showNotification(resposta, missatges) {
     //TODO processar la resposta i generar notificacions
     let catalegMissatges = {
         "500": "Error intern del servidor. Operació no completada",
-        "511": "Autenticació de xarxa és necessària per accedir",
-        "501": "Mètode no implementat",
-        "502": "Resposta del servidor invàlida",
-        "503": "Servidor no disponible",
+        "511": "Autenticació de xarxa és necessària per accedir. Operació no completada",
+        "501": "Mètode no implementat. Operació no completada",
+        "502": "Resposta del servidor invàlida. Operació no completada",
+        "503": "Servidor no disponible. Operació no completada",
         "400": "Petició errònia o mal formada, no es pot continuar",
         "401": "Cal autenticar-se per poder obtenir una resposta del servidor",
         "403": "Accés prohibit al recurs, permisos insuficients",
         "404": "No es pot trobar el recurs sol·licitat",
-        "405": "Mètode no permès pel servidor",
+        "405": "Mètode no permès pel servidor. Operació no completada",
     };
 
     //Afegim un cas genèric per a codis no previstos
