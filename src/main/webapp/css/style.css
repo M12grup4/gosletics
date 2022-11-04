@@ -2,6 +2,7 @@
 * GOSLÈTICS CSS **
 *****************/
 
+
 /*** 0.General ***/
 /*** Font styles ***/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
@@ -13,6 +14,8 @@
     height: auto;
     width : 100%;
 }
+
+/*** index.html ***/
 
 /*** 1.Navbar ***/
 .navbar {
@@ -35,6 +38,10 @@
 .navbar .buttonLenguage {
     background-color: transparent;
     border          : transparent;
+}
+
+.navbar .navbar-nav {
+    float: right;
 }
 
 /*** Links settings ***/
@@ -64,7 +71,6 @@
 	color           : #222529;
     display         : inline-block;
 	font-weight     : 600;
-    font-size       : 20px;
     padding         : 7px 15px;
 }
 
@@ -84,7 +90,6 @@
                       #222529;
 	color           : #ffffff;
     font-weight     : 600;
-    font-size       : 20px;
 }
 
 .navbar #buttonNavSecond:hover {
@@ -93,6 +98,39 @@
                       solid 
                       #D4E4F2;
     color           : #222529;
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar {
+        font-size: 15px;
+    }
+
+    .navbar .navbar-logo {
+        width: 150px;
+    }
+
+    .navbar .navbar-img {
+        height: 20px;
+        width : 20px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (max-width: 767px) {
+    .navbar .buttonNavFirst{
+        padding-bottom: 10px;
+    }
+    
+    .navbar .navbar-nav {
+        float: left;
+    }
+
+    .navbar .lenguageButtons {
+        float      : right;
+        padding-top: 10px;
+    }
+
 }
 
 /*** 3.Home ***/
@@ -107,12 +145,44 @@
 /*** Slogan settings ***/
 .home .home-div{
     text-align : center;
-    padding-top: 200px;
+    padding-top: 250px;
 }
 
 .home-img {
     text-align : center;
     width      : 900px;
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .home-img {
+        width: 700px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .home-img {
+        width: 550px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and (min-width: 450px) and (max-width: 575px) {
+    .home-img {
+        width: 450px;
+    }
+}
+
+ /* Home Phone screen */
+@media only screen and (max-width: 449px) {
+    .home .home-div{
+        padding-top: 150px;
+    }
+
+    .home-img {
+        width: 300px;
+    }
 }
 
 /*** 4.Info ***/
@@ -135,7 +205,7 @@
     font-weight: 300;
 }
 
-/*** "" settings***/
+/*** settings***/
 .info .fa-quote-left, .fa-quote-right{
     color    : #222529;
     font-size: 30px;
@@ -323,7 +393,7 @@
     font-size    : 15px;
 }
 
-#contactButton {
+.contact #contactButton {
 	background-color: #222529;
     border          : 1.5px 
                       solid 
@@ -335,10 +405,9 @@
     font-weight     : 600;
     font-size       : 15px;
     padding         : 7px 15px;
-    
 }
 
-#contactButton:hover {
+.contact #contactButton:hover {
 	background-color: #D4E4F2;
     border          : 1.5px 
                       solid 
@@ -379,3 +448,436 @@
     color        : #ffffff;
     padding-right: 20px;
  }
+
+/*** areaClients.html ***/
+
+/*** 8.LogIn ***/
+/*** Background ***/
+ .login {
+    background-image   : url(../assets/Login.png);
+    background-size    : cover;
+    background-position: center;
+    background-repeat  : no-repeat;
+    min-height         : 100vh;
+}
+
+/*** Card settings***/
+.login .container {
+    background-color: #ffffff;
+    border-radius   : 30px;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position        : relative;
+    top             : 50px;
+    width           : 40%;
+}
+
+/*** Logo settings ***/
+.login .logoLogin {
+    padding-top: 50px;
+    text-align : center;
+}
+
+.login .logo-Login {
+    width: 300px;
+}
+
+/*** Text settings ***/
+.login h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size  : 40px;
+    font-weight: 800;
+    padding-top: 30px;
+    text-align : center;
+}
+
+.login p {
+    font-family: "Montserrat", sans-serif;
+    font-size  : 15px;
+    font-weight: 300;
+    text-align : center;
+}
+
+/*** Form settings ***/
+.login form {
+    padding-left : 100px;
+    padding-right: 100px;
+}
+
+.login label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size  : 18px;
+    padding-top: 20px;
+}
+
+.login input {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.login #contactButton {
+	background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 20px;
+    padding         : 7px 15px;
+}
+
+.login #contactButton:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+
+.login #buttonRetornHome {
+    background-color: transparent;
+    border          : transparent;
+ 	font-family     : "Montserrat", sans-serif;
+    font-size       : 15px;
+    font-weight     : 300;
+    text-align      : center;
+}
+
+.login #buttonRetornHome:hover {
+    font-weight          : 600;
+    text-decoration-line : underline;
+    text-decoration-style: solid;
+}
+
+/*** userDashboard.html ***/
+
+/*** 9.Sidebar ***/
+.dashborad {
+    font-family: "Montserrat", sans-serif;
+}
+
+.dashborad hr {
+    border-width: 1px;
+    width       : 100%;
+}
+
+.dashborad .menu {
+    font-size  : 25px;
+    font-weight: 600;
+}
+
+.dashborad .nav-link {
+    font-size  : 18px;
+    font-weight: 300;
+}
+
+.dashborad .nav-link:hover {
+    font-weight: 600;
+}
+
+.dashborad .dropdown-toggle:hover {
+    font-weight: 600;
+}
+
+/*** 10.Content***/
+/*** Logo settings ***/
+.dashborad .dashborad-logo {
+    padding-bottom: 15px;
+    padding-top   : 15px;
+    width         : 200px;
+}
+
+/*** Topbar settings ***/
+.dashborad .top {
+    height    : 80px;
+    margin    : 0%;
+    text-align: center;
+    width     : 100%;
+}
+
+/*** Options settings ***/
+.dashborad .options {
+    background-color: #f6f6f6;
+    min-height      : 100vh;
+    text-align      : center;
+}
+
+/*** Spacer settings ***/
+.dashborad .content .sapcer {
+    background-image   : url(../assets/Dashboard.png);
+    background-size    : cover;
+    background-position: center;
+    background-repeat  : no-repeat;
+    border-radius      : 0px;
+    box-shadow         : 0 4px 8px 0 rgba(39, 38, 38, 0.2), 
+                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height             : 60px;
+    position           : relative;
+    top                : 50px;
+}
+
+/*** Text settings ***/
+.dashborad h1 {
+    color      : #222529;
+    font-family: "Montserrat", sans-serif;
+    font-size  : 40px;
+    font-weight: 600;
+    padding-top: 50px;
+}
+
+.dashborad h2 {
+    color         : #222529;
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 30px;
+    font-weight   : 300;
+    padding-bottom: 50px;
+    padding-top   : 100px;
+}
+
+.dashborad .content h3 {
+    color         : #222529;
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 20x;
+    font-weight   : 300;
+    padding-bottom: 50px;
+    padding-top   : 50px;
+}
+
+/*** Button card settings ***/
+.dashborad .content .buttoncard {
+    background-color: #ffffff;
+    border-radius   : 10px;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin          : 5px;
+}
+
+.dashborad .content .buttoncard:hover {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 30px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dashborad .content .buttoncard a {
+    color          : #222529;
+    text-decoration: none;
+}
+
+.dashborad .content .boton-icon {
+    background-color: #D0E4F4;
+}
+
+.dashborad .content .options i {
+    padding: 70px;
+}
+
+/*** useManagement.html ***/
+
+/*** 11.userContent ***/
+.dashborad .userContent .sapcer{
+    background-color: #D0E4F4;
+    border-radius      : 0px;
+    box-shadow         : 0 4px 8px 0 rgba(39, 38, 38, 0.2), 
+                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height             : 60px;
+    position           : relative;
+    top                : 50px;
+}
+
+.dashborad .userContent .spacerContent {
+    font-size     : 25px;
+    font-weight   : 600;
+    padding-bottom: 10px;
+    padding-top   : 10px;
+}
+
+.dashborad .userContent h2 {
+    color         : #222529;
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 20px;
+    font-weight   : 300;
+    padding-bottom: 50px;
+    padding-top   : 100px;
+}
+
+/*** dogManagement.html ***/
+
+/*** 12.dogContent ***/
+/*** Spacer settings ***/
+.dashborad .dogContent .sapcer{
+    background-color: #D0E4F4;
+    border-radius      : 0px;
+    box-shadow         : 0 4px 8px 0 rgba(39, 38, 38, 0.2), 
+                         0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height             : 60px;
+    position           : relative;
+    top                : 50px;
+}
+
+.dashborad .dogContent .spacerContent {
+    font-size     : 25px;
+    font-weight   : 600;
+    padding-bottom: 10px;
+    padding-top   : 10px;
+}
+
+/*** Text settings ***/
+.dashborad .dogContent h2 {
+    color         : #222529;
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 20px;
+    font-weight   : 300;
+    padding-bottom: 50px;
+    padding-top   : 100px;
+}
+
+/*** Dog options settings ***/
+.dashborad .dogContent .dogSchedule {
+    text-align: left;
+    width     : 75%;
+}
+
+.dashborad .dogContent i {
+    padding-left: 10px;
+}
+
+.dashborad .dogContent a {
+    background-color: #D0E4F4;
+    border          : 5px 
+                      solid 
+                      #f6f6f6;
+    color           : #222529;
+    font-size       : 20px;
+    font-weight     : 300;
+    height          : 50px;
+    padding-top     : 10px;
+}
+
+/*** Form settings ***/
+.dashborad .dogContent .w-100 {
+    background-color: #ffffff;
+}
+
+.dashborad .dogContent .dogForm {
+    padding-bottom: 20px;
+    padding-top   : 20px;
+    width         : 70%;
+}
+
+.dashborad .dogContent label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size  : 18px;
+    padding-top: 20px;
+}
+
+.dashborad .dogContent input {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.dashborad .dogContent textarea {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.dashborad .dogContent #contactButton {
+	background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 20px;
+    padding         : 7px 15px;
+}
+
+.dashborad .dogContent #contactButton:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+
+/*** bookingManagement.html ***/
+
+/*** 13.bookingContent ***/
+/*** Spacer settings ***/
+.dashborad .bookingContent .sapcer{
+    background-color: #D0E4F4;
+    border-radius   : 0px;
+    box-shadow      : 0 4px 8px 0 rgba(39, 38, 38, 0.2), 
+                      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height          : 60px;
+    position        : relative;
+    top             : 50px;
+}
+
+.dashborad .bookingContent .spacerContent {
+    font-size     : 25px;
+    font-weight   : 600;
+    padding-bottom: 10px;
+    padding-top   : 10px;
+}
+
+/*** Text settings ***/
+.dashborad .bookingContent h2 {
+    color         : #222529;
+    font-family   : "Montserrat", sans-serif;
+    font-size     : 20px;
+    font-weight   : 300;
+    padding-bottom: 50px;
+    padding-top   : 100px;
+}
+
+/*** Schedule settings ***/
+.dashborad .bookingContent .bookingSchedule {
+    text-align: left;
+    width     : 75%;
+}
+
+.dashborad .bookingContent a {
+    background-color: #D0E4F4;
+    border          : 5px 
+                      solid 
+                      #f6f6f6;
+    color           : #222529;
+    font-size       : 20px;
+    font-weight     : 300;
+    height          : 50px;
+    padding-top     : 10px;
+}
+
+.dashborad .bookingContent .col-2, .col-3 {
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #edf2f4;
+    color           : #edf2f4;
+    font-size       : 15px;
+    font-weight     : 300;
+    text-align      : center;
+}
+
+.dashborad .bookingContent i {
+    padding-left: 10px;
+}

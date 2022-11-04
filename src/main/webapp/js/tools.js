@@ -25,12 +25,13 @@ export default function showNotification(resposta, missatges) {
         "405": "Mètode no permès pel servidor. Operació no completada",
     };
 
+    $.extend(catalegMissatges, missatges);
+
     //Afegim un cas genèric per a codis no previstos
     if(catalegMissatges[resposta.status] == undefined){
         catalegMissatges[resposta.status] = "El servidor ha respost amb "+resposta.status+". Contacta amb l'administrador del web per a més informació";
     }
 
-    $.extend(catalegMissatges, missatges);
     let cosNotificacio = catalegMissatges[resposta.status];
     //Crear notificació
     $('<div class="toast-container position-fixed bottom-0 end-0 p-3">     <div id="notificacio" class="toast" role="alert" aria-live="assertive" aria-atomic="true">     <div class="toast-header">        <i class="fa-solid fa-circle-info p-1"></i>        <strong class="me-auto">Notificació</strong>        <small></small>        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Tanca"></button>      </div>      <div class="toast-body">       '+ cosNotificacio +'      </div>    </div>  </div>').appendTo("body");
