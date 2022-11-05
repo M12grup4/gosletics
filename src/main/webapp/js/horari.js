@@ -241,7 +241,7 @@ function assignBehaviourToDayButtons() {
  * @returns {String} L'hora en format d'impressió
  * 
  */
-function formatTime(hora) {
+export default function formatTime(hora) {
     let conversio = hora.toString();
     if (conversio.length == 4) {
         return conversio.substring(0, 2) + ":" + conversio.substring(2);
