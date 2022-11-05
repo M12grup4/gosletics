@@ -216,6 +216,104 @@
     width      : 700px;
 }
 
+/* Home Large screen */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .info h1 {
+        font-size: 60px;
+    }
+    
+    .info p {
+        font-size: 20px;
+    }
+
+    .info .info-img {
+        padding-top: 40px ;
+        width      : 500px;
+    }
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .info .infoText {
+        padding-top: 80px;
+    }
+
+    .info h1 {
+        font-size: 45px;
+    }
+    
+    .info p {
+        font-size: 16px;
+    }
+
+    .info .fa-quote-left, .fa-quote-right{
+        font-size: 20px;
+    }
+    
+    .info .info-img {
+        padding-top: 40px ;
+        width      : 400px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .info h1 {
+        font-size: 50px;
+        padding-bottom: 40px;
+    }
+    
+    .info p {
+        font-size: 15px;
+    }
+
+    .info .fa-quote-left, .fa-quote-right{
+        font-size: 20px;
+    }
+    
+    .info .info-img {
+        padding-top: 40px ;
+        width      : 400px;
+    }
+
+    .info .fa-quote-left, .fa-quote-right{
+        font-size: 15px;
+    }
+    
+    .info .info-img {
+        width: 300px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .info h1 {
+        font-size: 45px;
+        padding-bottom: 20px;
+    }
+    
+    .info p {
+        font-size: 13px;
+    }
+
+    .info .fa-quote-left, .fa-quote-right{
+        font-size: 15px;
+    }
+    
+    .info .info-img {
+        padding-top: 20px ;
+        width      : 300px;
+    }
+
+    .info .fa-quote-left, .fa-quote-right{
+        font-size: 15px;
+    }
+    
+    .info .info-img {
+        width: 300px;
+    }
+}
+
 /*** 5.Schedule ***/
 .schedule {
     background-color: #edf2f4;
@@ -249,7 +347,7 @@
     display         : inline-block;
 	font-family     : "Montserrat", sans-serif;
     font-weight     : 600;
-    font-size       : 20px;
+    font-size       : 16px;
     height          : 85px;
     width           : 85px;
 }
@@ -293,21 +391,135 @@
 
 /*** Schedule table text settings ***/
 .schedule .activityName {
-    font-family     : "Montserrat", sans-serif;
-    font-size       : 22px;
-    font-weight     : 600;
+    font-family: "Montserrat", sans-serif;
+    font-size  : 22px;
+    font-weight: 600;
 }
 
 .schedule .activityDescription {
-    font-family     : "Montserrat", sans-serif;
-    font-size       : 18px;
-    font-weight     : 300;
+    font-family: "Montserrat", sans-serif;
+    font-size  : 18px;
+    font-weight: 300;
 }
 
 .schedule .activityParticinats {
-    font-family     : "Montserrat", sans-serif;
-    font-size       : 18px;
-    font-weight     : 600;
+    font-family: "Montserrat", sans-serif;
+    font-size  : 18px;
+    font-weight: 600;
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .schedule h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .schedule p {
+        font-size     : 20px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+
+    .schedule .col-3 {
+        font-size: 18px;
+    }
+
+    .schedule .col {
+        font-size: 18px;
+    }
+
+    .schedule .activityName {
+        font-size: 20px;
+    }
+    
+    .schedule .activityDescription {
+        font-size: 18px;
+    }
+    
+    .schedule .activityParticinats {
+        font-size: 18px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .schedule h1 {
+        font-size  : 50px;
+        padding-top: 80px;
+    }
+
+    .schedule p {
+        font-size     : 18px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+
+    .schedule .col-3 {
+        font-size: 13px;
+    }
+
+    .schedule button {
+        font-size       : 12px;
+        height          : 65px;
+        width           : 65px;
+    }
+
+    .schedule .col {
+        font-size: 13px;
+    }
+
+    .schedule .activityName {
+        font-size: 18px;
+    }
+    
+    .schedule .activityDescription {
+        font-size: 15px;
+    }
+    
+    .schedule .activityParticinats {
+        font-size: 15px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .schedule h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .schedule p {
+        font-size     : 15px;
+        padding-top   : 15px;
+        padding-bottom: 15px;
+    }
+
+    .schedule .col-3 {
+        font-size: 10px;
+    }
+
+    .schedule button {
+        font-size       : 10px;
+        height          : 40px;
+        width           : 40px;
+    }
+
+    .schedule .col {
+        font-size: 10px;
+    }
+
+    .schedule .activityName {
+        font-size: 15px;
+    }
+    
+    .schedule .activityDescription {
+        font-size: 12px;
+    }
+    
+    .schedule .activityParticinats {
+        font-size: 12px;
+    }
 }
 
 /*** 6.News ***/
@@ -326,7 +538,49 @@
     font-weight: 300;
     text-align : center;
 }
- 
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .news h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .news p {
+        font-size     : 20px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .news h1 {
+        font-size  : 50px;
+        padding-top: 80px;
+    }
+
+    .news p {
+        font-size     : 18px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .news h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .news p {
+        font-size     : 15px;
+        padding-top   : 15px;
+        padding-bottom: 15px;
+    }
+}
+
 /*** 7.Contact ***/
 .contact {
     background-image   : url(../assets/Contact.png);
@@ -415,6 +669,86 @@
     color           : #222529;
 }
 
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .contact {
+        min-height: 90vh; 
+    }
+
+    .contact h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .contact p {
+        font-size     : 20px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+
+    .contact label {
+        padding-top: 10px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .contact {
+        min-height: 90vh; 
+    }
+
+    .contact h1 {
+        font-size  : 50px;
+        padding-top: 80px;
+    }
+
+    .contact p {
+        font-size     : 18px;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+
+    .contact label {
+        padding-top: 10px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .contact h1 {
+        font-size  : 45px;
+        padding-top: 80px;
+    }
+
+    .contact p {
+        font-size     : 15px;
+        padding-top   : 15px;
+        padding-bottom: 15px;
+    }
+
+    .contact .container {
+        border-radius: 0px;
+    }
+
+    .contact form {
+        padding-left : 30px;
+        padding-right: 30px;
+    }
+
+    .contact label {
+        font-size  : 15px;
+        padding-top: 5px;
+    }
+    
+    .contact input {
+        font-size: 12px;
+    }
+    
+    .contact textarea {
+        font-size: 12px;
+    }
+}
+
 /*** 8.Footer ***/
 .footer {
     background-color: #222529;
@@ -422,8 +756,8 @@
 
 /*** Logo settings ***/
 .footer img {
-    padding-bottom: 50px;
-    padding-top   : 50px;
+    padding-bottom: 20px;
+    padding-top   : 20px;
     width         : 300px;
 }
 
@@ -433,7 +767,7 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size  : 30px;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 .footer p {
@@ -441,13 +775,137 @@
     font-family: "Montserrat", sans-serif;
     font-size  : 18px;
     font-weight: 300;
- }
+}
+
+.footer .footerSpacerFirst{
+    padding-top: 50px;
+}
+
+.footer .footerSpacerSecond{
+    padding-top: 30px;
+}
 
 /*** Social media icons ***/
 .footer .fa-brands {
     color        : #ffffff;
+    size: 100px;
     padding-right: 20px;
- }
+}
+
+/* Home Large screen */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .footer img {
+        width: 250px;
+    }
+
+    .footer h1 {
+        font-size: 25px;
+    }
+    
+    .footer p {
+        font-size: 16px;
+    }
+
+    .footer .fa-brands {
+        padding-right: 16px;
+    }
+
+    .footer .footerSpacerFirst{
+        padding-top: 40px;
+    }
+    
+    .footer .footerSpacerSecond{
+        padding-top: 20px;
+    }
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .footer img {
+        padding-bottom: 5px;
+        width         : 200px;
+    }
+
+    .footer h1 {
+        font-size: 22px;
+    }
+    
+    .footer p {
+        font-size: 14px;
+    }
+
+    .footer .fa-brands {
+        padding-right: 12px;
+    }
+
+    .footer .footerSpacerFirst{
+        padding-top: 10px;
+    }
+    
+    .footer .footerSpacerSecond{
+        padding-top: 0px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .footer img {
+        padding-bottom: 5px;
+        width         : 150px;
+    }
+
+    .footer h1 {
+        font-size: 18px;
+    }
+    
+    .footer p {
+        font-size: 12px;
+    }
+
+    .footer .fa-brands {
+        padding-right: 0px;
+        padding-bottom: 50px;
+    }
+
+    .footer .footerSpacerFirst{
+        padding-top: 0px;
+    }
+    
+    .footer .footerSpacerSecond{
+        padding-top: 0px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .footer img {
+        padding-bottom: 5px;
+        width         : 200px;
+    }
+
+    .footer h1 {
+        font-size: 25px;
+    }
+    
+    .footer p {
+        font-size: 15px;
+    }
+
+    .footer .fa-brands {
+        padding-right: 0px;
+        padding-bottom: 20px;
+    }
+
+    .footer .footerSpacerFirst{
+        padding-top: 0px;
+    }
+    
+    .footer .footerSpacerSecond{
+        padding-top: 0px;
+    }
+
+    
+}
 
 /*** areaClients.html ***/
 
