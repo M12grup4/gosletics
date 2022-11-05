@@ -3,6 +3,10 @@
  * 
  * GET /reservas/{YYYY-MM-DD}  - recupera les activitats en format JSON del dia seleccionat, només en futur
  * 
+ * POST /reserva/alta/{idActivitat}/{idClient}/{idGos} - Genera una reserva per a l'activitat, client i gos especificats
+ * 
+ * DELETE /reserva/baixa/{idReserva} - Anul·la la reserva especificada
+ * 
  * @author Albert Garcia Llorca
  */
 
@@ -101,7 +105,7 @@ function showBookableActivities(results) {
     calendari.html("");
     let i = 0;
     results.forEach((element) => {
-        if (element[0]["h_fecha"]) {
+        if (element.length > 0) {
             createAccordionItem(new Date(element[0]["h_fecha"]), element, "AI" + i);
         }
         i++;
@@ -130,25 +134,6 @@ function createAccordionItem(data, activitiesData, id) {
     } else {
         $("<p>No hi ha activitats programades.</p>").appendTo("#" + id);
     }
-
-
-    //Tanca llista
-    //$(' </ul>').appendTo(calendari);
-
-    /*  <a href="#monday" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-     <i class="fa-solid fa-square-caret-down"></i>
-     <span class="ms-1 d-none d-sm-inline">Dilluns</span>
-     </a>
-     <ul class="collapse nav flex-column ms-1" id="monday">
-     <li class="w-100">
-     <div class="headers row container">
-     <div class="col-2">HORA</div>
-     <div class="col-2">DURADADA</div>
-     <div class="col-3">ACTIVITAT</div>
-     <div class="col-3">DISPONIBILITAT</div>
-     </div>
-     </li>
-     </ul> */
 }
 
 /**
