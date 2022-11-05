@@ -130,7 +130,6 @@
         float      : right;
         padding-top: 10px;
     }
-
 }
 
 /*** 3.Home ***/
@@ -903,8 +902,6 @@
     .footer .footerSpacerSecond{
         padding-top: 0px;
     }
-
-    
 }
 
 /*** areaClients.html ***/
@@ -927,7 +924,7 @@
                       0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position        : relative;
     top             : 50px;
-    width           : 40%;
+    width           : 50%;
 }
 
 /*** Logo settings ***/
@@ -1013,6 +1010,82 @@
     font-weight          : 600;
     text-decoration-line : underline;
     text-decoration-style: solid;
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .login .container {
+        width: 70%;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .login .container {
+        width: 90%;
+    }
+
+    .login .logo-Login {
+        width: 200px;
+    }
+
+    .login h1 {
+        font-size  : 30px;
+        padding-top: 20px;
+    }
+    
+    .login p {
+        font-size: 12px;
+    }
+
+    .login label {
+        font-size  : 15px;
+        padding-top: 20px;
+    }
+    
+    .login input {
+        font-size: 12px;
+    }
+    .login #contactButton {
+        font-size: 15px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .login .container {
+        width: 95%;
+    }
+
+    .login .logo-Login {
+        width: 200px;
+    }
+
+    .login h1 {
+        font-size  : 30px;
+        padding-top: 20px;
+    }
+    
+    .login p {
+        font-size: 12px;
+    }
+
+    .login form {
+        padding-left : 50px;
+        padding-right: 50px;
+    }
+
+    .login label {
+        font-size  : 15px;
+        padding-top: 20px;
+    }
+    
+    .login input {
+        font-size: 12px;
+    }
+    .login #contactButton {
+        font-size: 15px;
+    }
 }
 
 /*** userDashboard.html ***/
