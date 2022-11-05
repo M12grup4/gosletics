@@ -37,6 +37,70 @@ public class HibernateCRUDPerro  {
         try{
             miSession.beginTransaction();
             miSession.save(perro);
+            
+            miSession.getTransaction().commit();
+            System.out.println ("transaccion acabada");
+            
+        }finally{
+            miFactory.close();
+        }
+    }
+     public static void updateGos(Perros perro){
+        SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+        Session miSession=miFactory.openSession();
+        
+        try{
+            miSession.beginTransaction();
+            int perroId=perro.getId();
+            
+            Perros perroBD = miSession.get(Perros.class, perroId);
+            System.out.println (perroBD);
+                                  
+            perroBD.setNombre(perro.getNombre());
+            perroBD.setId(perro.getId());
+            perroBD.setIdCliente(perro.getIdCliente());
+            perroBD.setObservaciones(perro.getObservaciones());
+            perroBD.setPeso(perro.getPeso());
+            perroBD.setRaza(perro.getRaza());
+            perroBD.setSexo(perro.getSexo());
+            perroBD.setFechaNacimiento(perro.getFechaNacimiento());
+            
+            miSession.getTransaction().commit();
+            System.out.println ("transaccion acabada");
+            
+        }finally{
+            miFactory.close();
+        }
+    }
+      public static void deleteGos(Perros perro){
+        SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+        Session miSession=miFactory.openSession();
+        
+        try{
+            miSession.beginTransaction();
+            Perros perroBD = miSession.get(Perros.class, perro.getId());
+            
+            System.out.println("CRUD: "+perroBD);
+            
+            miSession.delete(perroBD);
+            
+            miSession.getTransaction().commit();
+            System.out.println ("transaccion acabada");
+            
+        }finally{
+            miFactory.close();
+        }
+    }
+       public static void deleteGos(int gosid){
+        SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+        Session miSession=miFactory.openSession();
+        
+        try{
+            miSession.beginTransaction();
+            Perros perroBD = miSession.get(Perros.class,gosid);
+            
+            miSession.delete(perroBD);
+            
             miSession.getTransaction().commit();
             System.out.println ("transaccion acabada");
             

@@ -36,6 +36,12 @@ public class PerrosDAO {
     public  void add (Perros p) {
         
         HibernateCRUDPerro.addGos(p);
+    }
+    
+    
+    public  void updatePerros (Perros p) {
+        
+        HibernateCRUDPerro.updateGos(p);
         
         
         
@@ -43,6 +49,26 @@ public class PerrosDAO {
         
         
         
+    }
+    /* NO FUNCIONA *****************
+    
+    
+   public  void deletePerros (Perros p) {
+        
+        HibernateCRUDPerro.deleteGos(p);
+         
+        
+        System.out.println (p);
+        
+       
+        
+    }*/ 
+    
+    
+    
+    public  void deletePerros (int gosid) {
+        
+        HibernateCRUDPerro.deleteGos(gosid);
     }
 
     public PerrosDAO() {

@@ -64,6 +64,20 @@ public class Perros {
          System.out.println (this);
         
 }
+    
+     public Perros( Perros perro) {
+         
+         this.setNombre(perro.getNombre());
+         this.setId(perro.getId());
+         this.setIdCliente(perro.getIdCliente());
+         this.setObservaciones(perro.getObservaciones());
+         this.setPeso(perro.getPeso());
+         this.setRaza(perro.getRaza());
+         this.setSexo(perro.getSexo());
+         this.setFechaNacimiento(perro.getFechaNacimiento());
+                  
+    }
+ 
  public Perros() {
     }
  
@@ -71,12 +85,12 @@ public class Perros {
     public String toString() {
         return "Perros{" + "id=" + id + ", id_cliente=" + idCliente + ", nombre=" + nombre + ", raza=" + raza + ", sexo=" + sexo + ", peso=" + peso + ", fecha_nacimiento=" + fechaNacimiento + ", observaciones=" + observaciones + '}';
     }
-
     
     
-    @Id
-    @Column(name="ID")
-    private int id;
+   @GeneratedValue(strategy=GenerationType.IDENTITY)  
+   @Id
+   @Column(name="ID")
+   private int id;
     
     @Column(name="ID_CLIENTE")
     private int idCliente;

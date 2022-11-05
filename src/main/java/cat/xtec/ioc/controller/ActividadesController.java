@@ -141,31 +141,54 @@ return this.actividadesDAO.getByDate(data);
         perrosDAO.add(perros);
         return new ResponseEntity("Perros saved successfully", HttpStatus.OK);
     }
-    // @RequestMapping(value = "/clientes/{idCliente}/perros", method = RequestMethod.POST)
-   /* @RequestMapping(value = "/perros", method = RequestMethod.POST)
-        public @ResponseBody ResponseEntity<Perros> create(@PathVariable int idCliente,
-                @RequestBody Perros perros ) {
-            
-             System.out.println("UNO");
-            perros.setIdCliente(idCliente);
-            System.out.println("DOS");
-            System.out.println("estic a controller _ linea.115: getIdCliente" + perros.getIdCliente());
-            this.perrosDAO.add(perros);
-            System.out.println("TRES");
-            return new ResponseEntity <> (perros,HttpStatus.CREATED);
-            
-        } */
-        
-  /*    @RequestMapping(value = "/clientes/{idcliente}/perros", method = RequestMethod.GET)
        
+    /**
+     *
+     * @param data (YYYY-MM-DD)
+     * MODIFICAR GOS
+     * /**
+        * @function updateDog
+        * Aquesta funció recull la informació present del gos, la popula als camps del formulari de creació de gos, i en enviar
+        * el formulari, actualitza les dades del gos amb les que consten al formulari enviat amb PUT.
+        * @param int {id} ID del gos target a la BD.
+        * Comprova que les dades dels camps siguin correctes i les saneja.
+        * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
 
-        
-        public @ResponseBody
-            List<Actividades> getAll2(int idcliente) {
-            return this.actividadesDAO.getAllActividades();
-        }
-*/
+     */
+    
+    @RequestMapping(value = "/gossos/modif", method = RequestMethod.PUT)
+    public ResponseEntity updatePerros(@RequestBody Perros perros){
+        System.out.println("CPMX modif");
+        perrosDAO.updatePerros(perros);
+        return new ResponseEntity("Perros modif successfully", HttpStatus.OK);
+    }
              
-             
-             
+
+
+ /**
+     *
+     * @param data (YYYY-MM-DD)
+     * BAIXA DE  GOS
+     */
+    
+   
+    /*  NO FUNCIONA **************************
+      
+    @RequestMapping(value = "/gossos/baixa", method = RequestMethod.PUT)
+    public ResponseEntity deletePerros(@RequestBody Perros perros){
+        System.out.println("CPMX modif");
+        perrosDAO.deletePerros(perros);
+        return new ResponseEntity("Perros modif successfully", HttpStatus.OK);
+    }
+    
+    */
+    
+    
+    @RequestMapping(value = "/gossos/baixa/{gosid}", method = RequestMethod.DELETE)
+    public ResponseEntity deletePerros(@PathVariable int gosid){
+        System.out.println("CPMX delete");
+        perrosDAO.deletePerros(gosid);
+        return new ResponseEntity("Perros deleted successfully", HttpStatus.OK);
+    }
+            
 }
