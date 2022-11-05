@@ -108,4 +108,45 @@ public class HibernateCRUDPerro  {
             miFactory.close();
         }
     }
+       
+         
+       
+        public static List<Perros> getPerros(){
+            SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+            Session miSession=miFactory.openSession();
+            List<Perros> llistaPerros;
+        
+            try{
+                miSession.beginTransaction();
+
+                llistaPerros = miSession.createQuery("from Perros").getResultList();
+
+                miSession.getTransaction().commit();
+                System.out.println ("transaccion acabada");
+
+            }finally{
+                miFactory.close();
+            }
+            
+            return llistaPerros;
+        
+        }
+       
+        public static Perros getPerroById(int perroid){
+        SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+        Session miSession=miFactory.openSession();
+        Perros perroBD ;
+        
+        try{
+            miSession.beginTransaction();
+            perroBD = miSession.get(Perros.class,perroid);
+                       
+            miSession.getTransaction().commit();
+            System.out.println ("transaccion acabada");
+            
+        }finally{
+            miFactory.close();
+        }
+        return perroBD;
+    }
 }

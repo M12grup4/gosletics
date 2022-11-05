@@ -32,8 +32,6 @@ public class ActividadesController {
 @Autowired
 private ActividadesDAO actividadesDAO;
 
-@Autowired
-private PerrosDAO perrosDAO;
 
 @Autowired
 private ActividadesDisponiblesDAO actividadesDisponiblesDAO;
@@ -54,21 +52,20 @@ private ClientesDAO clientesDAO;
      * @param actividadesDAO - constructor classe objecte d'accès a les dades
      */
     public ActividadesController(ActividadesDAO actividadesDAO) {
-    
-    this.actividadesDAO = actividadesDAO;
-}
+        this.actividadesDAO = actividadesDAO;
+    }
  
     /**
      *
      * @return Retorna totes les activitats a la petició GET http://localhost:8080/gosletics/actividades
      */
     @RequestMapping(method = RequestMethod.GET, value = "/actividades")
-public @ResponseBody
-List<Actividades> getAll() {
+    public @ResponseBody
+        List<Actividades> getAll() {
     
-                 System.out.println("ACTIVIDADES UNO");
+        System.out.println("ACTIVIDADES UNO");
 
-return this.actividadesDAO.getAllActividades();
+        return this.actividadesDAO.getAllActividades();
 }
  
     /**
@@ -135,12 +132,13 @@ return this.actividadesDAO.getByDate(data);
      * @return Retorna totes les activitats duna {data} donada a la petició GET http://localhost:8080/gosletics/horario/{data}
      */
     /********** from https://springframework.guru/spring-boot-restful-api-documentation-with-swagger-2/*/
-     @RequestMapping(value = "/gossos/alta", method = RequestMethod.POST)
+  /*   @RequestMapping(value = "/gossos/alta", method = RequestMethod.POST)
     public ResponseEntity addPerros(@RequestBody Perros perros){
         System.out.println("CPMX UNO");
         perrosDAO.add(perros);
         return new ResponseEntity("Perros saved successfully", HttpStatus.OK);
     }
+    */
        
     /**
      *
@@ -156,13 +154,13 @@ return this.actividadesDAO.getByDate(data);
 
      */
     
-    @RequestMapping(value = "/gossos/modif", method = RequestMethod.PUT)
+  /*  @RequestMapping(value = "/gossos/modif", method = RequestMethod.PUT)
     public ResponseEntity updatePerros(@RequestBody Perros perros){
         System.out.println("CPMX modif");
         perrosDAO.updatePerros(perros);
         return new ResponseEntity("Perros modif successfully", HttpStatus.OK);
     }
-             
+    */         
 
 
  /**
@@ -184,11 +182,12 @@ return this.actividadesDAO.getByDate(data);
     */
     
     
-    @RequestMapping(value = "/gossos/baixa/{gosid}", method = RequestMethod.DELETE)
+ /*   @RequestMapping(value = "/gossos/baixa/{gosid}", method = RequestMethod.DELETE)
     public ResponseEntity deletePerros(@PathVariable int gosid){
         System.out.println("CPMX delete");
         perrosDAO.deletePerros(gosid);
         return new ResponseEntity("Perros deleted successfully", HttpStatus.OK);
     }
+*/
             
 }

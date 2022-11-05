@@ -1,3 +1,3 @@
 
 rem curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X DELETE -d @deleteGos.json  "http://127.0.0.1:8080/gosletic/gossos/baixa"
-curl -i -X DELETE   "http://127.0.0.1:8080/gosletic/gossos/baixa/11"
+curl -i -X DELETE   "http://127.0.0.1:8080/gosletic/gossos/baixa/17"

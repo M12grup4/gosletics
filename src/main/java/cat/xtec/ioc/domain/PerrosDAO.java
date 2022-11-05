@@ -74,4 +74,13 @@ public class PerrosDAO {
     public PerrosDAO() {
     }
     
+    public List<Perros> getPerros(){
+        return HibernateCRUDPerro.getPerros();
+    }
+    
+    public Perros getPerrosById(int idPerros){
+        return HibernateCRUDPerro.getPerroById(idPerros);
+    }
+    
+    
 }

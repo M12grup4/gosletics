@@ -51,18 +51,14 @@ public class Perros {
 //    public Perros(@JsonProperty("nombre") String nombre, @JsonProperty("raza")String raza,@JsonProperty("idCliente") int idCliente, @JsonProperty("idGos") int id,
   //      @JsonProperty("fechaNacimiento") String fechaNacimiento,@JsonProperty("observaciones") String observaciones2,@JsonProperty("sexo") String sexo,@JsonProperty("peso") Float peso) {      
      
-        System.out.println ("ENTRAREMIS ====??");
-        //this.id = id;
+       
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.raza = raza;
         this.sexo = sexo;
         this.peso = peso;
         this.fechaNacimiento = fechaNacimiento;
-        this.observaciones=observaciones2;
-         System.out.println ("SALIMOS DEL CONTSTRUCTOR ENTRAREMIS ====??");
-         System.out.println (this);
-        
+        this.observaciones=observaciones2;       
 }
     
      public Perros( Perros perro) {
