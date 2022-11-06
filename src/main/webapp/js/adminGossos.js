@@ -21,7 +21,7 @@
  * @author Albert Garcia Llorca
 */
 
-import showNotification from './tools.js';
+import {showNotification} from './tools.js';
 
 /**
  * Variable que recull el contenidor a on aniran els gossos resultat de la consulta.
