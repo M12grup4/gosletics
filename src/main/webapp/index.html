@@ -106,15 +106,13 @@ header('Content-type: application/json');
                                     Inscriu-te
                                 </button>
                             </div>
-                            <div class="buttonNavFirst">
-                                <button id="buttonNavSecond" 
-                                    class="buttonNav"
-                                    type="button"
-                                    onClick="parent.location='areaClients.html'">
-                                    <i class="fa-sharp fa-solid fa-paw"></i>
-                                    AREA DE CLIENTS
-                                </button>
-                            </div>
+                            <button id="buttonNavSecond" 
+                                class="buttonNav"
+                                type="button"
+                                onClick="parent.location='areaClients.html'">
+                                <i class="fa-sharp fa-solid fa-paw"></i>
+                                AREA DE CLIENTS
+                            </button>
                         </ul>
                     </div>
                 </div>
@@ -135,18 +133,22 @@ header('Content-type: application/json');
     <section class="info" id="info">
         <div class="container infoText">
             <h1>BENVINGUTS A GOSLÈTICS!</h1>
+        </div>
+            <div class="container-sm text-center">
             <p>
                 <i class="fa-solid fa-quote-left"></i>
-                <i>... Goslètics és l’aplicació del teu centre d’activitat física per a gossos.<br>
-                    Amb Goslètics, tindràs al palmell de la mà totes les activitats atlètiques i de lleure<br> 
-                    que faran que el teu gos es trobi en bona forma física, i sobretot, feliç.<br> 
-                    Podràs reservar activitats ràpidament per aquells moments en què no te’n pots fer càrrec,<br> 
-                    o bé com a pla estable d’entrenament si el teu veterinari recomana,<br> 
+                <i>... Goslètics és l’aplicació del teu centre d’activitat física per a gossos.
+                    Amb Goslètics, tindràs al palmell de la mà totes les activitats atlètiques i de lleure
+                    que faran que el teu gos es trobi en bona forma física, i sobretot, feliç.
+                    Podràs reservar activitats ràpidament per aquells moments en què no te’n pots fer càrrec,
+                    o bé com a pla estable d’entrenament si el teu veterinari recomana,
                     per exemple, una baixada de pes del teu company pelut...</i>
                 <i class="fa-solid fa-quote-right"></i>
             </p>
             <img class="info-img" src="assets/Info.png">
-        </div>
+            </div>
+            
+        
     </section>
     <!-- Info End -->
 
@@ -248,7 +250,7 @@ header('Content-type: application/json');
                 <div class="form-group">
                     <label for="labelMessage">Missatge</label>
                     <textarea class="form-control" id="textAreaMessage"
-                        rows="3"></textarea>
+                        rows="2"></textarea>
                 </div>
                 <div class="buttonDiv text-center py-2">
                     <button type="submit" class="contactButton"
@@ -261,19 +263,28 @@ header('Content-type: application/json');
 
     <!-- Footer Start -->
     <section class="footer" id="footer">
-        <div class="container">
+        <div class="container-lg">
             <div class="row ms-auto">
-                <div class="col-4">
+                <div class="col-sm-4 text-center">
                     <img class="logo-img" src="assets/Logo-footer.png">
                 </div>
-                <div class="col-8">
+                <div class="col-sm-4 text-center">
                     <h1>Troba'ns </h1>
                     <p>info@gosletics.com</p>
-                    <br>
-                    <i class="fa-brands fa-twitter fa-2xl"></i>
-                    <i class="fa-brands fa-instagram fa-2xl"></i>
-                    <i class="fa-brands fa-facebook fa-2xl"></i>
-                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                    <div class="footerSpacerFirst">
+                        <i class="fa-brands fa-twitter fa-2xl"></i>
+                        <i class="fa-brands fa-instagram fa-2xl"></i>
+                        <i class="fa-brands fa-facebook fa-2xl"></i>
+                        <i class="fa-brands fa-youtube fa-2xl"></i>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <img class="logo-img" src="assets/Footer-name.png">
+                    <div class="footerSpacerSecond">
+                        <p>No t'ho pensis més!<br>
+                            <i>La felicitat del teu pelut depén de tu</i>
+                        </p>
+                    </div>
                 </div>
             </div>
     </section>
