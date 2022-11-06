@@ -3,7 +3,7 @@
  * 
  * GET /reservas/{YYYY-MM-DD}  - recupera les activitats en format JSON del dia seleccionat, només en futur
  * 
- * POST /reserva/alta/{idActivitat}/{idClient}/{idGos} - Genera una reserva per a l'activitat, client i gos especificats
+ * POST /reserva/alta/ - Genera una reserva 
  * 
  * DELETE /reserva/baixa/{idReserva} - Anul·la la reserva especificada
  * 
@@ -46,7 +46,7 @@ let resultats = [];
  */
 $().ready(() => {
     calendari = $("#bookingSchedule");
-    //Executa trucades
+    //Executa trucades inicials
     getBookableActivities();
     $(document).ajaxComplete(() => {
         if (resultats.length == NUM_DIES_ANTICIPAT) {
@@ -63,6 +63,7 @@ $().ready(() => {
  * des d'avui (segons data del client amb DATA_ACTUAL) a 14 dies endavant.
  * Qualsevol activitat que té lloc al passat (segons hora del servidor), no serà retornada
  * a la vista.
+ * Desa els resultats en un array @see {@link resultats} que serà utilitzat per {@link showBookableActivities}.
  * Amb els resultats, popula un acordió amb les dades de l'activitat i un botó per reservar si 
  * l'usuari no ha reservat, i un d'anul·lar si l'usuari ja té una reserva activa. Tenint en compte
  * que un usuari pot tenir més d'un gos registrat i que poden fer activitats diferents,
@@ -94,14 +95,14 @@ function getBookableActivities() {
 
 /**
  * @function showBookableActivities
- * Genera elements HTML per ordre i els afegeix al DOM en base als resultats obtinguts de les peticions al servidor de getBookableActivities
+ * Genera elements HTML per ordre @see {@link createAccordionItem} i els afegeix al DOM en base als resultats obtinguts de les peticions al servidor de getBookableActivities
  * @param {Array} results Array d'objectes JSON amb les activitats de cada dia. La clau és la data de l'activitat en milisegons, el valor cada
  * activitat.
  * 
  */
 function showBookableActivities(results) {
     results.sort();
-    console.log(results);
+    //Neteja resultats a la vista
     calendari.html("");
     let i = 0;
     results.forEach((element) => {
@@ -155,8 +156,7 @@ function createBookable(activityData, data, id) {
     //Accions
     let botoReservar = $("<div class=\"col-1\"> Reservar </div>").appendTo("#act" + data + activityData.a_id);
     let botoAnular = $("<div class=\"col-1\"> Anul·lar </div>").appendTo("#act" + data + activityData.a_id);
-    //Tanca llista
-    //$(' </div>   </li>').appendTo("#"+data);
+
     activitat.click(() => {
         //TODO
         //showActivityDetail(activityData.a_id);
