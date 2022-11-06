@@ -3,6 +3,8 @@
  * @author Albert Garcia Llorca
  */
 
+export const modal = new bootstrap.Modal('#modal');
+
 /**
  * @func showNotification
  * Mostra notificacions als usuaris en funció de respostes obtingudes del servidor.
@@ -10,8 +12,8 @@
  * @param missatges Objecte que encapsula missatges en funció dels codis retornats pel servidor -> 2XX: OK; 201: Recurs creat; 4XX: Error en el client, recurs no trobat; 5XX: Error en el servidor, petició no completada, etc.
  *  
  */
-export default function showNotification(resposta, missatges) {
-    //TODO processar la resposta i generar notificacions
+export function showNotification(resposta, missatges) {
+    //Processar la resposta i generar notificacions
     let catalegMissatges = {
         "500": "Error intern del servidor. Operació no completada",
         "511": "Autenticació de xarxa és necessària per accedir. Operació no completada",
@@ -24,7 +26,8 @@ export default function showNotification(resposta, missatges) {
         "404": "No es pot trobar el recurs sol·licitat",
         "405": "Mètode no permès pel servidor. Operació no completada",
     };
-
+    
+    //Afegeix possibles missatges passats per paràmetre 
     $.extend(catalegMissatges, missatges);
 
     //Afegim un cas genèric per a codis no previstos
@@ -40,5 +43,25 @@ export default function showNotification(resposta, missatges) {
     const toast = new bootstrap.Toast(notificacio);
     toast.show();
 
+}
+
+/**
+ * @function showModal
+ * Obre un modal a la pàgina actual i mostra el contingut HTML passat per paràmetre al seu interior.
+ * @param {HTMLElement} cosElement Element HTML a afegir dins del modal. Afegeix contingut al class=modal-body
+ * @param {HTMLElement} peuElement Opcional, per defecte nul. Afegeix contingut al class=modal-footer
+ * @param {String} titol Opcional, afegeix títol al modal. Afegeix text al H1 amb class=modal-title
+ */
+export function showModal(cosElement, peuElement = $(""), titol = ""){
+    //Neteja info anterior
+    $(".modal-body").html("");
+    $(".modal-title").html("");
+    $(".modal-footer").html("");
+    //Afegeix nova info
+    cosElement.appendTo(".modal-body");
+    peuElement.appendTo(".modal-footer");
+    $(".modal-title").html(titol);
+    //Obre modal
+    modal.toggle();
 }
 

@@ -10,8 +10,8 @@
  * @author Albert Garcia Llorca
  */
 
-import showNotification from './tools.js';
 import formatTime from './horari.js';
+import { modal, showModal, showNotification } from './tools.js';
 
 /**
  * Establim la data actual segons el client que ha realitzat la petició.
@@ -30,6 +30,8 @@ const NUM_DIES_ANTICIPAT = 14;
  */
 const WEBROOT = "http://localhost:8080/gosletic";
 const GET_HORARI = WEBROOT + "/reservas";
+const POST_RESERVA = WEBROOT + "/reserva/alta";
+const DELETE_RESERVA = WEBROOT + "/reserva/baixa/";
 
 /**
  * Declarem com a variable el contenidor a on aniran els resultats rebuts del servidor a cada petició.
@@ -86,9 +88,9 @@ function getBookableActivities() {
             resultats[i] = results;
         },
                 ).catch((error) => console.log(error));
-        
-            dateQueried = new Date(baseDate.valueOf() + (DIA_EN_MILISEGONS * (i+1))).toISOString().split("T")[0];
-        
+
+        dateQueried = new Date(baseDate.valueOf() + (DIA_EN_MILISEGONS * (i + 1))).toISOString().split("T")[0];
+
 
     }
 }
@@ -162,11 +164,68 @@ function createBookable(activityData, data, id) {
         //showActivityDetail(activityData.a_id);
     });
     botoReservar.click(() => {
-        //TODO
+        //TODO test API call
+        let contingut = $("<p>Selecciona gos per reservar</p>");//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
+        let peu = $("<button>Reservar</button>");
+        //exemple
+        let gossos = [3, 43];
+        peu.click(() => createBooking(gossos));
+        let titol = "Reserva activitat";
+        showModal(contingut, peu, titol);
     });
     botoAnular.click(() => {
-        //TODO
+        //TODO test API call
+        let contingut = $("<p>Aquesta acció és irreversible.</p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
+        let peu = $("<button>Anular</button>");
+        //Exemple
+        let ids = [5];
+        peu.click(()=> deleteBooking(ids));
+        let titol = "ATENCIÓ!";
+        showModal(contingut, peu, titol);
     });
+}
+
+/**
+ * @function createBooking
+ * Crea una trucada al servidor per crear una reserva per a cada gos seleccionat per l'usuari al diàleg modal de confirmació.
+ * @param {Array} gossos Llista d'IDs dels gossos seleccionats
+ * 
+ */
+function createBooking(gossos) {
+    $.post(POST_RESERVA, gossos, (results) => {
+        modal.hide();
+        showNotification(results, {"201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!"});
+    }).catch(
+            (error) => {
+        console.log(error);
+        modal.hide();
+        showNotification(error, {"0": "Error a l'efectuar la reserva. Operació no realitzada. Contacta amb l'administrador."}
+        );
+    });
+}
+
+/**
+ * @function createBooking
+ * Crea una trucada al servidor per eliminar una reserva per a cada ID de reserva seleccionat per l'usuari al diàleg modal de confirmació.
+ * @param {Array} ids Llista d'IDs de les reserves seleccionades per eliminar.
+ * 
+ */
+function deleteBooking(ids) {
+    ids.forEach((element)=>{
+        $.ajax(DELETE_RESERVA + element, {
+        type: 'DELETE',
+        success: (results) => {
+            modal.hide();
+            showNotification(results, {"201": "Reserva '+ element +' eliminada correctament!", "200": "Reserva '+ element +' eliminada correctament!", "204": "Reserva '+ element +' eliminada correctament!"});
+        },
+        error: (error) => {
+            console.log(error);
+            modal.hide();
+            showNotification(error, {"0": "Error a l'efectuar l'anul·lació. Operació no realitzada. Contacta amb l'administrador."}
+            );
+        }});
+    });
+    
 }
 
 /**
