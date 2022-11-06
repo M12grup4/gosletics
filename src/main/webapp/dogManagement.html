@@ -184,6 +184,34 @@ header('Content-type: application/json');
                                 <li class="w-100">
                                     <div class="dogForm container">
                                         <!-- Query -->
+                                        <!--Albert static-->
+                                        <form id="cercaGosForm">
+                                            <label for="qry">Nom del gos</label>
+                                            <input type="text" title="qry" id="qry"></input>
+                                            <input type="button" title="cerca" value="Cerca" id="cercaButton"></input>
+                                        </form>
+                                        <!--Example dog (Albert) static-->
+                                        <table class="table w-100" id="results">
+                                            <tr class="headers row container">
+                                                <td class="col">ID</td>
+                                                <td class="col">NOMBRE</td>
+                                                <td class="col">RAZA</td>
+                                                <td class="col">PROPIETARIO</td>
+                                                <td class="col">ACCIONES</td>
+                                                <td class="col"></td>
+                                            </tr>
+                                            <!--Dynamic FROM JS-->
+                                            <tr class="row container">
+                                                <td class="col">5</td>
+                                                <td class="col">GINGER</td>
+                                                <td class="col">LABRADOR</td>
+                                                <td class="col">569</td>
+                                                <td class="col" id="updateButton">Modifica</td>
+                                                <td class="col" id="bajaButton">Baja</td>
+                                            </tr>
+                                            <!--ENDS FROM JS-->
+                                        </table>
+                                        <!--Example dog ends (Albert)-->
                                     </div>
                                 </li>
                             </ul>
