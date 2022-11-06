@@ -51,8 +51,9 @@ export function showNotification(resposta, missatges) {
  * @param {HTMLElement} cosElement Element HTML a afegir dins del modal. Afegeix contingut al class=modal-body
  * @param {HTMLElement} peuElement Opcional, per defecte nul. Afegeix contingut al class=modal-footer
  * @param {String} titol Opcional, afegeix títol al modal. Afegeix text al H1 amb class=modal-title
+ * @param {JSON} altres Opcional, altres dades encapsulades en un objecte JSON. Per defecte, nul
  */
-export function showModal(cosElement, peuElement = $(""), titol = ""){
+export function showModal(cosElement, peuElement = $(""), titol = "", altres = {}){
     //Neteja info anterior
     $(".modal-body").html("");
     $(".modal-title").html("");

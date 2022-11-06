@@ -169,7 +169,7 @@ function createBookable(activityData, data, id) {
         let peu = $("<button>Reservar</button>");
         //exemple
         let gossos = [3, 43];
-        peu.click(() => createBooking(gossos));
+        peu.click(() => createBooking(activityData.a_id, gossos));
         let titol = "Reserva activitat";
         showModal(contingut, peu, titol);
     });
@@ -188,11 +188,12 @@ function createBookable(activityData, data, id) {
 /**
  * @function createBooking
  * Crea una trucada al servidor per crear una reserva per a cada gos seleccionat per l'usuari al diàleg modal de confirmació.
+ * @param {String} idActivitat ID de l'activitat a reservar
  * @param {Array} gossos Llista d'IDs dels gossos seleccionats
  * 
  */
-function createBooking(gossos) {
-    $.post(POST_RESERVA, gossos, (results) => {
+function createBooking(idActivitat, gossos) {
+    $.post(POST_RESERVA, [idActivitat, gossos], (results) => {
         modal.hide();
         showNotification(results, {"201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!"});
     }).catch(
