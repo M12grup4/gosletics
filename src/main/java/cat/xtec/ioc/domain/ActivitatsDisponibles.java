@@ -2,7 +2,7 @@ package cat.xtec.ioc.domain;
 
 import java.util.Objects;
 
-public class Actividades {
+public class ActivitatsDisponibles {
 
     private int id;
     private String nombre;
@@ -13,7 +13,7 @@ public class Actividades {
 
     
     
-    public Actividades(int id, String nombre, int n_participantes_max, String descripcion, int activa, int n_participantes_min) {
+    public ActivitatsDisponibles(int id, String nombre, int n_participantes_max, String descripcion, int activa, int n_participantes_min) {
         this.id = id;
         this.nombre = nombre;
         this.n_participantes_max = n_participantes_max;
@@ -74,25 +74,3 @@ public class Actividades {
     }
     
 }
-    
-    
-    
-    /*
- Field               | Type        | Null | Key | Default             | Extra |
-+---------------------+-------------+------+-----+---------------------+-------+
-| ID                  | int(11)     | NO   | PRI | NULL                |       |
-| NOMBRE              | varchar(32) | NO   | PRI | NULL                |       |
-| N_PARTICIPANTES_MAX | int(11)     | NO   |     | NULL                |       |
-| FX_INSERT           | timestamp   | YES  |     | NULL                |       |
-| FX_PROC_INFO        | timestamp   | NO   |     | current_timestamp() |       |
-| DESCRIPCION         | text        | NO   |     | NULL                |       |
-| ACTIVA              | tinyint(1)  | NO   |     | 0                   |       |
-| N_PARTICIPANTES_MIN | int(11)     | NO   |     | NULL                |       |
-+---------------------+-------------+------+-----+---------------------+-------+
-
-
-*/
-    
-    
-    
-  

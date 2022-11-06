@@ -1,8 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * classe ActivitatsDAO
+ * @autor: grup4
+ * @versio: 20/10/2022
+ * @descripcio: objecte d'accès a les dades de les Activitats. Les consultes respondran a les següents peticions:
+ *               - Consulta de totes les activitats:   https://localhost:8080/gosletic/actividades 
+ *               - Consulta del detall d'una activitat per {id}:   https://localhost:8080/gosletic/actividades/{id} 
+ *               - Consulta de les activitats per data {YYYY-MM-DD} ordenades per hora: https://localhost:8080/gosletic/horario/{YYYY-MM-DD}
  */
+
 package cat.xtec.ioc.domain;
 
 
@@ -25,7 +31,12 @@ public class ActividadesDAO {
 
 public ActividadesDAO() {
     }
-    
+
+    /**
+     * Consulta de totes les activitats:   https://localhost:8080/gosletic/actividades   
+     * @return List llista de totes les activitats
+     */
+
     public List<Actividades> getAllActividades() {
         String qry = "select ID,NOMBRE,N_PARTICIPANTES_MAX,DESCRIPCION, ACTIVA, N_PARTICIPANTES_MIN from GL_ACTIVIDADES";
         dbConnection dbConnection = new dbConnection();      
@@ -55,6 +66,13 @@ public ActividadesDAO() {
         }
         return actividades_list;
     }
+    
+    /**
+     * Consulta del detall d'una activitat per {id}:   https://localhost:8080/gosletic/actividades/{id} 
+     * @param idparam (String): id de l'activitat
+     * @return Actividades (objecte)
+     */
+    
     public Actividades getById (int idparam) {
    
         String qry = "select ID,NOMBRE,N_PARTICIPANTES_MAX,DESCRIPCION, ACTIVA, N_PARTICIPANTES_MIN, FECHA, h.HORA, h.ID_ACTIVIDAD, "
@@ -86,10 +104,11 @@ public ActividadesDAO() {
         return actividades;
     }
     
-    public void p (String p) {
-        
-        System.out.println (p);
-    }
+    /**
+     * Consulta de les activitats per data {YYYY-MM-DD} ordenades per hora: https://localhost:8080/gosletic/horario/{YYYY-MM-DD}
+     * @param dia_param2 data format YYYY-MM-DD
+     * @return List llista de les activitats per data
+     */
     public List <Activitats_dia> getByDate(String dia_param2) {
         String qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
                 + "FROM GL_ACTIVIDADES A INNER JOIN GL_HORARIO H ON H.ID_ACTIVIDAD = A.ID " 

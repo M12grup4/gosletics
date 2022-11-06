@@ -1,4 +1,10 @@
 
+ /**
+ * classe Activitats_dia 
+ * @autor: grup4
+ * @versio: 20/10/2022
+ * @descripcio: objecte de domini per consulta de totes les activitat per data {YYYY-MM-DD}
+ */
 package cat.xtec.ioc.domain;
 
 import java.util.Date;

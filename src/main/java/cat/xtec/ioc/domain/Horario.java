@@ -22,6 +22,10 @@ public class Horario {
         return fecha;
     }
 
+    /**
+     *
+     * @param fecha (YYYY-MM-DD)
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -50,6 +54,10 @@ public class Horario {
         this.tiempo_actividad = tiempo_actividad;
     }
 
+    /**
+     *
+     * @return plazas_ocupadas (Integer): reserves fetes de l'activitat
+     */
     public int getPlazas_ocupadas() {
         return plazas_ocupadas;
     }

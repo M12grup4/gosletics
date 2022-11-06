@@ -11,12 +11,21 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * @author CONXI
+ */
 public class dbConnection {
     
-    
-    
-public  Connection getConnection() throws SQLException, IOException {
+  
+    /**
+     *
+     * @return
+     * Retorna connexió a BBDD
+     * @throws java.sql.SQLException
+     * @throws java.io.IOException
+     */
+    public  Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
         InputStream resourceAsStream = null;
         Connection con = null;
@@ -35,21 +44,15 @@ public  Connection getConnection() throws SQLException, IOException {
                 resourceAsStream.close();
             }
         }
-        if (con!=null) {
-            System.out.println ("\n dbConnection: Returnem con valida");
-        }
-        else {
-            
-                        System.out.println ("\n dbConnection: Returnem con FALLIDA");
-
-                    
-        
-            
-        }
+      
         return con;
     }
 
-   
+    /**
+     *
+     * @return
+     * Retorna connexió a BBDD
+    
     public  Connection getConnection22() throws SQLException, IOException {
         Properties props = new Properties();
         InputStream resourceAsStream = null;
@@ -71,18 +74,8 @@ public  Connection getConnection() throws SQLException, IOException {
                 resourceAsStream.close();
             }
         }
-        if (con!=null) {
-            System.out.println ("\n dbConnection: Returnem con valida");
-        }
-        else {
-            
-                        System.out.println ("\n dbConnection: Returnem con FALLIDA");
-
-                    
-        
-            
-        }
+       
         return con;
     }
-    
+    */
 }
