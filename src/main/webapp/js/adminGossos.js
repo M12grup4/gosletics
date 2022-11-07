@@ -19,7 +19,7 @@
  * GET /gossos
  * 
  * @author Albert Garcia Llorca
-*/
+ */
 
 import {showNotification} from './tools.js';
 
@@ -65,22 +65,29 @@ function createDog() {
         "raza": $("#inputBreed").val(),
         "id_cliente": $("#inputOwner").val(),
         "fecha_nacimiento": $("#inputBirth").val(),
-        "observaciones": $("#textAreaComments").val(),
-    }
+        "peso": $("#inputWeight").val(),
+        "sexo": $("#inputSex").val(),
+        "observaciones": $("#textAreaComments").val()
+    };
     //Si falta algun camp obligatori, no enviar
     if (dogData.nombre == "" || dogData.raza == "" || dogData.id_cliente == "" || dogData.fecha_nacimiento == "") {
-        showNotification(new Response(null, { status: 418 }), { "418": "Cal omplir tots els camps obligatoris. Operació no finalitzada" });
+        showNotification(new Response(null, {status: 418}), {"418": "Cal omplir tots els camps obligatoris. Operació no finalitzada"});
         return;
     }
 
-    $.post(POST_ALTA, dogData, (result) => {
+    $.post(POST_ALTA, JSON.stringify(dogData), (result) => {
         $("#inputName").val("");
         $("#inputBreed").val("");
         $("#inputOwner").val("");
         $("#inputBirth").val("");
+        $("#inputWeight").val("");
+        $("#inputSex").val("");
         $("#textAreaComments").val("");
-        showNotification(result, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " creat correctament!" });
-    }).catch((error) => { console.log(error); showNotification(error, { "0": "Error a l'efectuar l'alta. Operació no realitzada. Contacta amb l'administrador." }) });
+        showNotification(result, {"201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " creat correctament!"});
+    }).catch((error) => {
+        console.log(error);
+        showNotification(error, {"0": "Error a l'efectuar l'alta. Operació no realitzada. Contacta amb l'administrador."})
+    });
 }
 
 /**
@@ -96,15 +103,15 @@ function updateDog(id) {
     let formulari = new bootstrap.Collapse.getInstance("#dogSubscription");
     formulari.hide();
     $.getJSON(GET_GOS + id,
-        (results) => {
-            //Popula els camps d'alta amb la informació rebuda
-            $("#inputName").val(results.nombre);
-            $("#inputBreed").val(results.raza);
-            $("#inputOwner").val(results.id_cliente);
-            $("#inputBirth").val(results.fecha_nacimiento);
-            $("#textAreaComments").val(results.observaciones);
-        },
-    );
+            (results) => {
+        //Popula els camps d'alta amb la informació rebuda
+        $("#inputName").val(results.nombre);
+        $("#inputBreed").val(results.raza);
+        $("#inputOwner").val(results.id_cliente);
+        $("#inputBirth").val(results.fecha_nacimiento);
+        $("#textAreaComments").val(results.observaciones);
+    },
+            );
     //Amb la informació plasmada, obrim el formulari d'alta
     $(document).ajaxComplete(() => formulari.show());
     //Desactiva el botó d'alta
@@ -120,30 +127,34 @@ function updateDog(id) {
                 $("#inputOwner").val("");
                 $("#inputBirth").val("");
                 $("#textAreaComments").val("");
-                showNotification(results, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!" });
+                showNotification(results, {"201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!"});
                 actualitza.remove();
                 $("#contactButton").prop("disabled", false);
             },
-            error: (error) => { console.log(error); showNotification(error, { "0": "Error a l'efectuar la modificació. Operació no realitzada. Contacta amb l'administrador." }) }
-        },);
+            error: (error) => {
+                console.log(error);
+                showNotification(error, {"0": "Error a l'efectuar la modificació. Operació no realitzada. Contacta amb l'administrador."})
+            }
+        }, );
     });
     actualitza.appendTo(".buttonDiv");
 }
 
 /**
-* @function deleteDog
-* Aquesta funció elimina de manera definitiva un gos de la base de dades mitjançant DELETE.
-* @param int {id} ID del gos target a la BD.
-* Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
-*/
+ * @function deleteDog
+ * Aquesta funció elimina de manera definitiva un gos de la base de dades mitjançant DELETE.
+ * @param int {id} ID del gos target a la BD.
+ * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
+ */
 function deleteDog(id) {
     $.ajax(DELETE_BAIXA + id, {
         type: 'DELETE',
         success: (result) => {
-            showNotification(result, { "201": "Gos eliminat correctament!", "200": "Gos eliminat correctament!", "204": "Gos eliminat correctament!" });
+            showNotification(result, {"201": "Gos eliminat correctament!", "200": "Gos eliminat correctament!", "204": "Gos eliminat correctament!"});
         },
         error: (error) => {
-            console.log(error); showNotification(error, { "0": "Error a l'efectuar la baixa. Operació no realitzada. Contacta amb l'administrador." })
+            console.log(error);
+            showNotification(error, {"0": "Error a l'efectuar la baixa. Operació no realitzada. Contacta amb l'administrador."})
         },
     });
 }
@@ -178,12 +189,12 @@ function queryDogs(qry) {
     resultatConsulta.html('<tr class="headers row container">    <td class="col">ID</td>    <td class="col">NOMBRE</td>    <td class="col">RAZA</td>    <td class="col">PROPIETARIO</td>    <td class="col">ACCIONES</td>    <td class="col"></td></tr>');
     //Executa consulta
     $.getJSON(GET_GOS, qry,
-        (results) => {
-            createDogItem(results);
-        }
+            (results) => {
+        createDogItem(results);
+    }
     ).catch((error) => {
         console.log(error);
-        showNotification(error, { "0": "Error a l'efectuar la consulta." });
+        showNotification(error, {"0": "Error a l'efectuar la consulta."});
     }
     );
 }
