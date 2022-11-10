@@ -96,20 +96,6 @@ function createDog() {
             showNotification(error, { "0": "Error a l'efectuar l'alta. Operació no realitzada. Contacta amb l'administrador." });
         },
     });
-
-    /* $.post(POST_ALTA, dogData, (result) => {
-        $("#inputName").val("");
-        $("#inputBreed").val("");
-        $("#inputOwner").val("");
-        $("#inputBirth").val("");
-        $("#inputWeight").val("");
-        $("#inputSex").val("");
-        $("#textAreaComments").val("");
-        showNotification(result, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " creat correctament!" });
-    }).catch((error) => {
-        console.log(error);
-        showNotification(error, { "0": "Error a l'efectuar l'alta. Operació no realitzada. Contacta amb l'administrador." })
-    }); */
 }
 
 /**
@@ -144,13 +130,13 @@ function updateDog(id) {
         $.ajax(PUT_MODIF + id, {
             method: 'PUT',
             contentType: 'application/json',
-            success: (results) => {
+            success: (results, status, jqxhr) => {
                 $("#inputName").val("");
                 $("#inputBreed").val("");
                 $("#inputOwner").val("");
                 $("#inputBirth").val("");
                 $("#textAreaComments").val("");
-                showNotification(results, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!" });
+                showNotification(jqxhr, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!" });
                 actualitza.remove();
                 $("#contactButton").prop("disabled", false);
             },
@@ -172,8 +158,8 @@ function updateDog(id) {
 function deleteDog(id) {
     $.ajax(DELETE_BAIXA + id, {
         method: 'DELETE',
-        success: (result) => {
-            showNotification(result, { "201": "Gos eliminat correctament!", "200": "Gos eliminat correctament!", "204": "Gos eliminat correctament!" });
+        success: (result, status, jqxhr) => {
+            showNotification(jqxhr, { "201": "Gos eliminat correctament!", "200": "Gos eliminat correctament!", "204": "Gos eliminat correctament!" });
         },
         error: (error) => {
             console.log(error);
