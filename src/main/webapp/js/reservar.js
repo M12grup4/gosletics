@@ -11,7 +11,7 @@
  */
 
 import formatTime from './horari.js';
-import { modal, showModal, showNotification } from './tools.js';
+import { modal, showModal, showNotification, WEBROOT } from './tools.js';
 
 /**
  * Establim la data actual segons el client que ha realitzat la petició.
@@ -28,7 +28,6 @@ const NUM_DIES_ANTICIPAT = 14;
 /**
  * Establim constants de la nostra API per tenir una gestió centralitzada en cas de canvis.
  */
-const WEBROOT = "http://localhost:8080/gosletic";
 const GET_HORARI = WEBROOT + "/reservas";
 const POST_RESERVA = WEBROOT + "/reserva/alta";
 const DELETE_RESERVA = WEBROOT + "/reserva/baixa/";

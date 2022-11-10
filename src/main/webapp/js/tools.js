@@ -4,6 +4,7 @@
  */
 
 export const modal = new bootstrap.Modal('#modal');
+export const WEBROOT = "http://localhost:8080/gosletic";
 
 /**
  * @func showNotification

@@ -4,6 +4,8 @@
  * @author Albert Garcia Llorca <albertgarcia20@gmail.com>
  */
 
+import {WEBROOT} from './tools.js';
+
 /**
  * Establim la data actual segons el host que ha realitzat la petició.
  * Obtenim també el dia de la setmana corresponent (Diumenge 0 - Dissabte 6).
@@ -14,7 +16,6 @@ const DIA_SETMANA = new Date(DATA_ACTUAL).getDay();
 /**
  * Establim constants de la nostra API per tenir una gestió centralitzada en cas de canvis.
  */
-const WEBROOT = "http://localhost:8080/gosletic";
 const GET_HORARI = WEBROOT + "/horario";
 const GET_DETALL = WEBROOT + "/actividades";
 

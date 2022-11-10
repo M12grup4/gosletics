@@ -21,7 +21,7 @@
  * @author Albert Garcia Llorca
  */
 
-import { showNotification } from './tools.js';
+import { showNotification, WEBROOT } from './tools.js';
 
 /**
  * Variable que recull el contenidor a on aniran els gossos resultat de la consulta.
@@ -46,7 +46,6 @@ $().ready(() => {
 /**
  * Constants trucades API.
  */
-const WEBROOT = "http://localhost:8080/gosletic";
 const POST_ALTA = WEBROOT + "/gossos/alta";
 const PUT_MODIF = WEBROOT + "/gossos/modif/";
 const DELETE_BAIXA = WEBROOT + "/gossos/baixa/";
