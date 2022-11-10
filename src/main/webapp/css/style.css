@@ -1291,7 +1291,7 @@
     padding-top     : 10px;
 }
 
-/*** Form settings ***/
+/*** Subscription Form settings ***/
 .dashborad .dogContent .w-100 {
     background-color: #ffffff;
 }
@@ -1349,6 +1349,57 @@
     color           : #222529;
 }
 
+/*** Query Form settings ***/
+.dashborad .dogContent #cercaButton {
+    background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 12px;
+    padding         : 7px 12px;
+}
+
+.dashborad .dogContent #cercaButton:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+   
+.dashborad .dogContent .headers .col{
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    color           : #edf2f4;
+    font-size       : 14px;
+    font-weight     : 600;
+    text-align      : center;
+}
+
+.dashborad .dogContent .output .col{
+    background-color: #F6F6F6;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    font-size       : 14px;
+    font-weight     : 300;
+    text-align      : center;
+}
+
+.dashborad .dogContent .output .action:hover{
+    font-weight: 600;
+}
+
+
 /*** bookingManagement.html ***/
 
 /*** 13.bookingContent ***/
@@ -1398,15 +1449,43 @@
     padding-top     : 10px;
 }
 
-.dashborad .bookingContent .col-2, .col-3 {
+.dashborad .bookingContent .headers .col-2 {
     background-color: #222529;
     border          : 5px 
                       solid 
-                      #edf2f4;
+                      #ffffff;
+    color           : #222529;
     color           : #edf2f4;
-    font-size       : 15px;
+    font-size       : 14px;
+    font-weight     : 600;
+    text-align      : center;
+}
+
+.dashborad .bookingContent .headers .col-3 {
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #F6F6F6;
+    color           : #222529;
+    color           : #edf2f4;
+    font-size       : 14px;
+    font-weight     : 600;
+    text-align      : center;
+}
+
+.dashborad .bookingContent .col-1, .col-2, .col-3 {
+    background-color: #ffffff;
+    border          : 5px 
+                      solid 
+                      #F6F6F6;
+    color           : #222529;
+    font-size       : 14px;
     font-weight     : 300;
     text-align      : center;
+}
+
+.dashborad .bookingContent .col-1:hover {
+    font-weight: 600;
 }
 
 .dashborad .bookingContent i {
