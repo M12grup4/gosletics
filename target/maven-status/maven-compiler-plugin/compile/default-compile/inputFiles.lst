@@ -1,7 +1,9 @@
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Activitats_dia.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\util\HibernateCRUDReserva.java
+C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\LoginDAO.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\db\dbConnection.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\ReservaDAO.java
+C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\controller\LoginController.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Clientes.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\controller\GosController.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\controller\ReservaController.java
@@ -11,6 +13,7 @@ C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\do
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Reserva.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Actividades.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Perros.java
+C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Login.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\ActivitatsDisponibles.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\ActividadesDAO.java
 C:\Users\CONXI\Documents\NetBeansProjects\gosletic\src\main\java\cat\xtec\ioc\domain\Horario.java

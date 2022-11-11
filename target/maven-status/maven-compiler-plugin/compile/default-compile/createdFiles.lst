@@ -8,6 +8,7 @@ cat\xtec\ioc\domain\Activitats_dia.class
 cat\xtec\ioc\domain\Clientes.class
 cat\xtec\ioc\db\dbConnection.class
 cat\xtec\ioc\domain\PerrosDAO.class
+cat\xtec\ioc\controller\LoginController.class
 cat\xtec\ioc\domain\Reserva.class
 cat\xtec\ioc\domain\ClientesDAO.class
 cat\xtec\ioc\domain\Perros.class
@@ -17,3 +18,5 @@ cat\xtec\ioc\controller\CORSFilter.class
 cat\xtec\ioc\domain\ActividadesDAO.class
 cat\xtec\ioc\util\HibernateCRUDReserva.class
 cat\xtec\ioc\util\HibernateCRUDPerro.class
+cat\xtec\ioc\domain\Login.class
+cat\xtec\ioc\domain\LoginDAO.class
