@@ -15,6 +15,8 @@ import java.util.Objects;
  */
 
 public class Login {
+    @SerializedName("id")
+    private int id;
     @SerializedName("mail")
     private String mail;
     @SerializedName("pass")
@@ -29,6 +31,13 @@ public class Login {
     public Login() {
     }
 
+     public Login( int id,String mail, String pass,String error, boolean isAdmin) {
+        this.id = id;
+        this.mail = mail;
+        this.pass = pass;
+        this.error = error;
+        this.isAdmin = isAdmin;
+    }
      
      public Login( String mail, String pass,String error, boolean isAdmin) {
         this.mail = mail;
@@ -69,6 +78,13 @@ public class Login {
     public void setMail(String mail) {
         this.mail = mail;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPass() {
         return pass;
@@ -96,12 +112,13 @@ public class Login {
 
     @Override
     public String toString() {
-        return "Login{" + "mail=" + mail + ", pass=" + pass + ", error=" + error + ", isAdmin=" + isAdmin + ", isOK=" + isOK + '}';
+        return "Login{" + "id=" + id + ", mail=" + mail + ", pass=" + pass + ", error=" + error + ", isAdmin=" + isAdmin + ", isOK=" + isOK + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 47 * hash + (this.id);
         hash = 47 * hash + Objects.hashCode(this.mail);
         hash = 47 * hash + Objects.hashCode(this.pass);
         hash = 47 * hash + Objects.hashCode(this.error);

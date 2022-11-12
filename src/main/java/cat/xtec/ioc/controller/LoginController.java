@@ -22,13 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @author juanrodriguezguardeno
  */
 
-
 @RestController
 public class LoginController {
  
- 
-
-
 @Autowired
 private LoginDAO loginDAO;
 
@@ -42,29 +38,10 @@ public  LoginController() {
 }
 
     
-    @RequestMapping(value = "/login/valida", method =  RequestMethod.GET)
-    public ResponseEntity validaLogin(@RequestBody String login) throws SQLException, IOException{
+    @RequestMapping(value = "/login/valida", method =  RequestMethod.POST)
+    public ResponseEntity validaLogin(@RequestBody Login login) throws SQLException, IOException{
        
         Login resultado=loginDAO.validaLogin(login);
-        System.out.println ("LOGON RESLTA: " + resultado);
         return new ResponseEntity("Login success", HttpStatus.OK);
     }
-    
-    
-    
-        /**
-     *
-     * @return Retorna les dades del login a la petició GET http://localhost:8080/gosletics/login
-     */
- /*   
-@RequestMapping(value = "/login/{login}", method =  RequestMethod.GET)
-   // @RequestMapping(value = "/login", method =  RequestMethod.GET)
-    public @ResponseBody
-        Login getLogin (@PathVariable Login login) throws SQLException, IOException {
-        return this.loginDAO.getLogin(login);
-    }  
-        
-  */      
-        
-        
 }
