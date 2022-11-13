@@ -166,7 +166,7 @@ public class HibernateCRUDReserva  {
             reservaBD = miSession.get(Reserva.class,reservaid);
                        
             miSession.getTransaction().commit();
-            System.out.println ("transaccion acabada");
+           
             
         }finally{
             miFactory.close();

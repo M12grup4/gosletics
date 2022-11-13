@@ -43,27 +43,9 @@ public class PerrosDAO {
         
         HibernateCRUDPerro.updateGos(p);
         
-        
-        
-        System.out.println (p);
-        
-        
-        
+                
     }
-    /* NO FUNCIONA *****************
-    
-    
-   public  void deletePerros (Perros p) {
-        
-        HibernateCRUDPerro.deleteGos(p);
-         
-        
-        System.out.println (p);
-        
-       
-        
-    }*/ 
-    
+
     
     
     public  void deletePerros (int gosid) {
@@ -81,6 +63,16 @@ public class PerrosDAO {
     public Perros getPerrosById(int idPerros){
         return HibernateCRUDPerro.getPerroById(idPerros);
     }
+    
+    public List<Perros> getPerrosByIdClient(int idClient){
+        return HibernateCRUDPerro.getPerrosByIdClient(idClient);
+    }
+    
+    public List<Perros> getPerrosByNomGos(String nomGos){
+        return HibernateCRUDPerro.getPerrosByNomGos(nomGos);
+    }
+    
+    
     
     
 }

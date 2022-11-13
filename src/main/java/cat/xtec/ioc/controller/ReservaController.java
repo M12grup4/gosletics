@@ -1,3 +1,21 @@
+/**
+ * @author Conxi Gàlvez Baixench
+ * @versio TEA3 M12grup4
+ * @file ReservaController.java
+ * @descripcio Fitxer que recull totes les gestions de Reservers de Goslètics
+ *      Alta de Reserva
+ *	@RequestMapping(value = "/reserva/alta", method = RequestMethod.POST)
+ *	
+ *	Anul·lació de Reserva per {idReserva}
+ *	@RequestMapping(value = "/reserva/baixa/{reservaid}", method = RequestMethod.DELETE)
+ *
+ *	Consulta de Reserves actuals de Goslèctics	
+ *	@RequestMapping(value = "/reserva", method = RequestMethod.GET)
+ *
+ *	Consulta d'una Reserva determinada per {idReserva}
+ *	@RequestMapping(value = "/reserva/{idReserva}", method = RequestMethod.GET)
+ **/
+
 package cat.xtec.ioc.controller;
  
 import cat.xtec.ioc.domain.ReservaDAO;
@@ -79,7 +97,7 @@ private ReservaDAO reservaDAO;
 
  /**
      *
-     * @param data (YYYY-MM-DD)
+     * @param {reservaid}
      * BAIXA DE  RESERVA
      */
     @RequestMapping(value = "/reserva/baixa/{reservaid}", method = RequestMethod.DELETE)
@@ -95,11 +113,11 @@ private ReservaDAO reservaDAO;
  /**
      *
      * @param data (YYYY-MM-DD)
-     * CONSULTA DE  RESERVA
+     * CONSULTA DE TOTES LES RESERVES
+     * @version TEA3
      */
     @RequestMapping(value = "/reserva", method = RequestMethod.GET)
     public @ResponseBody List<Reserva> getReservas() {
-        System.out.println("CPMX GET RESERVAS ALL TODAS");
         return this.reservaDAO.getReservas();
         //return this.actividadesDAO.getAllActividades()
         //return new ResponseEntity("Reserva deleted successfully", HttpStatus.OK);
