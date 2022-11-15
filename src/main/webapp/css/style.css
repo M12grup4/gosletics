@@ -1106,7 +1106,7 @@
 }
 
 .dashborad .nav-link {
-    font-size  : 18px;
+    font-size  : 16px;
     font-weight: 300;
 }
 
@@ -1209,6 +1209,98 @@
     padding: 70px;
 }
 
+/* Home XLarge-Large screen */
+@media only screen and (min-width: 992px) and (max-width: 1399px) {
+    .dashborad .menu {
+        font-size: 22px;
+    }
+    
+    .dashborad .nav-link {
+        font-size: 13px;
+    }
+
+    .dashborad h1 {
+        font-size: 35px;
+    }
+
+    .dashborad h2 {
+        font-size: 25px;
+    }
+
+    .dashborad .content h3 {
+        font-size: 19px;
+    }
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .dashborad .menu {
+        font-size: 22px;
+    }
+    
+    .dashborad .nav-link {
+        font-size: 13px;
+    }
+
+    .dashborad h1 {
+        font-size: 32px;
+    }
+
+    .dashborad h2 {
+        font-size: 22px;
+    }
+
+    .dashborad .content h3 {
+        font-size: 22px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .dashborad .menu {
+        font-size: 22px;
+    }
+    
+    .dashborad .nav-link {
+        font-size: 13px;
+    }
+
+    .dashborad h1 {
+        font-size: 30px;
+    }
+
+    .dashborad h2 {
+        font-size: 20px;
+    }
+
+    .dashborad .content h3 {
+        font-size: 20px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .dashborad .menu {
+        font-size: 22px;
+    }
+    
+    .dashborad .nav-link {
+        font-size: 13px;
+    }
+
+    .dashborad h1 {
+        font-size: 30px;
+    }
+
+    .dashborad h2 {
+        font-size: 20px;
+    }
+
+    .dashborad .content h3 {
+        font-size: 20px;
+    }
+}
+
 /*** useManagement.html ***/
 
 /*** 11.userContent ***/
@@ -1236,6 +1328,16 @@
     font-weight   : 300;
     padding-bottom: 50px;
     padding-top   : 100px;
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .dashborad .userContent .spacerContent {
+        font-size: 18px;
+    }
+    .dashborad .userContent h1 {
+        font-size: 20px;
+    }
 }
 
 /*** dogManagement.html ***/
@@ -1272,7 +1374,7 @@
 /*** Dog options settings ***/
 .dashborad .dogContent .dogSchedule {
     text-align: left;
-    width     : 75%;
+    width     : 100%;
 }
 
 .dashborad .dogContent i {
@@ -1291,7 +1393,7 @@
     padding-top     : 10px;
 }
 
-/*** Subscription Form settings ***/
+/*** Form settings ***/
 .dashborad .dogContent .w-100 {
     background-color: #ffffff;
 }
@@ -1300,6 +1402,7 @@
     padding-bottom: 20px;
     padding-top   : 20px;
     width         : 70%;
+    width: 100%;
 }
 
 .dashborad .dogContent label {
@@ -1399,6 +1502,77 @@
     font-weight: 600;
 }
 
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .dashborad .dogContent label {
+        font-size: 15px;
+    }
+
+    .dashborad .dogContent #contactButton {
+        font-size: 15px;
+    }
+}
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .dashborad .dogContent label {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent #contactButton {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent input {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent textarea {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent .headers .col{
+        font-size: 12px;
+    }
+    
+    .dashborad .dogContent .output .col{
+        font-size: 12px;
+    }
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .dashborad .dogContent .spacerContent {
+        font-size: 18px;
+    }
+    .dashborad .dogContent h1 {
+        font-size: 18px;
+    }
+
+    .dashborad .dogContent h2 {
+        font-size: 15px;
+    }
+
+    .dashborad .dogContent .nav-link {
+        font-size: 15px;
+    }
+
+    .dashborad .dogContent label {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent #contactButton {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent input {
+        font-size: 13px;
+    }
+
+    .dashborad .dogContent textarea {
+        font-size: 13px;
+    }
+}
 
 /*** bookingManagement.html ***/
 
@@ -1434,7 +1608,7 @@
 /*** Schedule settings ***/
 .dashborad .bookingContent .bookingSchedule {
     text-align: left;
-    width     : 75%;
+    width     : 100%;
 }
 
 .dashborad .bookingContent a {
@@ -1490,4 +1664,38 @@
 
 .dashborad .bookingContent i {
     padding-left: 10px;
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .dashborad .bookingContent .spacerContent {
+        font-size: 18px;
+    }
+    .dashborad .bookingContent h1 {
+        font-size: 18px;
+    }
+
+    .dashborad .bookingContent h2 {
+        font-size: 15px;
+    }
+
+    .dashborad .bookingContent .nav-link {
+        font-size: 15px;
+    }
+
+    .dashborad .bookingContent label {
+        font-size: 13px;
+    }
+
+    .dashborad .bookingContent #contactButton {
+        font-size: 13px;
+    }
+
+    .dashborad .bookingContent input {
+        font-size: 13px;
+    }
+
+    .dashborad .bookingContent textarea {
+        font-size: 13px;
+    }
 }
