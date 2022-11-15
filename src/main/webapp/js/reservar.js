@@ -7,11 +7,19 @@
  * 
  * DELETE /reserva/baixa/{idReserva} - Anul·la la reserva especificada
  * 
+ * 
+ * 
  * @author Albert Garcia Llorca
  */
 
 import formatTime from './horari.js';
 import { modal, showModal, showNotification, WEBROOT } from './tools.js';
+
+/**
+ * Usuari de prova i els seus gossos
+ */
+localStorage.setItem('id', 1);
+let gossos_usuari = null;
 
 /**
  * Establim la data actual segons el client que ha realitzat la petició.
@@ -31,6 +39,17 @@ const NUM_DIES_ANTICIPAT = 14;
 const GET_HORARI = WEBROOT + "/reservas";
 const POST_RESERVA = WEBROOT + "/reserva/alta";
 const DELETE_RESERVA = WEBROOT + "/reserva/baixa/";
+const GET_GOSSOS_CLIENT = WEBROOT + "/gossos/client/" + localStorage.getItem('id');
+
+/**
+ * Carreguem els gossos de l'usuari
+ */
+$.getJSON(GET_GOSSOS_CLIENT,
+    (results) => {
+        //Desa els resultats
+        gossos_usuari = results;
+    },
+);//.catch((error) => console.log(error));
 
 /**
  * Declarem com a variable el contenidor a on aniran els resultats rebuts del servidor a cada petició.
@@ -82,11 +101,11 @@ function getBookableActivities() {
 
     for (let i = 0; i < NUM_DIES_ANTICIPAT; i++) {
         $.getJSON(GET_HORARI + "/" + dateQueried,
-                (results) => {
-            //Desa els resultats
-            resultats[i] = results;
-        },
-                ).catch((error) => console.log(error));
+            (results) => {
+                //Desa els resultats
+                resultats[i] = results;
+            },
+        ).catch((error) => console.log(error));
 
         dateQueried = new Date(baseDate.valueOf() + (DIA_EN_MILISEGONS * (i + 1))).toISOString().split("T")[0];
 
@@ -164,21 +183,21 @@ function createBookable(activityData, data, id) {
     });
     botoReservar.click(() => {
         //TODO test API call
-        let contingut = $("<p>Selecciona gos per reservar</p>");//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
+        let contingut = "<p>Selecciona gos per reservar</p>";//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
         let peu = $("<button>Reservar</button>");
-        //exemple
-        let gossos = [3, 43];
-        peu.click(() => createBooking(activityData.a_id, gossos));
+        let gossos = createDogList(gossos_usuari);
+        contingut += gossos;
+        peu.click(() => createBooking({ "idCliente": localStorage.getItem('id'), "idActivitat": activityData.a_id, "fecha": activityData.h_fecha, "hora": activityData.h_hora }, $(':checked')));
         let titol = "Reserva activitat";
-        showModal(contingut, peu, titol);
+        showModal($(contingut), peu, titol);
     });
     botoAnular.click(() => {
         //TODO test API call
         let contingut = $("<p>Aquesta acció és irreversible.</p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
         let peu = $("<button>Anular</button>");
-        //Exemple
+        //Exemple TODO obtenir les reserves de l'usuari loginat
         let ids = [5];
-        peu.click(()=> deleteBooking(ids));
+        peu.click(() => deleteBooking(ids));
         let titol = "ATENCIÓ!";
         showModal(contingut, peu, titol);
     });
@@ -187,45 +206,62 @@ function createBookable(activityData, data, id) {
 /**
  * @function createBooking
  * Crea una trucada al servidor per crear una reserva per a cada gos seleccionat per l'usuari al diàleg modal de confirmació.
- * @param {String} idActivitat ID de l'activitat a reservar
- * @param {Array} gossos Llista d'IDs dels gossos seleccionats
+ * @param {JSON} dadesActivitat Dades de l'activitat a reservar
+ * @param {HTMLCollection} gossos Checkboxes seleccionats 
  * 
  */
-function createBooking(idActivitat, gossos) {
-    $.post(POST_RESERVA, [idActivitat, gossos], (results) => {
-        modal.hide();
-        showNotification(results, {"201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!"});
-    }).catch(
-            (error) => {
-        console.log(error);
-        modal.hide();
-        showNotification(error, {"0": "Error a l'efectuar la reserva. Operació no realitzada. Contacta amb l'administrador."}
-        );
+function createBooking(dadesActivitat, gossos) {
+    //Obtenim els ids de gossos per als quals reservar    
+    let ids_gossos = [];
+    for (let i = 0; i < gossos.length; i++) {
+        ids_gossos.push(gossos[i].name);
+    }
+    //Per cada gos, efectuem una reserva
+    ids_gossos.forEach((el) => {
+        dadesActivitat["idGos"] = el;
+        $.post({
+            url: POST_RESERVA,
+            data: JSON.stringify(dadesActivitat),
+            contentType: 'application/json',
+            success: (results) => {
+                modal.hide();
+                showNotification(results, { "201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!" })
+            },
+            error: (error) => {
+                console.log(error);
+                modal.hide();
+                showNotification(error, { "0": "Error a l'efectuar la reserva. Operació no realitzada. Contacta amb l'administrador." }
+                );
+            }
+        });
     });
+
+
 }
 
 /**
- * @function createBooking
+ * @function deleteBooking
  * Crea una trucada al servidor per eliminar una reserva per a cada ID de reserva seleccionat per l'usuari al diàleg modal de confirmació.
  * @param {Array} ids Llista d'IDs de les reserves seleccionades per eliminar.
  * 
  */
 function deleteBooking(ids) {
-    ids.forEach((element)=>{
+    ids.forEach((element) => {
         $.ajax(DELETE_RESERVA + element, {
-        type: 'DELETE',
-        success: (results) => {
-            modal.hide();
-            showNotification(results, {"201": "Reserva '+ element +' eliminada correctament!", "200": "Reserva '+ element +' eliminada correctament!", "204": "Reserva '+ element +' eliminada correctament!"});
-        },
-        error: (error) => {
-            console.log(error);
-            modal.hide();
-            showNotification(error, {"0": "Error a l'efectuar l'anul·lació. Operació no realitzada. Contacta amb l'administrador."}
-            );
-        }});
+            type: 'DELETE',
+            success: (results) => {
+                modal.hide();
+                showNotification(results, { "201": "Reserva '+ element +' eliminada correctament!", "200": "Reserva '+ element +' eliminada correctament!", "204": "Reserva '+ element +' eliminada correctament!" });
+            },
+            error: (error) => {
+                console.log(error);
+                modal.hide();
+                showNotification(error, { "0": "Error a l'efectuar l'anul·lació. Operació no realitzada. Contacta amb l'administrador." }
+                );
+            }
+        });
     });
-    
+
 }
 
 /**
@@ -259,4 +295,35 @@ function determineDay(data) {
             return "Dissabte";
             break;
     }
+}
+
+/**
+ * @function createDogItem
+ * Crea un element HTML amb la informació d'un dels gossos de l'usuari.
+ * @param {JSON} info Informació del gos obtinguda del servidor
+ * @returns {String} Element HTML de llista en format String, per ser convertit a HTML posteriorment
+ */
+function createDogItem(info) {
+    let gos = '<div> <input type="checkbox" id="' + info.nombre + '" name="' + info.id + '"> <label for="' + info.id + '">' + info.nombre + '</label></div>';
+    return gos;
+}
+
+/**
+ * @function createDogList
+ * Agrega els elements HTML en string de gossos de l'usuari i els remet al següent mètode, normalment afegir-los
+ * al cos del modal mitjançant {@link showModal}.
+ * @param {JSON} gossos Conjunt de gossos de l'usuari
+ */
+function createDogList(gossos) {
+    let llista = "";
+    if (gossos != null) {
+        gossos.forEach((element) => {
+            if (element != null) {
+                llista += createDogItem(element);
+            }
+        });
+    }
+
+    return llista;
+
 }

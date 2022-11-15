@@ -43,7 +43,7 @@ header('Content-type: application/json');
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
         crossorigin="anonymous"></script>
     <!--Custom JS-->
-    <script src="./js/horari.js" ></script>
+    <script src="./js/logUser.js" type="module"></script>
 </head>
 
 <body>
@@ -67,7 +67,7 @@ header('Content-type: application/json');
                     <input type="password" class="form-control" id="inputPassword">
                 </div>
                 <div class="buttonDiv text-center py-3">
-                    <button type="submit" 
+                    <button type="button" 
                             class="contactButton"
                             id="contactButton">
                             Entrar
@@ -84,5 +84,23 @@ header('Content-type: application/json');
         </div>
     </section>
     <!-- Login End -->
+    <!-- Modal -->
+    <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Contingut
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End modal-->
 </body>
 </html>

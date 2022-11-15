@@ -19,8 +19,9 @@ const POST_LOGIN = WEBROOT + "/login/valida";
  * Quan el DOM està carregat, assigna els camps de formulari a les variables de camp
  */
 $().ready(() => {
-    mail = $('#mail');
-    pass = $('#pass');
+    mail = $('#inputName');
+    pass = $('#inputPassword');
+    $('#contactButton').click(() => sendLogin());
 });
 
 /**
@@ -47,14 +48,18 @@ function sendLogin() {
         success: (result, status, jqxhr) => {
             mail.val("");
             pass.val("");
+            let r = JSON.parse(result.substring(5));
+            localStorage.setItem(id, r.id);
+            localStorage.setItem(mail, r.mail);
+            localStorage.setItem(isAdmin, r.isAdmin);
             showNotification(jqxhr, { "200": "Benvingut, " + userData.mail + "!" });
-        }, 
+        },
         error: (error) => {
             console.log(error);
             showNotification(error, { "0": "Error a l'autenticar-se. Revisa les dades i prova-ho novament." });
         },
     });
- }
+}
 
 /**
  * @function logout
@@ -69,11 +74,11 @@ function logout() {
             mail.val("");
             pass.val("");
             showNotification(jqxhr, { "200": "Fins la propera! Estàs desconnectat." });
-        }, 
+        },
         error: (error) => {
             console.log(error);
             showNotification(error, { "0": "Error al desconnectar-se. Prova-ho novament." });
         },
     });
- }
+}
 
