@@ -12,7 +12,7 @@ let pass;
 /**
  * API calls
  */
-const GET_LOGIN = WEBROOT + "/login/valida";
+const POST_LOGIN = WEBROOT + "/login/valida";
 //const GET_LOGOUT = WEBROOT + "";
 
 /**
@@ -41,9 +41,8 @@ function sendLogin() {
     }
 
     $.post({
-        url: GET_LOGIN,
+        url: POST_LOGIN,
         data: JSON.stringify(userData),
-        method: 'GET',
         contentType: 'application/json',
         success: (result, status, jqxhr) => {
             mail.val("");
