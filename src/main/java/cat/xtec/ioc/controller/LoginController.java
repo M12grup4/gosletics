@@ -1,8 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author juanrodriguezguardeno & Conxi Gàlvez Baixench
+ * @version TEA3 M12grup4
+ * @file LoginController.java
+ * @descripcio Fitxer que recull totes les gestions de login
+ * 
+	Valida un usuari des del formulari de Login
+	@RequestMapping(value = "/login/valida", method =  RequestMethod.POST)
  */
+
 package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.Login;
@@ -17,10 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author juanrodriguezguardeno
- */
+
 
 @RestController
 public class LoginController {
@@ -42,6 +44,10 @@ public  LoginController() {
     public ResponseEntity validaLogin(@RequestBody Login login) throws SQLException, IOException{
        
         Login resultado=loginDAO.validaLogin(login);
-        return new ResponseEntity("Login success", HttpStatus.OK);
+        // passem objecte Login a format JSON
+        String resultadoStr = resultado.toString();
+        return new ResponseEntity(resultadoStr, HttpStatus.OK);
+      
+      
     }
 }

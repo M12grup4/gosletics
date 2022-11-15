@@ -1,12 +1,11 @@
 /**
  * 
- * classe ActivitatsDAO
- * @autor: grup4
- * @versio: 20/10/2022
- * @descripcio: objecte d'accès a les dades de les Activitats. Les consultes respondran a les següents peticions:
- *               - Consulta de totes les activitats:   https://localhost:8080/gosletic/actividades 
- *               - Consulta del detall d'una activitat per {id}:   https://localhost:8080/gosletic/actividades/{id} 
- *               - Consulta de les activitats per data {YYYY-MM-DD} ordenades per hora: https://localhost:8080/gosletic/horario/{YYYY-MM-DD}
+ * classe ActivitatsDisponiblesDAO
+ * @autor: conxigb
+ * @versio: 03/11/2022
+ * @descripcio: objecte d'accès a les Activitats Disponibles per reservar segons dia i hora del sistema.
+ *              La consulta respondrà a la petició:
+ *               - https://localhost:8080/gosletic/reservas/{YYYY-MM-DD}
  */
 
 package cat.xtec.ioc.domain;
@@ -44,41 +43,33 @@ public class ActividadesDisponiblesDAO {
    
     
     public List <Activitats_dia> getReservasByDate(String dia_param2) {
-      
-        
-    LocalDateTime ahora= LocalDateTime.now();
-    int año = ahora.getYear();
-    int mes = ahora.getMonthValue();
-    int dia = ahora.getDayOfMonth();
-    int horilla = ahora.getHour();
-    int minutos = ahora.getMinute();
-    int segundos = ahora.getSecond();
-         System.out.println("Hora actual: "+ año+"/"+normalizar_numero(mes)+"/"+normalizar_numero(dia) +" "+" hora : " + normalizar_numero(horilla) + normalizar_numero(minutos));
+        LocalDateTime ahora= LocalDateTime.now();
+        int año = ahora.getYear();
+        int mes = ahora.getMonthValue();
+        int dia = ahora.getDayOfMonth();
+        int horilla = ahora.getHour();
+        int minutos = ahora.getMinute();
+        int segundos = ahora.getSecond();
+            System.out.println("Hora actual: "+ año+"/"+normalizar_numero(mes)+"/"+normalizar_numero(dia) +" "+" hora : " + normalizar_numero(horilla) + normalizar_numero(minutos));
 
-         String qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
-            + "FROM GL_ACTIVIDADES A INNER JOIN GL_HORARIO H ON H.ID_ACTIVIDAD = A.ID " 
-            + "WHERE h.fecha='"+ dia_param2+ "'"
-            + "ORDER by h.HORA";
-         
-         
-        System.out.println("Query que faigZZZZZZZZZZZZZZZZZZZZZZZZZ : " +qry);
-      
-         String hoy = normalizar_numero(año)+"-"+normalizar_numero(mes)+"-"+normalizar_numero(dia);
-         
-         
-         if (hoy.compareTo(dia_param2)==0){ //0: data igual a avui
-             System.out.println("entre en el if");
-               qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
+            String qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
                 + "FROM GL_ACTIVIDADES A INNER JOIN GL_HORARIO H ON H.ID_ACTIVIDAD = A.ID " 
                 + "WHERE h.fecha='"+ dia_param2+ "'"
-                + "and h.hora>'"+ normalizar_numero(horilla)+normalizar_numero(minutos)+ "'"
                 + "ORDER by h.HORA";
+
+            String hoy = normalizar_numero(año)+"-"+normalizar_numero(mes)+"-"+normalizar_numero(dia);
+
+            // es mira si el dia passat per paràmetre és el dia del sistema, per mirar les activitats disponibles a partir de l'hora del sistema.
+            if (hoy.compareTo(dia_param2)==0){ //0: data igual a avui
+                 System.out.println("entre en el if");
+                   qry = "select A.ID, A.NOMBRE,  H.FECHA, H.HORA, H.TIEMPO_ACTIVIDAD, H.PLAZAS_OCUPADAS, A.N_PARTICIPANTES_MAX "
+                    + "FROM GL_ACTIVIDADES A INNER JOIN GL_HORARIO H ON H.ID_ACTIVIDAD = A.ID " 
+                    + "WHERE h.fecha='"+ dia_param2+ "'"
+                    + "and h.hora>'"+ normalizar_numero(horilla)+normalizar_numero(minutos)+ "'"
+                    + "ORDER by h.HORA";
              
-         } 
-             
-         
-             
-        
+            } 
+      
         //es passa a Date la cadena del paràmetre dia_param2
         LocalDate dia_param =  LocalDate.parse(dia_param2);
              
@@ -94,7 +85,6 @@ public class ActividadesDisponiblesDAO {
                 Integer id = rs.getInt("A.ID");
                 String nombre = rs.getString("A.nombre");
                 Date fecha=rs.getDate("h.fecha");
-                //Date fecha = new Date();
                 Integer hora=rs.getInt("h.hora");
                 Integer tiempo_actividad=rs.getInt("h.tiempo_actividad");
                 Integer plazas_ocupadas=rs.getInt("h.plazas_ocupadas");
@@ -109,7 +99,8 @@ public class ActividadesDisponiblesDAO {
         return activitats_dia_list;
     }
     
-     public String normalizar_numero (int numero) {
+ // Passem el format del mes o el dia a DOS DÍGITS
+    public String normalizar_numero (int numero) {
         
         String s_numero;
         if (numero < 10) {
@@ -123,9 +114,6 @@ public class ActividadesDisponiblesDAO {
         return s_numero;
     }
    
-    
-    
-    
 }
    
 

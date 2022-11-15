@@ -1,7 +1,7 @@
 /**
  * 
  * classe ActivitatsDAO
- * @autor: grup4
+ * @autor: Conxi Gàlvez Baixench
  * @versio: 20/10/2022
  * @descripcio: objecte d'accès a les dades de les Activitats. Les consultes respondran a les següents peticions:
  *               - Consulta de totes les activitats:   https://localhost:8080/gosletic/actividades 

@@ -133,20 +133,60 @@ public class HibernateCRUDPerro  {
         }
        
         public static Perros getPerroById(int perroid){
-        SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
-        Session miSession=miFactory.openSession();
-        Perros perroBD ;
-        
-        try{
-            miSession.beginTransaction();
-            perroBD = miSession.get(Perros.class,perroid);
-                       
-            miSession.getTransaction().commit();
-            System.out.println ("transaccion acabada");
-            
-        }finally{
-            miFactory.close();
+            SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+            Session miSession=miFactory.openSession();
+            Perros perroBD ;
+
+            try{
+                miSession.beginTransaction();
+                perroBD = miSession.get(Perros.class,perroid);
+
+                miSession.getTransaction().commit();
+                System.out.println ("transaccion acabada");
+
+            }finally{
+                miFactory.close();
+            }
+            return perroBD;
         }
-        return perroBD;
-    }
+        
+        public static List<Perros> getPerrosByIdClient(int idCliente){
+            SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+            Session miSession=miFactory.openSession();
+            Perros perroBD ;
+            List<Perros> llistaPerros;
+            try{
+                miSession.beginTransaction();
+              llistaPerros = miSession.createQuery("from Perros where id_cliente="+idCliente).getResultList();
+
+                miSession.getTransaction().commit();
+
+
+            }finally{
+                miFactory.close();
+            }
+            return llistaPerros;
+        }
+        
+        
+         public static List<Perros> getPerrosByNomGos(String nomGos){
+            // passem el nom del gos a LowerCase 
+            String nomGosLowerCase = nomGos.toLowerCase();
+            SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
+            Session miSession=miFactory.openSession();
+            Perros perroBD ;
+            List<Perros> llistaPerros;
+            try{
+                miSession.beginTransaction();
+                llistaPerros = miSession.createQuery("from Perros where nomGos="+nomGosLowerCase).getResultList();
+
+                miSession.getTransaction().commit();
+
+
+            }finally{
+                miFactory.close();
+            }
+            return llistaPerros;
+        }
+        
 }

@@ -33,13 +33,73 @@ public class HibernateCRUDReserva  {
     public static void addReserva(Reserva reserva){
         SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reserva.class).buildSessionFactory();
         Session miSession=miFactory.openSession();
+        int idActivitat;
+        String fecha=reserva.getFecha();
+        int hora=reserva.getHora();
+        Connection conn;
+        Statement stmt = null;
+        int n_participantes_max = 0;
+        int pl_ocupades = 0;
         
         try{
+             //--------actualitzar Places Reservades a taula Horario
+            
+             // Verificar si existeixen places disponibles
+            idActivitat=reserva.getIdActivitat(); 
+            String qryPartiMax = "select N_PARTICIPANTES_MAX from GL_ACTIVIDADES";
+            String qryHorario = "select PLAZAS_OCUPADAS  from GL_HORARIO where HORA='" +hora +"' AND FECHA='" +fecha + "' AND ID_ACTIVIDAD=" +idActivitat +"";
+            
+            dbConnection dbConnection = new dbConnection();      
+        
+        
+            try {
+                   conn =  dbConnection.getConnection();
+                   stmt = conn.createStatement();
+                   ResultSet rs = stmt.executeQuery(qryPartiMax);
+                   
+                   while (rs.next()) {
+                        n_participantes_max=rs.getInt("n_participantes_max");
+                   }
+            }   catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+            
+            try {
+                   
+                   ResultSet rs2 = stmt.executeQuery(qryHorario);
+                   
+                   while (rs2.next()) {
+                        pl_ocupades=rs2.getInt("PLAZAS_OCUPADAS");
+                   }
+            } catch (SQLException e) {
+                System.out.println("splazas_icyoadas");
+                e.printStackTrace();
+            }
+            
+
+            
+            // ------ fi actualitzar Places Reservades a taula Horario
+        if (pl_ocupades < n_participantes_max ){
+            
+            pl_ocupades++;
+            String qrySumarPlaces = "UPDATE GL_HORARIO SET PLAZAS_OCUPADAS="+ pl_ocupades +" where HORA='" +hora +"' AND FECHA='" +fecha + "' AND ID_ACTIVIDAD=" +idActivitat +"";
+            
+             try {
+                   
+                   int rs3 = stmt.executeUpdate(qrySumarPlaces);
+                   
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            
             miSession.beginTransaction();
             miSession.save(reserva);
             
             miSession.getTransaction().commit();
             System.out.println ("transaccion acabada");
+            
+        }
+            else System.out.println("NO HI HA PLACES DISPONIBLES PER RESERVAR ");
             
         }finally{
             miFactory.close();
@@ -54,6 +114,7 @@ public class HibernateCRUDReserva  {
             int reservaId=reserva.getId();
             
             Reserva reservaBD = miSession.get(Reserva.class, reservaId);
+           
             System.out.println (reservaBD);
                                   
             reservaBD.setFecha(reserva.getFecha());
@@ -166,7 +227,7 @@ public class HibernateCRUDReserva  {
             reservaBD = miSession.get(Reserva.class,reservaid);
                        
             miSession.getTransaction().commit();
-            System.out.println ("transaccion acabada");
+           
             
         }finally{
             miFactory.close();
