@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  *
- * @author juanrodriguezguardeno
+ * @author juanrodriguezguardeno & conxi
  */
 @Configuration
 public class LoginDAO {
@@ -27,7 +27,7 @@ public class LoginDAO {
     public LoginDAO() {
 
     }
-
+    
     public Login validaLogin(Login login) throws SQLException, IOException {
         String qry = "select aes_decrypt(email, 'AES')as email, aes_decrypt(pass, 'AES') as pass, id as idCol"
                 + " FROM GL_clientes"
