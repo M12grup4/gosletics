@@ -43,10 +43,10 @@ public  LoginController() {
     @RequestMapping(value = "/login/valida", method =  RequestMethod.POST)
     public ResponseEntity validaLogin(@RequestBody Login login) throws SQLException, IOException{
        
-        Login resultado=loginDAO.validaLogin(login);
+        String resultado=loginDAO.validaLogin(login);
         // passem objecte Login a format JSON
-        String resultadoStr = resultado.toString();
-        return new ResponseEntity(resultadoStr, HttpStatus.OK);
+        //String resultadoStr = resultado.toString();
+        return new ResponseEntity(resultado, HttpStatus.OK);
       
       
     }
