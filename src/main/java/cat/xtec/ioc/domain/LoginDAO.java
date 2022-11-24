@@ -37,6 +37,9 @@ public class LoginDAO {
             Login resLog=null;
             Boolean isOK=false;
             Boolean isAdmin=false;
+            String pass="";
+            String email="";
+            int id=-1;
             //***********************
             //* error = "ko" , malo
             //* error = "ok" , bueno
@@ -51,40 +54,32 @@ public class LoginDAO {
             ResultSet rs = stmt.executeQuery(qry);) {
          
            while (rs.next()) {
-                               
-                String pass = rs.getString("pass");
-                String email = rs.getString("email");
-                int id = rs.getInt("idCol");
+                pass = rs.getString("pass");
+                email = rs.getString("email");
+                id = rs.getInt("idCol");
                 
                 if ((email.equals(login.getMail()))&&(pass.equals(login.getPass()))) {
                     isOK = true;
                     error = "ok";
                     if (email.equals("admin@gostetic.com")) {
                         isAdmin = true;
-                        
                     } else {
                         isAdmin = false;
-                       
                     }
-                     resLog = new Login(email,pass,error,isAdmin);
-                     resLog.setIsOK(true);
-                     resLog.setId(id);
-                     
+                    resLog = new Login(error,isAdmin,isOK, email,id);
 
                 } else {
                     error = "ko";
-                    resLog = new Login(error, isAdmin, isOK);
+                    isAdmin = false;
+                    isOK = false;
+                    resLog = new Login(error, isAdmin, isOK,email,id);
                 }
-
             }
-            return resLog;
+//        return resLog;
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-        
-        resLog = new Login(error,isAdmin, isOK);
+        resLog = new Login(error, isAdmin, isOK,login.getMail(),id);
         return resLog;
-
     }
-
 }
