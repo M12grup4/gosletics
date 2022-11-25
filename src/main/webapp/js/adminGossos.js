@@ -16,7 +16,7 @@
  * GET /gossos/{idGos}
  * 
  * Executa cerca de gossos:
- * GET /gossos
+ * GET /gossos/nomGos/{nomGos}
  * 
  * @author Albert Garcia Llorca
  */
@@ -50,6 +50,7 @@ const POST_ALTA = WEBROOT + "/gossos/alta";
 const PUT_MODIF = WEBROOT + "/gossos/modif/";
 const DELETE_BAIXA = WEBROOT + "/gossos/baixa/";
 const GET_GOS = WEBROOT + "/gossos/";
+const GET_GOS_NOM = WEBROOT + "/gossos/nomGos/";
 
 /**
  * @function createDog
@@ -116,6 +117,8 @@ function updateDog(id) {
             $("#inputBreed").val(results.raza);
             $("#inputOwner").val(results.id_cliente);
             $("#inputBirth").val(results.fecha_nacimiento);
+            $("#inputWeight").val(results.peso);
+            $("#inputSex").val(results.sexo);
             $("#textAreaComments").val(results.observaciones);
         },
     );
@@ -124,7 +127,7 @@ function updateDog(id) {
     //Desactiva el botó d'alta
     $("#contactButton").prop("disabled", true);
     //Genera botó d'actualització
-    let actualitza = $('<button type="button"    class="contactButton"    id="contactButton">Actualitza</button>');
+    let actualitza = $('<button type="button"    class="contactButton"    id="actualitzaButton">Actualitza</button>');
     actualitza.click(() => {
         $.ajax(PUT_MODIF + id, {
             method: 'PUT',
@@ -134,9 +137,11 @@ function updateDog(id) {
                 $("#inputBreed").val("");
                 $("#inputOwner").val("");
                 $("#inputBirth").val("");
+                $("#inputWeight").val("");
+                $("#inputSex").val("");
                 $("#textAreaComments").val("");
                 showNotification(jqxhr, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!" });
-                actualitza.remove();
+                $('#actualitzaButton').remove();
                 $("#contactButton").prop("disabled", false);
             },
             error: (error) => {
@@ -174,7 +179,7 @@ function deleteDog(id) {
  */
 function createDogItem(gossos) {
     gossos.forEach((element) => {
-        let gos = $('<tr class="row container" id="' + element.id + '">        <td class="col">' + element.id + '</td>        <td class="col">' + element.nombre + '</td>        <td class="col">' + element.raza + '</td>        <td class="col">' + element.id_cliente + '</td>        <td class="col" id="updateButton">Modifica</td>        <td class="col" id="bajaButton">Baja</td>    </tr>');
+        let gos = $('<tr class="row container" id="' + element.id + '">        <td class="col">' + element.id + '</td>        <td class="col">' + element.nombre + '</td>        <td class="col">' + element.raza + '</td>        <td class="col">' + element.idCliente + '</td>        <td class="col contactButton" id="updateButton">Modifica</td>        <td class="col contactButton" id="bajaButton">Baja</td>    </tr>');
         $("#" + element.id + " #updateButton").click(() => {
             updateDog(element.id);
         });
@@ -196,7 +201,7 @@ function queryDogs(qry) {
     //Reseteja taula
     resultatConsulta.html('<tr class="headers row container">    <td class="col">ID</td>    <td class="col">NOMBRE</td>    <td class="col">RAZA</td>    <td class="col">PROPIETARIO</td>    <td class="col">ACCIONES</td>    <td class="col"></td></tr>');
     //Executa consulta
-    $.getJSON(GET_GOS, qry,
+    $.getJSON(GET_GOS_NOM + qry,
         (results) => {
             createDogItem(results);
         }
