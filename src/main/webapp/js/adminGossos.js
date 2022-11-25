@@ -179,11 +179,11 @@ function deleteDog(id) {
  */
 function createDogItem(gossos) {
     gossos.forEach((element) => {
-        let gos = $('<tr class="row container" id="' + element.id + '">        <td class="col">' + element.id + '</td>        <td class="col">' + element.nombre + '</td>        <td class="col">' + element.raza + '</td>        <td class="col">' + element.idCliente + '</td>        <td class="col contactButton" id="updateButton">Modifica</td>        <td class="col contactButton" id="bajaButton">Baja</td>    </tr>');
-        $("#" + element.id + " #updateButton").click(() => {
+        let gos = $('<tr class="row container" id="' + element.id + '">        <td class="col">' + element.id + '</td>        <td class="col">' + element.nombre + '</td>        <td class="col">' + element.raza + '</td>        <td class="col">' + element.idCliente + '</td>        <td class="col"><button type="button" class="contactButton" id="updateButton">Modifica</button></td>        <td class="col"><button type="button" class="contactButton" id="bajaButton">Baja</button></td>    </tr>');
+        $("#" + element.id + " td button #updateButton").click(() => {
             updateDog(element.id);
         });
-        $("#" + element.id + " #bajaButton").click(() => {
+        $("#" + element.id + " td button #bajaButton").click(() => {
             deleteDog(element.id);
         });
         gos.appendTo(resultatConsulta);
