@@ -143,7 +143,7 @@ private PerrosDAO perrosDAO;
      * @param {idClient}
      * CONSULTA DE G0SS0S PER NOM_GOS 
      */
-    @RequestMapping(value = "/gossos/{nomGos}", method = RequestMethod.GET)
+    @RequestMapping(value = "/gossos/nomGos/{nomGos}", method = RequestMethod.GET)
     public @ResponseBody List<Perros> getPerrosByNomGos(@PathVariable String nomGos) {
       
         return this.perrosDAO.getPerrosByNomGos(nomGos);
