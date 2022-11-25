@@ -19,7 +19,11 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  *
- * @author juanrodriguezguardeno
+ * @author juanrodriguezguardeno & conxi
+ * @param Login
+ * Es vol sortida String amb les dades "id#mail#isAdmin"
+ * Si id = -1 és que no s'ha validat correctament i no s'ha aconseguit cap id de client
+ * Si isAdmin = true; l'usuari validat és l'administrador de l'eina
  */
 @Configuration
 public class LoginDAO {
@@ -27,22 +31,26 @@ public class LoginDAO {
     public LoginDAO() {
 
     }
-
-    public Login validaLogin(Login login) throws SQLException, IOException {
+    
+    public String validaLogin(Login login) throws SQLException, IOException {
         String qry = "select aes_decrypt(email, 'AES')as email, aes_decrypt(pass, 'AES') as pass, id as idCol"
                 + " FROM GL_clientes"
-              + " WHERE aes_decrypt(email, 'AES')='" + login.getMail() + "' "
+                + " WHERE aes_decrypt(email, 'AES')='" + login.getMail() + "' "
                 + " and aes_decrypt(pass, 'AES')='" + login.getPass()+"'";
-   
-            Login resLog=null;
-            Boolean isOK=false;
-            Boolean isAdmin=false;
-            //***********************
-            //* error = "ko" , malo
-            //* error = "ok" , bueno
-            //************************
-            String error="ko";
-        
+
+        //***********************
+        //* error = "ko" , malo
+        //* error = "ok" , bueno
+        //************************
+        String error="ko";
+        String outputValida="";
+        Login resLog=null;
+        Boolean isOK=false;
+        Boolean isAdmin=false;
+        String pass="";
+        String email=login.getMail();
+        System.out.println("email: " + email);
+        int id=-1;
         dbConnection dbConnection = new dbConnection();
         
         try (
@@ -51,40 +59,35 @@ public class LoginDAO {
             ResultSet rs = stmt.executeQuery(qry);) {
          
            while (rs.next()) {
-                               
-                String pass = rs.getString("pass");
-                String email = rs.getString("email");
-                int id = rs.getInt("idCol");
+                pass = rs.getString("pass");//són les dades recollides de la query
+                email = rs.getString("email");
                 
-                if ((email.equals(login.getMail()))&&(pass.equals(login.getPass()))) {
+                id = rs.getInt("idCol");
+                
+                if ((email.equals(login.getMail()))&&(pass.equals(login.getPass()))) {//es comparen si les dades recollides són les mateixes
                     isOK = true;
                     error = "ok";
-                    if (email.equals("admin@gostetic.com")) {
+                    if (email.equals("admin@gosletic.com")) {
                         isAdmin = true;
-                        
                     } else {
                         isAdmin = false;
-                       
                     }
-                     resLog = new Login(email,pass,error,isAdmin);
-                     resLog.setIsOK(true);
-                     resLog.setId(id);
-                     
+                    resLog = new Login(error,isAdmin,isOK, email,id);
 
                 } else {
                     error = "ko";
-                    resLog = new Login(error, isAdmin, isOK);
+                    isAdmin = false;
+                    isOK = false;
+                    resLog = new Login(error, isAdmin, isOK,email,id);
                 }
-
             }
-            return resLog;
+//        return resLog;
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-        
-        resLog = new Login(error,isAdmin, isOK);
-        return resLog;
-
+        //resLog = new Login(error, isAdmin, isOK,login.getMail(),id);
+        outputValida=id +"#"+email+"#"+isAdmin; // "id#mail#isAdmin"
+        System.out.println("outputValida : " + outputValida);
+        return outputValida;
     }
-
 }

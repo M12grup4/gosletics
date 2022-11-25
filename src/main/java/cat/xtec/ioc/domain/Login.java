@@ -5,13 +5,12 @@
  */
 package cat.xtec.ioc.domain;
 
-
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 /**
  *
- * @author juanrodriguezguardeno
+ * @author juanrodriguezguardeno & conxi
  */
 
 public class Login {
@@ -30,7 +29,13 @@ public class Login {
 
     public Login() {
     }
-
+    public Login(String error, boolean isAdmin, boolean isOK, String mail, int id) {
+        this.error = error;
+        this.isAdmin = isAdmin;
+        this.isOK = isOK;
+        this.mail = mail;
+        this.id = id;
+    }
      public Login( int id,String mail, String pass,String error, boolean isAdmin) {
         this.id = id;
         this.mail = mail;
@@ -62,6 +67,7 @@ public class Login {
         this.isAdmin = isAdmin;
         this.isOK = isOK;
     }
+    
 
     public boolean isIsOK() {
         return isOK;

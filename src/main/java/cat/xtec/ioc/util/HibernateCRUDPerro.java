@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -170,23 +171,31 @@ public class HibernateCRUDPerro  {
         
         
          public static List<Perros> getPerrosByNomGos(String nomGos){
-            // passem el nom del gos a LowerCase 
-            String nomGosLowerCase = nomGos.toLowerCase();
+            // passem el nom del gos a UpperCase 
+            String nomGosUpperCase = nomGos.toUpperCase();
+            System.out.println("nomGos to upperCase: " + nomGosUpperCase);
             SessionFactory miFactory= new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Perros.class).buildSessionFactory();
             Session miSession=miFactory.openSession();
             Perros perroBD ;
             List<Perros> llistaPerros;
             try{
+                //SELECT columnName FROM yourTable WHERE CONTAINS (columnName, ‘yourSubstring’);
+                //CONCAT('%',?1,'%')");
+                //query.setParameter(1, name);
+                // buscarem també subStrings del nom cercat
                 miSession.beginTransaction();
-                llistaPerros = miSession.createQuery("from Perros where nomGos="+nomGosLowerCase).getResultList();
-
-                miSession.getTransaction().commit();
+                //llistaPerros = miSession.createQuery("from Perros where CONTAINS ('NOMBRE','"+nomGosUpperCase+"')").getResultList();
+                Query query= miSession.createQuery("from Perros where NOMBRE LIKE ?1");
+                query.setParameter(1, "%"+nomGos+"%");
+                llistaPerros = query.getResultList();
+                return llistaPerros;
+                //miSession.getTransaction().commit();
 
 
             }finally{
                 miFactory.close();
             }
-            return llistaPerros;
+           // return llistaPerros;
         }
         
 }
