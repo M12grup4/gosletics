@@ -23,7 +23,7 @@
         crossorigin="anonymous">
     <!-- CSS Costum -->
     <link href="./css/style.css" rel="stylesheet">
-    
+
     <!-- Scripts -->
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -41,6 +41,10 @@
         crossorigin="anonymous"></script>
     <!--Custom JS-->
     <script src="./js/logUser.js" type="module"></script>
+    <script>
+        /**Comprova si l'usuari ja està loguejat per ometre aquesta pàgina per complet.*/
+        redirect(localStorage.getItem("isAdmin"));
+    </script>
 </head>
 
 <body>
@@ -61,33 +65,35 @@
                 <div class="form-group">
                     <i class="fa-solid fa-lock fa-xl"></i>
                     <label for="labelPassword">PASSWORD</label>
-                    <input type="password" class="form-control" id="inputPassword">
+                    <input type="password" class="form-control"
+                        id="inputPassword">
                 </div>
                 <div class="buttonDiv text-center py-3">
-                    <button type="button" 
-                            class="contactButton"
-                            id="contactButton">
-                            Entrar
+                    <button type="button" class="contactButton"
+                        id="contactButton">
+                        Entrar
                     </button>
                 </div>
             </form>
             <div class="buttonDiv text-center py-3">
-                <button id="buttonRetornHome"
-                        class="button py-4 " type="button"
-                        onClick="parent.location='index.html'">
-                        Torna a la pàgina principal
+                <button id="buttonRetornHome" class="button py-4 " type="button"
+                    onClick="parent.location='index.html'">
+                    Torna a la pàgina principal
                 </button>
             </div>
         </div>
     </section>
     <!-- Login End -->
     <!-- Modal -->
-    <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal fade " id="modal" tabindex="-1"
+        aria-labelledby="modalLabel" aria-hidden="true">
+        <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Contingut
@@ -100,4 +106,5 @@
     </div>
     <!--End modal-->
 </body>
+
 </html>
