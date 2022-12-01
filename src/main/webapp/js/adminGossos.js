@@ -49,6 +49,8 @@ $().ready(() => {
     $('#signout').click(()=>{
         logout();
     });
+    $('#loggedUser').html(localStorage.getItem('mail'));
+    $('#greeting').html(localStorage.getItem('mail'));
 });
 
 /**
