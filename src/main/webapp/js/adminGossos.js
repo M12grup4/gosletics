@@ -32,7 +32,7 @@ let resultatConsulta = null;
  * Accions a realitzar quan el DOM s'hagi carregat.
  */
 $().ready(() => {
-    $('#contactButton').click(() => {
+    $('#contactButtonAlta').click(() => {
         createDog();
     });
 
@@ -47,7 +47,7 @@ $().ready(() => {
  * Constants trucades API.
  */
 const POST_ALTA = WEBROOT + "/gossos/alta";
-const PUT_MODIF = WEBROOT + "/gossos/modif/";
+const PUT_MODIF = WEBROOT + "/gossos/modif";
 const DELETE_BAIXA = WEBROOT + "/gossos/baixa/";
 const GET_GOS = WEBROOT + "/gossos/";
 const GET_GOS_NOM = WEBROOT + "/gossos/nomGos/";
@@ -107,30 +107,37 @@ function createDog() {
  * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
  */
 function updateDog(id) {
-    //Tanquem el formulari d'alta
-    let formulari = new bootstrap.Collapse.getInstance("#dogSubscription");
-    formulari.hide();
     $.getJSON(GET_GOS + id,
         (results) => {
             //Popula els camps d'alta amb la informació rebuda
             $("#inputName").val(results.nombre);
             $("#inputBreed").val(results.raza);
-            $("#inputOwner").val(results.id_cliente);
-            $("#inputBirth").val(results.fecha_nacimiento);
+            $("#inputOwner").val(results.idCliente);
+            $("#inputBirth").val(results.fechaNacimiento);
             $("#inputWeight").val(results.peso);
             $("#inputSex").val(results.sexo);
             $("#textAreaComments").val(results.observaciones);
         },
     );
-    //Amb la informació plasmada, obrim el formulari d'alta
-    $(document).ajaxComplete(() => formulari.show());
     //Desactiva el botó d'alta
-    $("#contactButton").prop("disabled", true);
+    $("#contactButtonAlta").prop("disabled", true);
     //Genera botó d'actualització
     let actualitza = $('<button type="button"    class="contactButton"    id="actualitzaButton">Actualitza</button>');
     actualitza.click(() => {
-        $.ajax(PUT_MODIF + id, {
+        let updatedDog = {
+            "id": id,
+            "nombre": $("#inputName").val(),
+            "raza": $("#inputBreed").val(),
+            "id_cliente": $("#inputOwner").val(),
+            "fecha_nacimiento": $("#inputBirth").val(),
+            "peso": $("#inputWeight").val(),
+            "sexo": $("#inputSex").val(),
+            "observaciones": $("#textAreaComments").val(),
+        };
+        $.ajax({
+            url: PUT_MODIF,
             method: 'PUT',
+            data: JSON.stringify(updatedDog),
             contentType: 'application/json',
             success: (results, status, jqxhr) => {
                 $("#inputName").val("");
@@ -140,9 +147,9 @@ function updateDog(id) {
                 $("#inputWeight").val("");
                 $("#inputSex").val("");
                 $("#textAreaComments").val("");
-                showNotification(jqxhr, { "201": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "204": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!", "200": "Gos " + dogData.nombre + " de l'usuari " + dogData.id_cliente + " modificat correctament!" });
+                showNotification(jqxhr, { "201": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!", "204": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!", "200": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!" });
                 $('#actualitzaButton').remove();
-                $("#contactButton").prop("disabled", false);
+                $("#contactButtonAlta").prop("disabled", false);
             },
             error: (error) => {
                 console.log(error);
@@ -179,14 +186,15 @@ function deleteDog(id) {
  */
 function createDogItem(gossos) {
     gossos.forEach((element) => {
-        let gos = $('<div class="row container" id="' + element.id + '">        <div class="col-1">' + element.id + '</div>        <div class="col-2">' + element.nombre + '</div>        <div class="col-2">' + element.raza + '</div>        <div class="col-3">' + element.idCliente + '</div>        <div class="col-2"><button type="button" class="contactButton" id="updateButton">Modifica</button></div>        <div class="col-2"><button type="button" class="contactButton" id="bajaButton">Baja</button>    </div>');
-        $("#" + element.id + " td button #updateButton").click(() => {
+        let gos = $('<div class="row container" id="' + element.id + '">        <div class="col-1">' + element.id + '</div>        <div class="col-2">' + element.nombre + '</div>        <div class="col-2">' + element.raza + '</div>        <div class="col-3">' + element.idCliente + '</div>        <div class="col-2"><button type="button" class="contactButton" id="updateButton'+element.id+'">Modifica</button></div>        <div class="col-2"><button type="button" class="contactButton" id="bajaButton'+element.id+'">Baja</button>    </div>');
+        gos.appendTo(resultatConsulta);
+
+        $("#updateButton"+element.id+"").click(() => {
             updateDog(element.id);
         });
-        $("#" + element.id + " td button #bajaButton").click(() => {
+        $("#bajaButton"+element.id+"").click(() => {
             deleteDog(element.id);
-        });
-        gos.appendTo(resultatConsulta);
+        });        
     });
 }
 
