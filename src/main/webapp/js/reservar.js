@@ -14,6 +14,7 @@
 
 import formatTime from './horari.js';
 import { modal, showModal, showNotification, WEBROOT } from './tools.js';
+import { logout } from './logUser.js';
 
 /**
  * Usuari de prova i els seus gossos
@@ -72,6 +73,9 @@ $().ready(() => {
         if (resultats.length == NUM_DIES_ANTICIPAT) {
             showBookableActivities(resultats);
         }
+    });
+    $('#signout').click(()=>{
+        logout();
     });
 });
 

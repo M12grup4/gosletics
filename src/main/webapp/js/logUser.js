@@ -13,9 +13,10 @@ let pass;
  * API calls and destinations
  */
 const POST_LOGIN = WEBROOT + "/login/valida";
-//const GET_LOGOUT = WEBROOT + "";
+const GET_LOGOUT = WEBROOT + "/login/logout";
 const RED_ADMIN = "./dogManagement.html";
 const RED_USER = "./bookingManagement.html";
+const RED_HOME = "./index.html";
 
 /**
  * Quan el DOM està carregat, assigna els camps de formulari a les variables de camp.
@@ -24,6 +25,9 @@ $().ready(() => {
     mail = $('#inputName');
     pass = $('#inputPassword');
     $('#contactButton').click(() => sendLogin());
+    $('#signout').click(()=>{
+        logout();
+    });
 });
 
 /**
@@ -36,8 +40,8 @@ function redirect(isAdmin) {
         window.location.replace(RED_ADMIN);
     } else if (isAdmin == "false") {
         window.location.replace(RED_USER);
-    } else {
-        //undefined, do nothing
+    } else {//Logged out
+        window.location.replace(RED_HOME);
     }
 }
 
@@ -95,15 +99,18 @@ function sendLogin() {
  * @function logout
  * Envia senyal de desconnexió de l'usuari al servidor per deixar d'estar autenticat.
  */
-function logout() {
+export function logout() {
     $.ajax({
         url: GET_LOGOUT,
         method: 'GET',
-        contentType: 'application/json',
         success: (result, status, jqxhr) => {
             mail.val("");
             pass.val("");
+            localStorage.removeItem('id');
+            localStorage.removeItem('mail');
+            localStorage.removeItem('isAdmin');
             showNotification(jqxhr, { "200": "Fins la propera! Estàs desconnectat." });
+            redirect(null);
         },
         error: (error) => {
             console.log(error);

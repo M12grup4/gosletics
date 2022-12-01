@@ -22,6 +22,7 @@
  */
 
 import { showNotification, WEBROOT } from './tools.js';
+import { logout } from './logUser.js';
 
 /**
  * Variable que recull el contenidor a on aniran els gossos resultat de la consulta.
@@ -43,7 +44,11 @@ $().ready(() => {
 
     $('#cercaButton').click(() => {
         queryDogs($('#qry').val());
-    })
+    });
+
+    $('#signout').click(()=>{
+        logout();
+    });
 });
 
 /**

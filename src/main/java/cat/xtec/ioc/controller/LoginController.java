@@ -46,9 +46,8 @@ public class LoginController {
     }
     
     // mapeig del Logout d'usuari
-    @RequestMapping(value = "/login/logout", method =  RequestMethod.POST)
-    public ResponseEntity logoutUser(@RequestBody Login login) throws SQLException, IOException{
-        String resultado=loginDAO.surtLogin(login);
-        return new ResponseEntity(resultado, HttpStatus.OK);
+    @RequestMapping(value = "/login/logout", method =  RequestMethod.GET)
+    public ResponseEntity logoutUser() throws SQLException, IOException{
+        return new ResponseEntity("logged out", HttpStatus.OK);
     }
 }
