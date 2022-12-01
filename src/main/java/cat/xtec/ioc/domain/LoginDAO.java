@@ -1,7 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author juanrodriguezguardeno & conxi
+ * @param Login
+ * @version: TEA4 
+ * 24/11/22:
+ *      Es modificat sortida String amb les dades "id#mail#isAdmin"
+ *      Si id = -1 és que no s'ha validat correctament i no s'ha aconseguit cap id de client
+ *      Si isAdmin = true; l'usuari validat és l'administrador de l'eina
+ * 27/11/22:
+ *      Goslètic 27/11/22 - s'afegeix ruta de logout 
+ *      Logincontroller.java: /login/logout
+ *      LoginDAO.java: surtLogin()
  */
 package cat.xtec.ioc.domain;
 
@@ -17,14 +26,6 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.context.annotation.Configuration;
 
-/**
- *
- * @author juanrodriguezguardeno & conxi
- * @param Login
- * Es vol sortida String amb les dades "id#mail#isAdmin"
- * Si id = -1 és que no s'ha validat correctament i no s'ha aconseguit cap id de client
- * Si isAdmin = true; l'usuari validat és l'administrador de l'eina
- */
 @Configuration
 public class LoginDAO {
 
@@ -81,13 +82,17 @@ public class LoginDAO {
                     resLog = new Login(error, isAdmin, isOK,email,id);
                 }
             }
-//        return resLog;
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-        //resLog = new Login(error, isAdmin, isOK,login.getMail(),id);
+        // abans 25/11/2022 : resLog = new Login(error, isAdmin, isOK,login.getMail(),id);
         outputValida=id +"#"+email+"#"+isAdmin; // "id#mail#isAdmin"
         System.out.println("outputValida : " + outputValida);
         return outputValida;
+    }
+    
+    public String surtLogin(Login login) throws SQLException, IOException {
+        String resultado=login.getMail() + ", t'has desconnectat.";
+        return resultado;
     }
 }
