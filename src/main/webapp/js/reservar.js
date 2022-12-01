@@ -191,7 +191,7 @@ function createBookable(activityData, data, id) {
         let peu = $("<button>Reservar</button>");
         let gossos = createDogList(gossos_usuari);
         contingut += gossos;
-        peu.click(() => createBooking({ "idCliente": localStorage.getItem('id'), "idActivitat": activityData.a_id, "fecha": activityData.h_fecha, "hora": activityData.h_hora }, $(':checked')));
+        peu.click(() => createBooking({ "id_cliente": localStorage.getItem('id'), "id_actividad": activityData.a_id, "fecha": parseDateForBooking(activityData.h_fecha), "hora": activityData.h_hora }, $(':checked')));
         let titol = "Reserva activitat";
         showModal($(contingut), peu, titol);
     });
@@ -222,14 +222,14 @@ function createBooking(dadesActivitat, gossos) {
     }
     //Per cada gos, efectuem una reserva
     ids_gossos.forEach((el) => {
-        dadesActivitat["idGos"] = el;
+        dadesActivitat["id_perro"] = el;
         $.post({
             url: POST_RESERVA,
             data: JSON.stringify(dadesActivitat),
             contentType: 'application/json',
-            success: (results) => {
+            success: (result, status, jqxhr) => {
                 modal.hide();
-                showNotification(results, { "201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!" })
+                showNotification(jqxhr, { "201": "Reserva creada correctament!", "200": "Reserva creada correctament!", "204": "Reserva creada correctament!" })
             },
             error: (error) => {
                 console.log(error);
@@ -299,6 +299,22 @@ function determineDay(data) {
             return "Dissabte";
             break;
     }
+}
+
+/**
+ * @function parseDateForBooking
+ * Converteix el valor de data rebut del servidor per a una activitat i la formata en YYYY-MM-DD necessari per a emmagatzemar una
+ * reserva a la taula reserves.
+ * @param {int} data Data rebuda pel servidor
+ * @returns {String} Cadena amb la data formatada correctament
+ */
+function parseDateForBooking(data){
+    let resultat = "";
+
+    resultat = new Date(data);
+    resultat = resultat.toISOString().split("T")[0];
+
+    return resultat;
 }
 
 /**
