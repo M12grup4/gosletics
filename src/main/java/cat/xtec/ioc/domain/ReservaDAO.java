@@ -47,8 +47,6 @@ public class ReservaDAO {
         
         System.out.println (p);
         
-        
-        
     }
     
     
@@ -77,4 +75,59 @@ public class ReservaDAO {
         return HibernateCRUDReserva.getReservaById(idReserva);
     }
     
+    //get reserves per idClient
+    /*public List<Reserva> getReservasByIdClient(int idClient, int idAct){
+        return HibernateCRUDReserva.getReservasByIdClient(idClient, idAct);
+    }*/
+    
+     public List<Reserva> getReservesByIdClientIdAct(int idClient, int idAct) {
+        String qry = "select *  from GL_RESERVA where id_cliente = "+idClient +" and id_actividad = "+idAct+";";
+        dbConnection dbConnection = new dbConnection();      
+        
+        List<Reserva> reservas_list= new ArrayList<>();
+        try (
+               Connection conn =  dbConnection.getConnection();
+               Statement stmt = conn.createStatement();
+               ResultSet rs = stmt.executeQuery(qry);
+               
+                )
+            
+             
+        {
+            while (rs.next()) {
+                int idCli = rs.getInt("id_cliente");
+                int idGos = rs.getInt("id_perro");
+                int idAc = rs.getInt("id_actividad");
+                String data = rs.getDate("fecha").toString();
+                int hora = rs.getInt("hora");
+                System.out.println("reserva amb data: "+ data);
+                
+                Reserva reserva = new Reserva(idCli,idGos,idAc,data,hora);
+                reservas_list.add(reserva);
+            }
+            
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return reservas_list;
+    }
+    
 }
+ /*
+MariaDB [gosletics]> describe gl_reserva;
+
++--------------+-----------+------+-----+---------------------+----------------+
+| Field        | Type      | Null | Key | Default             | Extra          |
++--------------+-----------+------+-----+---------------------+----------------+
+| ID           | int(11)   | NO   | PRI | NULL                | auto_increment |
+| ID_CLIENTE   | int(11)   | NO   |     | NULL                |                |
+| ID_PERRO     | int(11)   | NO   |     | NULL                |                |
+| ID_ACTIVIDAD | int(11)   | NO   |     | NULL                |                |
+| FECHA        | date      | NO   |     | NULL                |                |
+| HORA         | int(11)   | NO   |     | NULL                |                |
+| FX_INSERT    | timestamp | NO   |     | current_timestamp() |                |
+| FX_PROC_INFO | timestamp | YES  |     | NULL                |                |
++--------------+-----------+------+-----+---------------------+----------------+
+   
+*/
+  
