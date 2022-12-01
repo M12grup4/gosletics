@@ -28,11 +28,14 @@ import { showNotification, WEBROOT } from './tools.js';
  */
 let resultatConsulta = null;
 
+//Botó alta gos
+const botoAlta = $("#contactButtonAlta");
+
 /**
  * Accions a realitzar quan el DOM s'hagi carregat.
  */
 $().ready(() => {
-    $('#contactButtonAlta').click(() => {
+    botoAlta.click(() => {
         createDog();
     });
 
@@ -107,6 +110,9 @@ function createDog() {
  * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
  */
 function updateDog(id) {
+    //Neteja els botons del formulari
+    $(".buttonDiv").html("");
+    //Obtenir les dades del gos a modificar
     $.getJSON(GET_GOS + id,
         (results) => {
             //Popula els camps d'alta amb la informació rebuda
@@ -119,8 +125,7 @@ function updateDog(id) {
             $("#textAreaComments").val(results.observaciones);
         },
     );
-    //Desactiva el botó d'alta
-    $("#contactButtonAlta").prop("disabled", true);
+
     //Genera botó d'actualització
     let actualitza = $('<button type="button"    class="contactButton"    id="actualitzaButton">Actualitza</button>');
     actualitza.click(() => {
@@ -149,11 +154,18 @@ function updateDog(id) {
                 $("#textAreaComments").val("");
                 showNotification(jqxhr, { "201": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!", "204": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!", "200": "Gos " + updatedDog.nombre + " de l'usuari " + updatedDog.id_cliente + " modificat correctament!" });
                 $('#actualitzaButton').remove();
-                $("#contactButtonAlta").prop("disabled", false);
+                //Neteja botons
+                $(".buttonDiv").html("");
+                //Afegeix boto alta
+                botoAlta.appendTo(".buttonDiv");
+                botoAlta.click(() => {
+                    createDog();
+                });
+
             },
             error: (error) => {
                 console.log(error);
-                showNotification(error, { "0": "Error a l'efectuar la modificació. Operació no realitzada. Contacta amb l'administrador." })
+                showNotification(error, { "0": "Error a l'efectuar la modificació. Operació no realitzada. Contacta amb l'administrador." });
             }
         },);
     });
