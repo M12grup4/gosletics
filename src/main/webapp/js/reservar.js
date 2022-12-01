@@ -41,6 +41,7 @@ const GET_HORARI = WEBROOT + "/reservas";
 const POST_RESERVA = WEBROOT + "/reserva/alta";
 const DELETE_RESERVA = WEBROOT + "/reserva/baixa/";
 const GET_GOSSOS_CLIENT = WEBROOT + "/gossos/client/" + localStorage.getItem('id');
+const GET_RESERVES_EXISTENTS = WEBROOT + "";
 
 /**
  * Carreguem els gossos de l'usuari
@@ -74,7 +75,7 @@ $().ready(() => {
             showBookableActivities(resultats);
         }
     });
-    $('#signout').click(()=>{
+    $('#signout').click(() => {
         logout();
     });
 });
@@ -181,12 +182,7 @@ function createBookable(activityData, data, id) {
     let botoReservar = $("<div class=\"col-1\"> Reservar </div>").appendTo("#act" + data + activityData.a_id);
     let botoAnular = $("<div class=\"col-1\"> Anul·lar </div>").appendTo("#act" + data + activityData.a_id);
 
-    activitat.click(() => {
-        //TODO
-        //showActivityDetail(activityData.a_id);
-    });
     botoReservar.click(() => {
-        //TODO test API call
         let contingut = "<p>Selecciona gos per reservar</p>";//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
         let peu = $("<button>Reservar</button>");
         let gossos = createDogList(gossos_usuari);
@@ -196,15 +192,52 @@ function createBookable(activityData, data, id) {
         showModal($(contingut), peu, titol);
     });
     botoAnular.click(() => {
+        let gossos_anula = loadBookings(activitat.a_id, localStorage.getItem('id'));
         //TODO test API call
-        let contingut = $("<p>Aquesta acció és irreversible.</p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
+        let contingut = $("<p>Aquesta acció és irreversible.</p> <p>Selecciona els gossos pels quals eliminar la reserva existent: </p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
         let peu = $("<button>Anular</button>");
         //Exemple TODO obtenir les reserves de l'usuari loginat
-        let ids = [5];
-        peu.click(() => deleteBooking(ids));
+        let gossos = null;
+        if (gossos_anula.length == 0) {
+            gossos = $("<p>No existeixen reserves per a aquesta activitat.</p>");
+        } else {
+            gossos = createDogList(gossos_anula);
+        }
+        contingut += gossos;
+        peu.click(() => deleteBooking($(':checked')));//Els checks haurien de ser els gossos pels quals cal eliminar la reserva
         let titol = "ATENCIÓ!";
-        showModal(contingut, peu, titol);
+        showModal($(contingut), peu, titol);
     });
+}
+
+/**
+ * @function loadBookings
+ * Carrega les reserves que té un usuari sobre aquesta activitat. Retorna cada reserva com a gos (un id) que es farà servir
+ * per a crear una llista de gossos només per a aquell element.
+ * @param {int} activitat ID activitat
+ * @param {int} usuari ID usuari
+ * @returns {Array} Array amb els ID de gossos pels quals existeix una reserva d'aquest usuari i activitat
+ */
+function loadBookings(activitat, usuari) {
+    let gossos = [];
+    $.ajax({
+        url: GET_RESERVES_EXISTENTS,
+        data: JSON.stringify({
+            "actividad": activitat,
+            "usuario": usuari,
+        }),
+        success: (result, status, jqxhr) => {
+            result.forEach((element) => {
+                gossos.push(element.id_perro);
+            });
+        },
+        error: (error) => {
+            console.log(error);
+            modal.hide();
+            showNotification(error, { "0": "Error a l'efectuar la reserva. Operació no realitzada. Contacta amb l'administrador." }
+            );
+        },
+    }).done(() => { return gossos; });
 }
 
 /**
@@ -308,7 +341,7 @@ function determineDay(data) {
  * @param {int} data Data rebuda pel servidor
  * @returns {String} Cadena amb la data formatada correctament
  */
-function parseDateForBooking(data){
+function parseDateForBooking(data) {
     let resultat = "";
 
     resultat = new Date(data);
