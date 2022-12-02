@@ -50,7 +50,7 @@ $().ready(() => {
         logout();
     });
     $('#loggedUser').html(localStorage.getItem('mail'));
-    $('#greeting').html(localStorage.getItem('mail'));
+    $('#greeting').html("Hola, "+localStorage.getItem('mail'));
 });
 
 /**

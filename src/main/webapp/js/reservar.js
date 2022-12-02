@@ -17,9 +17,8 @@ import { modal, showModal, showNotification, WEBROOT } from './tools.js';
 import { logout } from './logUser.js';
 
 /**
- * Usuari de prova i els seus gossos
+ * Gossos de l'usuari
  */
-localStorage.setItem('id', 1);
 let gossos_usuari = null;
 
 /**
@@ -41,7 +40,8 @@ const GET_HORARI = WEBROOT + "/reservas";
 const POST_RESERVA = WEBROOT + "/reserva/alta";
 const DELETE_RESERVA = WEBROOT + "/reserva/baixa/";
 const GET_GOSSOS_CLIENT = WEBROOT + "/gossos/client/" + localStorage.getItem('id');
-const GET_RESERVES_EXISTENTS = WEBROOT + "";
+const GET_RESERVES_EXISTENTS_1 = WEBROOT + "/reserves/client/"
+const GET_RESERVES_EXISTENTS_2 = "/activitat/";
 
 /**
  * Carreguem els gossos de l'usuari
@@ -79,7 +79,7 @@ $().ready(() => {
         logout();
     });
     $('#loggedUser').html(localStorage.getItem('mail'));
-    $('#greeting').html(localStorage.getItem('mail'));
+    $('#greeting').html("Hola, " + localStorage.getItem('mail'));
 });
 
 
@@ -194,21 +194,14 @@ function createBookable(activityData, data, id) {
         showModal($(contingut), peu, titol);
     });
     botoAnular.click(() => {
-        let gossos_anula = loadBookings(activitat.a_id, localStorage.getItem('id'));
         //TODO test API call
-        let contingut = $("<p>Aquesta acció és irreversible.</p> <p>Selecciona els gossos pels quals eliminar la reserva existent: </p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
+        let contingut = $("<p>Aquesta acció és irreversible.</p> <p>Selecciona els gossos pels quals eliminar la reserva existent: </p> <p id='holdmsg'>Espera, sisplau...</p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
         let peu = $("<button>Anular</button>");
-        //Exemple TODO obtenir les reserves de l'usuari loginat
-        let gossos = null;
-        if (gossos_anula.length == 0) {
-            gossos = $("<p>No existeixen reserves per a aquesta activitat.</p>");
-        } else {
-            gossos = createDogList(gossos_anula);
-        }
-        contingut += gossos;
-        peu.click(() => deleteBooking($(':checked')));//Els checks haurien de ser els gossos pels quals cal eliminar la reserva
+        peu.click(() => deleteBooking([$(':checked')]));//Els checks haurien de ser els gossos pels quals cal eliminar la reserva
         let titol = "ATENCIÓ!";
         showModal($(contingut), peu, titol);
+        //Exemple TODO obtenir les reserves de l'usuari loginat
+        loadBookings(activityData.a_id, localStorage.getItem('id'));
     });
 }
 
@@ -223,23 +216,30 @@ function createBookable(activityData, data, id) {
 function loadBookings(activitat, usuari) {
     let gossos = [];
     $.ajax({
-        url: GET_RESERVES_EXISTENTS,
-        data: JSON.stringify({
-            "actividad": activitat,
-            "usuario": usuari,
-        }),
-        success: (result, status, jqxhr) => {
-            result.forEach((element) => {
-                gossos.push(element.id_perro);
+        method: 'GET',
+        url: GET_RESERVES_EXISTENTS_1 + usuari + GET_RESERVES_EXISTENTS_2 + activitat,
+    }).done((result, status, jqxhr) => {
+        result.forEach((element) => {
+            gossos_usuari.forEach((gos) => {
+                if (gos.id == element.idGos) {
+                    //Guardem còpia del gos que necessitem
+                    let nou_gos = gos;
+                    //Canviem l'id del gos pel de la reserva a eliminar a la còpia
+                    nou_gos["id"] = element.id;
+                    //Desem la còpia del gos per crear un element html amb la referència ID correcta
+                    gossos.push(nou_gos);
+                }
             });
-        },
-        error: (error) => {
-            console.log(error);
-            modal.hide();
-            showNotification(error, { "0": "Error a l'efectuar la reserva. Operació no realitzada. Contacta amb l'administrador." }
-            );
-        },
-    }).done(() => { return gossos; });
+        });
+        $('#holdmsg').html("");
+        $(createDogList(gossos)).appendTo('#holdmsg');
+        if (result.length == 0) {
+            $('#holdmsg').html("No existeixen reserves per a aquesta activitat.");
+        }
+    }).fail((error) => {
+        console.log(error);
+        $('#holdmsg').html("Error carregant les reserves.");
+    });
 }
 
 /**
@@ -258,6 +258,7 @@ function createBooking(dadesActivitat, gossos) {
     //Per cada gos, efectuem una reserva
     ids_gossos.forEach((el) => {
         dadesActivitat["id_perro"] = el;
+        dadesActivitat["id"] = 999;//El servidor espera un camp d'id amb int, però no el farà servir
         $.post({
             url: POST_RESERVA,
             data: JSON.stringify(dadesActivitat),
@@ -286,11 +287,13 @@ function createBooking(dadesActivitat, gossos) {
  */
 function deleteBooking(ids) {
     ids.forEach((element) => {
-        $.ajax(DELETE_RESERVA + element, {
-            type: 'DELETE',
-            success: (results) => {
+        $.ajax({
+            url: DELETE_RESERVA + element[0].name,
+            method: 'DELETE',
+            contentType: 'text/plain',
+            success: (results, status, jqxhr) => {
                 modal.hide();
-                showNotification(results, { "201": "Reserva '+ element +' eliminada correctament!", "200": "Reserva '+ element +' eliminada correctament!", "204": "Reserva '+ element +' eliminada correctament!" });
+                showNotification(jqxhr, { "201": "Reserva eliminada correctament!", "200": "Reserva eliminada correctament!", "204": "Reserva eliminada correctament!" });
             },
             error: (error) => {
                 console.log(error);
@@ -368,6 +371,7 @@ function createDogItem(info) {
  * Agrega els elements HTML en string de gossos de l'usuari i els remet al següent mètode, normalment afegir-los
  * al cos del modal mitjançant {@link showModal}.
  * @param {JSON} gossos Conjunt de gossos de l'usuari
+ * @returns {HTMLCollection} Conjunt d'elements HTML que conformen una llista de gossos amb checklist
  */
 function createDogList(gossos) {
     let llista = "";
