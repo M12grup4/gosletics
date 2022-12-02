@@ -32,10 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
  
-/**
- *
- * @author CONXI
- */
 @RestController
 public class ReservaController {
  
@@ -51,58 +47,48 @@ private ReservaDAO reservaDAO;
  
     /**
      *
-     * @param data (YYYY-MM-DD)
+     * @param reserva
+     * @return ResponseEntity reserva
      * alta de RESERVA
      */
     
     @RequestMapping(value = "/reserva/alta", method = RequestMethod.POST)
     public ResponseEntity addReserva(@RequestBody Reserva reserva){
-        System.out.println("CPMX UNO");
         reservaDAO.add(reserva);
         return new ResponseEntity("Reserva saved successfully", HttpStatus.OK);
     }
        
     /**
-     *
-     * @param data (YYYY-MM-DD)
+     * @return ResponseEntity reserva
+     * @param reserva
      * MODIFICAR RESERVA
-     * /**
-        * @function updateDog
-        * Aquesta funció recull la informació present del reserva, la popula als camps del formulari de creació de reserva, i en enviar
-        * el formulari, actualitza les dades del reserva amb les que consten al formulari enviat amb PUT.
-        * @param int {id} ID del reserva target a la BD.
-        * Comprova que les dades dels camps siguin correctes i les saneja.
-        * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
-
-     */
+     
+     **/
     @RequestMapping(value = "/reserva/modif", method = RequestMethod.PUT)
     public ResponseEntity updateReserva(@RequestBody Reserva reserva){
-        System.out.println("CPMX modif");
         reservaDAO.updateReserva(reserva);
         return new ResponseEntity("Reserva modif successfully", HttpStatus.OK);
     }
              
     
  /**
-     *
-     * @param data (YYYY-MM-DD)
+     * @return ResponseEntity reserva
+     * @param reservaid
      * BAIXA DE  RESERVA
      */
     @RequestMapping(value = "/reserva/modif/{reservaid}", method = RequestMethod.PUT)
     public ResponseEntity deleteReserva(@PathVariable int reservaid,@RequestBody Reserva reserva ){
-        System.out.println("CPMX MODIF");
         reservaDAO.updateReservabyId(reservaid, reserva);
         return new ResponseEntity("Reserva MODIF successfully", HttpStatus.OK);
     }
 
  /**
-     *
-     * @param {reservaid}
+     * @return ResponseEntity reserva
+     * @param reservaid
      * BAIXA DE  RESERVA
      */
     @RequestMapping(value = "/reserva/baixa/{reservaid}", method = RequestMethod.DELETE)
     public ResponseEntity deleteReserva(@PathVariable int reservaid){
-        System.out.println("CPMX delete");
         reservaDAO.deleteReserva(reservaid);
         return new ResponseEntity("Reserva deleted successfully", HttpStatus.OK);
     }
@@ -111,7 +97,7 @@ private ReservaDAO reservaDAO;
     
     
  /**
-     *
+     * @return List Reserva
      * @param data (YYYY-MM-DD)
      * CONSULTA DE TOTES LES RESERVES
      * @version TEA3
@@ -124,14 +110,28 @@ private ReservaDAO reservaDAO;
     }
     
      /**
-     *
-     * @param data (YYYY-MM-DD)
+     * @return reserva
+     * @param idReserva
      * CONSULTA DE  RESERVA 
      */
     @RequestMapping(value = "/reserva/{idReserva}", method = RequestMethod.GET)
     public @ResponseBody Reserva getReservaById(@PathVariable int idReserva) {
       
         return this.reservaDAO.getReservaById(idReserva);
+    }
+    
+    /**
+     * @return List Reserva
+     * @param idClient (int)
+     * @param idAct (int)
+     * CONSULTA DE TOTES LES RESERVES d'un client i una activitat concreta
+     * @version TEA4
+     */
+    @RequestMapping(value = "/reserves/client/{idClient}/activitat/{idAct}", method = RequestMethod.GET)
+    public @ResponseBody List<Reserva> getReservesByIdClientIdAct(@PathVariable int idClient, @PathVariable int idAct) {
+        return this.reservaDAO.getReservesByIdClientIdAct(idClient, idAct);
+        //return this.actividadesDAO.getAllActividades()
+        //return new ResponseEntity("Reserva deleted successfully", HttpStatus.OK);
     }
             
 }
