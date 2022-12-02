@@ -100,10 +100,12 @@ public class ReservaDAO {
                 int idAc = rs.getInt("id_actividad");
                 String data = rs.getDate("fecha").toString();
                 int hora = rs.getInt("hora");
+                int idReserva = rs.getInt("id");
                 System.out.println("reserva amb data: "+ data);
                 
-                Reserva reserva = new Reserva(idCli,idGos,idAc,data,hora);
+                Reserva reserva = new Reserva(idCli,idGos,idAc,data,hora,idReserva);
                 reservas_list.add(reserva);
+                System.out.println ("id reserva ! : "+ reserva.getId());
             }
             
         } catch (SQLException | IOException e) {

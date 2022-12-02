@@ -19,7 +19,7 @@ public class Reserva {
     
 
     @JsonCreator
-    public Reserva(@JsonProperty("id_cliente") int idClient, @JsonProperty("id_perro") Integer idGos, @JsonProperty("id_actividad") Integer idActivitat,
+    public Reserva(@JsonProperty("id_cliente") Integer idClient, @JsonProperty("id_perro") Integer idGos, @JsonProperty("id_actividad") Integer idActivitat,
         @JsonProperty("fecha") String fecha,@JsonProperty("hora") Integer hora) {   
       
         //this.id = id;
@@ -29,6 +29,20 @@ public class Reserva {
         this.hora = hora;
         this.idActivitat=idActivitat;
         this.idGos = idGos;
+        
+}
+    @JsonCreator
+    public Reserva(@JsonProperty("id_cliente") Integer idClient, @JsonProperty("id_perro") Integer idGos, @JsonProperty("id_actividad") Integer idActivitat,
+        @JsonProperty("fecha") String fecha,@JsonProperty("hora") Integer hora, @JsonProperty("id") Integer id) {   
+      
+        //this.id = id;
+       
+        this.idCliente = idClient;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.idActivitat=idActivitat;
+        this.idGos = idGos;
+        this.id = id;
         
 }
     
