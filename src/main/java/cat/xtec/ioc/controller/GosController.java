@@ -3,8 +3,8 @@
  * @versio TEA3 M12grup4
  * @file GosController.java
  * @descripcio Fitxer que recull totes les gestions de gossos de Goslètics
- * GosController
-
+ * GosController.java
+ * 
 	Alta de gos
      	@RequestMapping(value = "/gossos/alta", method = RequestMethod.POST)
 
@@ -44,23 +44,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
  
-
 @RestController
 public class GosController {
  
+    @Autowired
+    private PerrosDAO perrosDAO;
 
-@Autowired
-private PerrosDAO perrosDAO;
-
-    /**
-     *
-     */
     public GosController() {
     }
  
     /**
      *
-     * @param Perros
+     * @return ResponseEntity Perros
+     * @param perros
      * Alta de gos a partir de formulari (dades JSON)
      * http://localhost:8080/gosletics/gossos/alta
      */
@@ -72,30 +68,25 @@ private PerrosDAO perrosDAO;
     }
        
     /**
-     *
-     * @param Perros
+     * 
+     * @return ResponseEntity Perros
+     * @param perros
      * MODIFICAR GOS
-     * /**
-        * @function updateDog
-        * Aquesta funció recull la informació present del gos, la popula als camps del formulari de creació de gos, i en enviar
-        * el formulari, actualitza les dades del gos amb les que consten al formulari enviat amb PUT.
-        * @param int {id} ID del gos target a la BD.
-        * Comprova que les dades dels camps siguin correctes i les saneja.
-        * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
-
+     * http://localhost:8080/gosletics/gossos/modif
+     * 
      */
     @RequestMapping(value = "/gossos/modif", method = RequestMethod.PUT)
     public ResponseEntity updatePerros(@RequestBody Perros perros){
         perrosDAO.updatePerros(perros);
         return new ResponseEntity("Perros modif successfully", HttpStatus.OK);
     }
-             
-
+          
 
  /**
-     *
-     * @param {gosid}
+     * @return void
+     * @param gosid
      * BAIXA DE  GOS
+     * http://localhost:8080/gosletics/gossos/baixa/{gosid}
      */
     @RequestMapping(value = "/gossos/baixa/{gosid}", method = RequestMethod.DELETE)
     public ResponseEntity deletePerros(@PathVariable int gosid){
@@ -106,8 +97,9 @@ private PerrosDAO perrosDAO;
     
         
  /**
-     *
+     *@return List Perros
      * CONSULTA DE TOTS ELS GOSSOS
+     * http://localhost:8080/gosletics/gossos/
      */
     @RequestMapping(value = "/gossos", method = RequestMethod.GET)
     public @ResponseBody List<Perros> getPerross() {
@@ -117,8 +109,10 @@ private PerrosDAO perrosDAO;
     
      /**
      *
-     * @param {idPerros}
+     * @return Perros
+     * @param idPerros
      * CONSULTA DE G0SS0S PER ID gos
+     * http://localhost:8080/gosletics/gossos/{idPerros}
      */
     @RequestMapping(value = "/gossos/{idPerros}", method = RequestMethod.GET)
     public @ResponseBody Perros getPerrosById(@PathVariable int idPerros) {
@@ -128,8 +122,10 @@ private PerrosDAO perrosDAO;
     
      /**
      *
-     * @param {idClient}
+     * @param idClient
+     * @return List Perros
      * CONSULTA DE G0SS0S PER ID_CLIENT
+     * http://localhost:8080/gosletics/gossos/client/{idclient)
      */
     @RequestMapping(value = "/gossos/client/{idClient}", method = RequestMethod.GET)
     public @ResponseBody List<Perros> getPerrosByIdClient(@PathVariable int idClient) {
@@ -140,10 +136,12 @@ private PerrosDAO perrosDAO;
     
      /**
      *
-     * @param {idClient}
+     * @param nomGos
+     * @return List Perros
      * CONSULTA DE G0SS0S PER NOM_GOS 
+     * http://localhost:8080/gosletics/gossos/{nomGos}
      */
-    @RequestMapping(value = "/gossos/{nomGos}", method = RequestMethod.GET)
+    @RequestMapping(value = "/gossos/nomGos/{nomGos}", method = RequestMethod.GET)
     public @ResponseBody List<Perros> getPerrosByNomGos(@PathVariable String nomGos) {
       
         return this.perrosDAO.getPerrosByNomGos(nomGos);
