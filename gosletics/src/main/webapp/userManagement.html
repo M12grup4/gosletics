@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Grup04">
+    <meta name="description" content="Goslètics">
+
+    <!-- Title -->
+    <title>Goslètics</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Styles -->
+    <!-- CSS Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous">
+    <!-- CSS Costum -->
+    <link href="./css/style.css" rel="stylesheet">
+  
+    <!-- Scripts -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous">
+        </script>
+    <!-- Fontawesome5 -->
+    <script src="https://kit.fontawesome.com/1ddb8a8c43.js"
+        crossorigin="anonymous">
+        </script>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+    <!--Custom JS-->
+
+</head>
+
+<body>
+    <section class="dashborad" id="sidebar">
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+
+                <!-- Sidebar Start -->
+                <div class="content col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <!-- Menu -->
+                        <a href="userDashborad.html" class="menu d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-bars fa-fw"></i>
+                            <span class="ms-1 d-none d-sm-inline">MENU</span>
+                            <br>
+                            <br>
+                        </a>
+                        <!-- Action links -->
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <!-- User control link -->
+                            <li>
+                                <hr>
+                                <a href="userManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-user fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió d'usuaris</span>
+                                </a>
+                            </li>
+                            <!-- Dog control link -->
+                            <li>
+                                <hr>
+                                <a href="dogManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-dog fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió de gossos</span>
+                                </a>
+                            </li>
+                            <!-- Activities control link -->
+                            <li>
+                                <hr>
+                                <a href="bookingManagement.html" class="nav-link px-0 align-middle text-white">
+                                    <i class="fa-solid fa-calendar-days fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió d'activitats</span>
+                                </a>
+                                <hr>
+                            </li>
+                        </ul>
+                        <!-- User settings -->
+                        <div class="dropdown pb-4">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-u fa-xl fa-fw"></i>
+                                <span class="d-none d-sm-inline mx-1" id="loggedUser">Admin</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="#" id="signout">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar Ends -->
+                
+                <!-- userContent Start -->
+                <div class="userContent container-fluid col">
+                    <!-- Topbar -->
+                    <div class="top container-fluid bg-dark">
+                       <img class="dashborad-logo" src="assets/Navbar-logo.png">
+                    </div>
+                    <!-- Dashboard panel -->
+                    <div class="options container-fluid">
+                        <h1 id="greeting">Benvingut: #Admin</h1>
+                        <div class="container-fluid sapcer">
+                            <div class="spacerContent">
+                                <i class="fa-solid fa-user fa-xl fa-fw"></i>
+                                Gestió d'Usuaris
+                            </div>
+                        </div>
+                        <h2>Selecciona una de les opcions:</h2>
+                        <!-- User options -->
+                        <div class="userSchedule container-fluid">
+                            <!-- User substription menu -->
+                            <a href="#userSubscritption" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                <i class="fa-solid fa-square-caret-down"></i>
+                                Alta de usuaris
+                            </a>
+                            <ul class="collapse nav flex-column ms-1" id="userSubscritption">
+                                <li class="w-100">
+                                    <div class="userForm container">
+                                        <!-- Substription form -->
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="labelName">Nom de l'usuari:</label>
+                                                <input type="text" class="form-control" id="inputName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelSurnameFirst">Primer cognom:</label>
+                                                <input type="text" class="form-control" id="inputSurnameFirst">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelSurnameSecond">Segon cognom:</label>
+                                                <input type="text" class="form-control" id="inputSurnameSecond">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelBirth">Data de naixement:</label>
+                                                <input type="text" class="form-control" id="inputBirth">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelDNI">DNI:</label>
+                                                <input type="text" class="form-control" id="inputDNI">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelMail">Correu electrònic:</label>
+                                                <input type="mail" class="form-control" id="inputMail">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelStreet">Domicili Carrer:</label>
+                                                <input type="text" class="form-control" id="inputStreet">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelStreetNumber">Domicili número:</label>
+                                                <input type="text" class="form-control" id="inputStreetNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelStreetFloor">Domicili pis:</label>
+                                                <input type="text" class="form-control" id="inputStreetFloor">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelStreetCode">Codi postal:</label>
+                                                <input type="text" class="form-control" id="inputStreetCode">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="labelTown">Població:</label>
+                                                <input type="text" class="form-control" id="inputStreetTown">
+                                            </div>
+                                            <div class="buttonDiv text-center py-3">
+                                                <button type="button"
+                                                        class="contactButton"
+                                                        id="contactButtonAlta">
+                                                    Alta
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Dog query menu -->
+                            <div>
+                                <a href="#query" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                    <i class="fa-solid fa-square-caret-down"></i>
+                                    Consulta d'usuaris
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="query">
+                                    <li class="w-100">
+                                        <div class="userForm container">
+                                            <!-- Query -->
+                                            <!--Albert static-->
+                                            <form id="cercaUserForm">
+                                                <label for="qry">Nom de l'usuari:</label>
+                                                <input type="text" title="qry" id="qry"></input>
+                                                <input type="button" title="cerca" value="Cerca" id="cercaButton"></input>
+                                            </form>
+                                            <br>
+                                            <div class="scrollmenu">
+                                                <table id="results">
+                                                    <tr class="headers">
+                                                        <td>NOM</td>
+                                                        <td>PRIMER COGNOMS</td>
+                                                        <td>SEGON COGNOM</td>
+                                                        <td>DATA NAIXEMENT</td>
+                                                        <td>DNI</td>
+                                                        <td>MAIL</td>
+                                                        <td>CARRER</td>
+                                                        <td>NUMERO</td>
+                                                        <td>PIS</td>
+                                                        <td>CODI POSTAL</td>
+                                                        <td>POBLACIÓ</td>
+                                                        <td>ACCIONS</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <!--Dynamic FROM JS-->
+                                                    <tr class="output">
+                                                        <td>Laura</td>
+                                                        <td>Martin</td>
+                                                        <td>Perez</td>
+                                                        <td>25-08-1995</td>
+                                                        <td>48759845Q</td>
+                                                        <td>laur95@gmail.com</td>
+                                                        <td>c/Bondia</td>
+                                                        <td>45</td>
+                                                        <td>2</td>
+                                                        <td>08002</td>
+                                                        <td>Barcelona</td>
+                                                        <td class="action" id="updateButton">Modifica</td>
+                                                        <td class="action" id="bajaButton">Baja</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        <!--Example user ends (Albert)-->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- IMPLANTACIO SEGUENT TEA -->
+                    </div>
+                </div>
+                <!-- Content ends -->
+            </div>
+            
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Contingut
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End modal-->
+</body>
+</html>
