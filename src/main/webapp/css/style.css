@@ -1430,7 +1430,7 @@
     font-size    : 15px;
 }
 
-.dashborad .dogContent #contactButton {
+.dashborad .dogContent #contactButtonAlta {
 	background-color: #222529;
     border          : 1.5px 
                       solid 
@@ -1444,7 +1444,7 @@
     padding         : 7px 15px;
 }
 
-.dashborad .dogContent #contactButton:hover {
+.dashborad .dogContent #contactButtonAlta:hover {
 	background-color: #D4E4F2;
     border          : 1.5px 
                       solid 
@@ -1474,90 +1474,45 @@
                       #ffffff;
     color           : #222529;
 }
-   
-.dashborad .dogContent .headers .col-1 {
-    background-color: #222529;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    color           : #edf2f4;
-    font-size       : 16px;
-    font-weight     : 600;
-    text-align      : center;
-}
-
-.dashborad .dogContent .headers .col-2 {
-    background-color: #222529;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    color           : #edf2f4;
-    font-size       : 16px;
-    font-weight     : 600;
-    text-align      : center;
-}
-
-.dashborad .dogContent .headers .col-3 {
-    background-color: #222529;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    color           : #edf2f4;
-    font-size       : 16px;
-    font-weight     : 600;
-    text-align      : center;
-}
-
-.dashborad .dogContent .headers .col-4 {
-    background-color: #222529;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    color           : #edf2f4;
-    font-size       : 16px;
-    font-weight     : 600;
-    text-align      : center;
-}
-
-.dashborad .dogContent .output .col-1{
-    background-color: #F6F6F6;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    font-size       : 14px;
-    font-weight     : 300;
-    text-align      : center;
-}
-
-.dashborad .dogContent .output .col-2{
-    background-color: #F6F6F6;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    font-size       : 14px;
-    font-weight     : 300;
-    text-align      : center;
-}
-
-.dashborad .dogContent .output .col-3{
-    background-color: #F6F6F6;
-    border          : 5px 
-                      solid 
-                      #ffffff;
-    color           : #222529;
-    font-size       : 14px;
-    font-weight     : 300;
-    text-align      : center;
-}
 
 .dashborad .dogContent .output .action:hover{
     font-weight: 600;
+}
+
+/*** Table settings ***/
+.dashborad .dogContent .headers td{
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    color           : #edf2f4;
+    font-size       : 14px;
+    font-weight     : 600;
+    text-align      : center;
+}
+
+.dashborad .dogContent .output td{
+    background-color: #F6F6F6;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    font-size       : 14px;
+    font-weight     : 300;
+    text-align      : center;
+}
+
+.dashborad .dogContent td {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+/*** Horizontal scroll settings ***/
+.scrollmenu {
+    overflow   : auto;
+    white-space: nowrap;
 }
 
 /* Home Medium screen */
@@ -1566,10 +1521,16 @@
         font-size: 15px;
     }
 
-    .dashborad .dogContent #contactButton {
+    .dashborad .dogContent #contactButtonAlta {
         font-size: 15px;
     }
-}
+
+    .dashborad .dogContent td {
+        width: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+} 
 
 /* Home Small screen */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -1577,7 +1538,7 @@
         font-size: 13px;
     }
 
-    .dashborad .dogContent #contactButton {
+    .dashborad .dogContent #contactButtonAlta {
         font-size: 13px;
     }
 
@@ -1587,6 +1548,13 @@
 
     .dashborad .dogContent textarea {
         font-size: 13px;
+    }
+
+    .dashborad .dogContent td {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+        font-size: 12px;
     }
 }
 
@@ -1621,6 +1589,13 @@
 
     .dashborad .dogContent textarea {
         font-size: 13px;
+    }
+
+    .dashborad .dogContent td {
+        width: 120px;
+        min-width: 110px;
+        max-width: 110px;
+        font-size: 12px;
     }
 }
 

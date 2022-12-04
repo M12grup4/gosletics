@@ -205,7 +205,7 @@ function deleteDog(id) {
  */
 function createDogItem(gossos) {
     gossos.forEach((element) => {
-        let gos = $('<div class="container" id="' + element.id + '">   <div class="output row">     <div class="col-1">' + element.id + '</div>        <div class="col-2">' + element.nombre + '</div>        <div class="col-2">' + element.raza + '</div>        <div class="col-3">' + element.idCliente + '</div>        <div class="col-2 action" id="updateButton'+element.id+'">Modifica</div>        <div class="col-2 action" id="bajaButton'+element.id+'">Baja</div> </div>   </div>');
+        let gos = $('<tr class="output" id="' + element.id + '">        <td>' + element.id + '</td>        <td>' + element.nombre + '</td>        <td>' + element.raza + '</td>        <td>' + element.id_cliente + '</td>        <td class="action" id="updateButton'+element.id+'">Modifica</td>        <td class="action" id="bajaButton'+element.id+'">Baja</td>    </tr>');
         gos.appendTo(resultatConsulta);
 
         $("#updateButton"+element.id+"").click(() => {
@@ -226,7 +226,7 @@ function createDogItem(gossos) {
  */
 function queryDogs(qry) {
     //Reseteja taula
-    resultatConsulta.html('<div class="headers row">    <div class="col-1">ID</div>    <div class="col-2">NOM</div>    <div class="col-2">RAÇA</div>    <div class="col-3">PROPIETARI</div>    <div class="col-4">ACCIONS</div></div>');
+    resultatConsulta.html('<tr class="headers">    <td>ID</td>    <td>NOMBRE</td>    <td>RAZA</td>    <td>PROPIETARIO</td>    <td>ACCIONES</td>    <td></td></tr>');
     //Executa consulta
     $.getJSON(GET_GOS_NOM + qry,
         (results) => {
