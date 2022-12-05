@@ -40,7 +40,7 @@
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
         crossorigin="anonymous"></script>
     <!--Custom JS-->
-
+    <script src="./js/adminClients.js" type="module" ></script>
 </head>
 
 <body>
@@ -172,6 +172,10 @@
                                                 <label for="labelTown">Població:</label>
                                                 <input type="text" class="form-control" id="inputStreetTown">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="labelTown">Contrasenya:</label>
+                                                <input type="password" class="form-control" id="inputPass">
+                                            </div>
                                             <div class="buttonDiv text-center py-3">
                                                 <button type="button"
                                                         class="contactButton"
@@ -203,6 +207,7 @@
                                             <div class="scrollmenu">
                                                 <table id="results">
                                                     <tr class="headers">
+                                                        <td>ID</td>
                                                         <td>NOM</td>
                                                         <td>PRIMER COGNOMS</td>
                                                         <td>SEGON COGNOM</td>
@@ -219,6 +224,7 @@
                                                     </tr>
                                                     <!--Dynamic FROM JS-->
                                                     <tr class="output">
+                                                        <td>659</td>
                                                         <td>Laura</td>
                                                         <td>Martin</td>
                                                         <td>Perez</td>
