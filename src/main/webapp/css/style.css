@@ -1330,13 +1330,249 @@
     padding-top   : 100px;
 }
 
+/*** User options settings ***/
+.dashborad .userContent .userSchedule {
+    text-align: left;
+    width     : 100%;
+}
+
+.dashborad .userContent i {
+    padding-left: 10px;
+}
+
+.dashborad .userContent a {
+    background-color: #D0E4F4;
+    border          : 5px 
+                      solid 
+                      #f6f6f6;
+    color           : #222529;
+    font-size       : 20px;
+    font-weight     : 300;
+    height          : 50px;
+    padding-top     : 10px;
+}
+
+/*** Form settings ***/
+.dashborad .userContent .w-100 {
+    background-color: #ffffff;
+}
+
+.dashborad .userContent .userForm {
+    padding-bottom: 20px;
+    padding-top   : 20px;
+    width         : 70%;
+    width: 100%;
+}
+
+.dashborad .userContent label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size  : 18px;
+    padding-top: 20px;
+}
+
+.dashborad .userContent input {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.dashborad .userContent textarea {
+    border       : none;
+    border-bottom: 1px solid #2c2d2e;
+    border-radius: 0px;
+    font-family  : "Montserrat", sans-serif;
+    font-weight  : 300;
+    font-size    : 15px;
+}
+
+.dashborad .userContent #contactButtonAlta {
+	background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 20px;
+    padding         : 7px 15px;
+}
+
+.dashborad .userContent #contactButtonAlta:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+
+/*** Query Form settings ***/
+.dashborad .userContent #cercaButton {
+    background-color: #222529;
+    border          : 1.5px 
+                      solid 
+                      #222529;
+    border-radius   : 30px;
+	color           : #ffffff;
+    display         : inline-block;
+	font-family     : "Montserrat", sans-serif;
+    font-weight     : 600;
+    font-size       : 12px;
+    padding         : 7px 12px;
+}
+
+.dashborad .userContent #cercaButton:hover {
+	background-color: #D4E4F2;
+    border          : 1.5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+}
+
+.dashborad .userContent .output .action:hover{
+    font-weight: 600;
+}
+
+/*** Table settings ***/
+.dashborad .userContent .headers td{
+    background-color: #222529;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    color           : #edf2f4;
+    font-size       : 14px;
+    font-weight     : 600;
+    text-align      : center;
+}
+
+.dashborad .userContent .output td{
+    background-color: #F6F6F6;
+    border          : 5px 
+                      solid 
+                      #ffffff;
+    color           : #222529;
+    font-size       : 14px;
+    font-weight     : 300;
+    text-align      : center;
+}
+
+.dashborad .userContent td {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+/*** Horizontal scroll settings ***/
+.scrollmenu {
+    overflow   : auto;
+    white-space: nowrap;
+}
+
+/* Home Medium screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .dashborad .userContent label {
+        font-size: 15px;
+    }
+
+    .dashborad .userContent #contactButtonAlta {
+        font-size: 15px;
+    }
+
+    .dashborad .userContent td {
+        width: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+} 
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .dashborad .userContent label {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent #contactButtonAlta {
+        font-size: 15px;
+    }
+
+    .dashborad .userContent input {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent textarea {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent td {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
+
+    .dashborad .userContent .headers td{
+        font-size: 11px;
+    }
+    
+    .dashborad .userContent .output td{
+        font-size: 11px;
+    }
+}
+
 /* Home XSmall screen */
 @media only screen and  (max-width: 575px) {
     .dashborad .userContent .spacerContent {
         font-size: 18px;
     }
     .dashborad .userContent h1 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .dashborad .userContent h2 {
+        font-size: 15px;
+    }
+
+    .dashborad .userContent .nav-link {
+        font-size: 15px;
+    }
+
+    .dashborad .userContent label {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent input {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent textarea {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent #contactButtonAlta {
+        font-size: 13px;
+    }
+
+    .dashborad .userContent td {
+        width: 120px;
+        min-width: 110px;
+        max-width: 110px;
+    }
+
+    .dashborad .userContent .headers td{
+        font-size: 10px;
+    }
+    
+    .dashborad .userContent .output td{
+        font-size: 10px;
+    }
+
+    .dashborad .userContent #qry {
+        width: 70px;
     }
 }
 
@@ -1539,7 +1775,7 @@
     }
 
     .dashborad .dogContent #contactButtonAlta {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .dashborad .dogContent input {
@@ -1554,7 +1790,6 @@
         width: 120px;
         min-width: 120px;
         max-width: 120px;
-        font-size: 12px;
     }
 }
 
@@ -1579,10 +1814,6 @@
         font-size: 13px;
     }
 
-    .dashborad .dogContent #contactButton {
-        font-size: 13px;
-    }
-
     .dashborad .dogContent input {
         font-size: 13px;
     }
@@ -1591,11 +1822,26 @@
         font-size: 13px;
     }
 
+    .dashborad .dogContent #contactButtonAlta {
+        font-size: 13px;
+    }
+
     .dashborad .dogContent td {
         width: 120px;
         min-width: 110px;
         max-width: 110px;
+    }
+
+    .dashborad .dogContent .headers td{
         font-size: 12px;
+    }
+    
+    .dashborad .dogContent .output td{
+        font-size: 12px;
+    }
+
+    .dashborad .dogContent #qry {
+        width: 80px;
     }
 }
 

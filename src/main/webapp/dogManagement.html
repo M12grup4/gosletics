@@ -169,72 +169,53 @@
                                 </ul>
                                 <!-- Dog query menu -->
                                 <div>
-                                <a href="#query" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                    <i class="fa-solid fa-square-caret-down"></i>
-                                    Consulta de gossos
-                                </a>
-                                <ul class="collapse nav flex-column ms-1" id="query">
-                                    <li class="w-100">
-                                        <div class="dogForm container">
-                                            <!-- Query -->
-                                            <!--Albert static-->
-                                            <form id="cercaGosForm">
-                                                <label for="qry">Nom del gos:</label>
-                                                <input type="text" title="qry" id="qry"></input>
-                                                <input type="button" title="cerca" value="Cerca" id="cercaButton"></input>
-                                            </form>
-                                            <br>
-                                            <div class="scrollmenu">
-                                                <table id="results">
-                                                    <tr class="headers">
-                                                        <td>ID</td>
-                                                        <td>NOMBRE</td>
-                                                        <td>RAZA</td>
-                                                        <td>PROPIETARIO</td>
-                                                        <td>ACCIONES</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <!--Dynamic FROM JS-->
-                                                    <tr class="output">
-                                                        <td>5</td>
-                                                        <td>GINGER</td>
-                                                        <td>LABRADOR</td>
-                                                        <td>569</td>
-                                                        <td class="action" id="updateButton">Modifica</td>
-                                                        <td class="action" id="bajaButton">Baja</td>
-                                                    </tr>
-                                                </table>
-                                                    
-                                            <!-- <div class="container" id="results">
-                                                <div class="headers row">
-                                                    <div class="col-1">ID</div>
-                                                    <div class="col-2">NOM</div>
-                                                    <div class="col-2">RAÇA</div>
-                                                    <div class="col-3">PROPIETARI</div>
-                                                    <div class="col-4">ACCIONS</div>
+                                    <a href="#query" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                        <i class="fa-solid fa-square-caret-down"></i>
+                                        Consulta de gossos
+                                    </a>
+                                    <ul class="collapse nav flex-column ms-1" id="query">
+                                        <li class="w-100">
+                                            <div class="dogForm container">
+                                                <!-- Query -->
+                                                <!--Albert static-->
+                                                <form id="cercaGosForm">
+                                                    <label for="qry">Nom del gos:</label>
+                                                    <input type="text" title="qry" id="qry"></input>
+                                                    <input type="button" title="cerca" value="Cerca" id="cercaButton"></input>
+                                                </form>
+                                                <br>
+                                                <div class="scrollmenu">
+                                                    <table id="results">
+                                                        <tr class="headers">
+                                                            <td>ID</td>
+                                                            <td>NOMBRE</td>
+                                                            <td>RAZA</td>
+                                                            <td>PROPIETARIO</td>
+                                                            <td>ACCIONES</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!--Dynamic FROM JS-->
+                                                        <tr class="output">
+                                                            <td>5</td>
+                                                            <td>GINGER</td>
+                                                            <td>LABRADOR</td>
+                                                            <td>569</td>
+                                                            <td class="action" id="updateButton">Modifica</td>
+                                                            <td class="action" id="bajaButton">Baja</td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                            </div>     -->
-                                            <!-- <div class="container" id="results">
-                                                <div class="output row">
-                                                    <div class="col-1">5</div>
-                                                    <div class="col-2">GINGER</div>
-                                                    <div class="col-2">LABRADOR</div>
-                                                    <div class="col-3">569</div>
-                                                    <div class="col-2 action" id="updateButton">Modifica</div>
-                                                    <div class="col-2 action" id="bajaButton">Baja</div>
-                                                </div>
-                                            </div> -->
                                             <!--Example dog ends (Albert)-->
-                                        </div>
-                                    </li>
-                                </ul>
-                                
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+                        <!-- dogContent end -->
                     </div>
-                    <!-- dogContent end -->
                 </div>
-            </div>
+            </div>   
         </section>
         <!-- Modal -->
         <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
