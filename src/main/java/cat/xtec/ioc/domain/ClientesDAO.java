@@ -70,7 +70,8 @@ public class ClientesDAO {
                 String cp = rs.getString("cp");
                 String poblacion = rs.getString("poblacion");
                 String pass = rs.getString("pass");
-                Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                Clientes clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                  //Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
                 clientes_list.add(clientes);
             }
             
@@ -102,7 +103,7 @@ public class ClientesDAO {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(qry);) {
             while (rs.next()) {
-                int id = rs.getInt("id");
+                //  int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 String apellido1 = rs.getString("apellido1");
                 String apellido2 = rs.getString("apellido2");
@@ -116,7 +117,8 @@ public class ClientesDAO {
                 String poblacion = rs.getString("poblacion");
                 String pass = rs.getString("pass");
                 
-                clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+               // clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -163,20 +165,11 @@ public class ClientesDAO {
         Statement stmt;
         String qry = "INSERT INTO GL_CLIENTES( NOMBRE,APELLIDO1,APELLIDO2,FECHA_NACIMIENTO,DNI,"
                 + " EMAIL,CALLE,NUMERO,PISO,CP,POBLACION,PASS)"
-                + " VALUES aes_encrypt('"+nombre+"','AES'),aes_encrypt('"+apellido1+"','AES'),"
+                + " VALUES (aes_encrypt('"+nombre+"','AES'),aes_encrypt('"+apellido1+"','AES'),"
                 + " aes_encrypt('"+apellido2+"','AES'),'"+fecha_nacimiento+"', aes_encrypt('"+dni+"','AES'),"
                 + " aes_encrypt('"+email+"','AES'), aes_encrypt('"+calle+"','AES'), aes_encrypt('"+numero+"','AES'),"
                 + " aes_encrypt('"+piso+"','AES'),aes_encrypt('"+cp+"','AES'),aes_encrypt('"+poblacion+"','AES'),"
-                + " aes_encrypt('"+pass+"','AES');";
-        /* String qry="INSERT INTO GL_CLIENTES(NOMBRE,APELLIDO1,APELLIDO2,FECHA_NACIMIENTO,DNI,"
-                + " EMAIL,CALLE,NUMERO,PISO,CP,POBLACION,PASS " 
-              //  + " VALUES(aes_encrypt('ID','"+id+"'), aes_encrypt('NOMBRE','"+nombre+"'),aes_encrypt('APELLIDO1','"+apellido1+"'),"
-                + " VALUES aes_encrypt('NOMBRE','"+nombre+"'),aes_encrypt('APELLIDO1','"+apellido1+"'),"
-                + " aes_encrypt('APELLIDO2','"+apellido2+"'),'"+fecha_nacimiento+"', aes_encrypt('DNI','"+dni+"'),"
-                + " aes_encrypt('EMAIL','"+email+"'), aes_encrypt('CALLE','"+calle+"'), aes_encrypt('NUMERO','"+numero+"'),"
-                + " aes_encrypt('PISO','"+piso+"'),aes_encrypt('CP','"+cp+"'),aes_encrypt('POBLACION','"+poblacion+"'),"
-                + " aes_encrypt('PASS','"+pass+"');";*/
-         System.out.println("alta client, nom del client : " + nombre);
+                + " aes_encrypt('"+pass+"','AES'));";
           
         dbConnection dbConnection = new dbConnection();      
         conn =  dbConnection.getConnection();

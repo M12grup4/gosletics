@@ -49,14 +49,11 @@ public class ClientController {
 @Autowired
 private ClientesDAO clientesDAO;
 
-
-
-    /**
-     *
-     */
-    public ClientController() {
+public ClientController() {
+}
+public ClientController(ClientesDAO clientesDAO) {
+        this.clientesDAO = clientesDAO;
     }
- 
     /**
      *
      * @param Clientes
@@ -68,11 +65,7 @@ private ClientesDAO clientesDAO;
     String resultat = clientesDAO.addClient(clientes);
         return new ResponseEntity (resultat,HttpStatus.OK);
     }
- 
-    
-    
-    
-    
+     
     /**
      *
      * @param Clientes
