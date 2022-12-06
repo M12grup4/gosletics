@@ -132,8 +132,7 @@ public class ClientesDAO {
     * @param client.json String
     */
     public String addClient (Clientes client) throws SQLException, IOException {
-         System.out.println("entro a alta client " + client);
-      //  int id;
+        
         String nombre;
         String apellido1;
         String apellido2;
@@ -192,13 +191,80 @@ public class ClientesDAO {
         int rs;
         Connection conn;
         Statement stmt;
-        System.out.println("client id :" + id);
-        /*String qry = "DELETE FROM GL_CLIENTES WHERE idClient=id";
+        String qry = "DELETE FROM GL_CLIENTES WHERE idClient=id";
           
         dbConnection dbConnection = new dbConnection();      
         conn =  dbConnection.getConnection();
         stmt = conn.createStatement();
-        rs = stmt.executeUpdate(qry);*/
+        rs = stmt.executeUpdate(qry);
+        String resultat = "OK";
+        return resultat;
+    }
+    
+     public String updateClients (int idClient, Clientes client) throws SQLException, IOException {
+        int id;
+        String nombre;
+        String apellido1;
+        String apellido2;
+        String fecha_nacimiento;
+        String dni;
+        String email;
+        String calle;
+        String numero;
+        String piso;
+        String cp;
+        String poblacion;
+        String pass;
+        Clientes clientBD =  getClientById (idClient); // extraiem l'objecte client a modificar amb idClient
+        // agafem la resta dels camps del client del formulari
+        id=client.getId();
+        nombre=client.getNombre();
+        apellido1=client.getApellido1();
+        apellido2=client.getApellido2();
+        fecha_nacimiento=client.getFecha_nacimiento();
+        dni=client.getDni();
+        email=client.getEmail();
+        calle=client.getCalle();
+        numero=client.getNumero();
+        piso=client.getPiso();
+        cp=client.getCp();
+        poblacion=client.getPoblacion();
+        pass=client.getPass();
+        // i modifiquem el client de la BBDD amb els nous valors del formulari
+        clientBD.setNombre(nombre);
+        clientBD.setApellido1(apellido1);
+        clientBD.setApellido2(apellido2);
+        clientBD.setFecha_nacimiento(fecha_nacimiento);
+        clientBD.setDni(dni);
+        clientBD.setEmail(email);
+        clientBD.setCalle(calle);
+        clientBD.setNumero(numero);
+        clientBD.setPiso(piso);
+        clientBD.setCp(cp);
+        clientBD.setPoblacion(poblacion);
+        clientBD.setPass(pass);
+        //connectem amb la BBDD
+        int rs;
+        Connection conn;
+        Statement stmt;
+        String qry = "UPDATE GL_CLIENTES "
+                + "SET nombre = '" + clientBD.getNombre()+"',"
+                + " apellido1 = '" + clientBD.getApellido1() +"',"
+                + " apellido2 = '" + clientBD.getApellido2() +"',"
+                + " fecha_nacimiento = '" + clientBD.getFecha_nacimiento() +"',"
+                + " dni = '" + clientBD.getDni() +"',"
+                + " email = '" + clientBD.getEmail() +"',"
+                + " calle = '" + clientBD.getCalle() +"',"
+                + " numero = '" + clientBD.getNumero() +"',"
+                + " piso = '" + clientBD.getPiso() +"',"
+                + " poblacion = '" + clientBD.getPoblacion() +"',"
+                + " pass = '" + clientBD.getPass() +"',"
+                + "WHERE idClient = " + id + ";";
+          
+        dbConnection dbConnection = new dbConnection();      
+        conn =  dbConnection.getConnection();
+        stmt = conn.createStatement();
+        rs = stmt.executeUpdate(qry);
         String resultat = "OK";
         return resultat;
     }

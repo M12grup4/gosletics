@@ -68,7 +68,7 @@ public ClientController(ClientesDAO clientesDAO) {
      
     /**
      *
-     * @param Clientes
+     * @param {idClient}
      * MODIFICAR CLIENT
      * /**
         * @function updateDog
@@ -79,11 +79,11 @@ public ClientController(ClientesDAO clientesDAO) {
         * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
 
      */
- /*   @RequestMapping(value = "/clients/modif", method = RequestMethod.PUT)
-    public ResponseEntity updateClientes(@RequestBody Clientes clientes){
-        clientesDAO.updateClientes(clientes);
+    @RequestMapping(value = "/clients/modif/{idclient)", method = RequestMethod.PUT)
+    public ResponseEntity updateClientes(@RequestBody int idClient, @RequestBody Clientes client) throws SQLException, IOException{
+        clientesDAO.updateClients(idClient, client);
         return new ResponseEntity("Clientes modif successfully", HttpStatus.OK);
-    }*/
+    }
              
 
 
