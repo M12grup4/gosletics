@@ -89,15 +89,15 @@ public ClientController(ClientesDAO clientesDAO) {
 
  /**
      *
-     * @param {clientid}
+     * @param {idClient}
      * BAIXA DE  CLIENT
      */
- /*   @RequestMapping(value = "/clients/baixa/{clientid}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteClientes(@PathVariable int clientid){
+    @RequestMapping(value = "/clients/baixa/{idClient}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteClients(@PathVariable int idClient) throws SQLException, IOException{
         
-        clientesDAO.deleteClientes(clientid);
+        clientesDAO.deleteClients(idClient);
         return new ResponseEntity("Clientes deleted successfully", HttpStatus.OK);
-    }*/
+    }
     
         
  /**

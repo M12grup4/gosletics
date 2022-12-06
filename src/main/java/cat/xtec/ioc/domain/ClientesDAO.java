@@ -178,6 +178,34 @@ public class ClientesDAO {
         String resultat = "OK";
         return resultat;
     }
+    
+    
+    /* FUNCIÓ ESBORRAR CLIENTS
+    * @version TEA4
+    * @autor Conxi
+    * @param client.json String
+    */
+    public String deleteClients (int idClient) throws SQLException, IOException {
+        int id;
+        Clientes client =  getClientById (idClient);
+        id=client.getId();
+        int rs;
+        Connection conn;
+        Statement stmt;
+        System.out.println("client id :" + id);
+        /*String qry = "DELETE FROM GL_CLIENTES WHERE idClient=id";
+          
+        dbConnection dbConnection = new dbConnection();      
+        conn =  dbConnection.getConnection();
+        stmt = conn.createStatement();
+        rs = stmt.executeUpdate(qry);*/
+        String resultat = "OK";
+        return resultat;
+    }
+    
+    
+    
+    
 }
 /*+------------------+--------------+------+-----+---------------------+----------------+
 | Field            | Type         | Null | Key | Default             | Extra          |
