@@ -79,7 +79,7 @@ public ClientController(ClientesDAO clientesDAO) {
         * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
 
      */
-    @RequestMapping(value = "/clients/modif/{idclient)", method = RequestMethod.PUT)
+    @RequestMapping(value = "/clients/modif/{idclient}", method = RequestMethod.PUT)
     public ResponseEntity updateClientes(@RequestBody Clientes client) throws SQLException, IOException{
         clientesDAO.updateClients(client);
         return new ResponseEntity("Clientes modif successfully", HttpStatus.OK);

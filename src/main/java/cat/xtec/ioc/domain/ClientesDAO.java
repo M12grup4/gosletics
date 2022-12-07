@@ -275,7 +275,7 @@ public class ClientesDAO {
                 + " piso = aes_encrypt('"+piso+",'AES'),"
                 + " cp = aes_encrypt('"+cp+",'AES'),"
                 + " poblacion = aes_encrypt('"+cp+",'AES'),"
-                + " pass = aes_encrypt('"+pass+",'AES'),"
+                + " pass = aes_encrypt('"+pass+",'AES')"
                 + "WHERE id = " + id + ";";
  
        
