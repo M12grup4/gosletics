@@ -186,12 +186,14 @@ public class ClientesDAO {
     */
     public String deleteClients (int idClient) throws SQLException, IOException {
         int id;
-        Clientes client =  getClientById (idClient);
-        id=client.getId();
+        //Clientes client =  getClientById(idClient);
+        //id=client.getId();
+        id=idClient;
+        System.out.println("id lin. 191: " + idClient);
         int rs;
         Connection conn;
         Statement stmt;
-        String qry = "DELETE FROM GL_CLIENTES WHERE idClient=id";
+        String qry = "DELETE FROM GL_CLIENTES WHERE id="+id;
           
         dbConnection dbConnection = new dbConnection();      
         conn =  dbConnection.getConnection();
@@ -259,7 +261,7 @@ public class ClientesDAO {
                 + " piso = '" + clientBD.getPiso() +"',"
                 + " poblacion = '" + clientBD.getPoblacion() +"',"
                 + " pass = '" + clientBD.getPass() +"',"
-                + "WHERE idClient = " + id + ";";
+                + "WHERE id = " + id + ";";
           
         dbConnection dbConnection = new dbConnection();      
         conn =  dbConnection.getConnection();
