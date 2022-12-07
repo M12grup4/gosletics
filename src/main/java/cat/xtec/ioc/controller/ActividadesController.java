@@ -8,6 +8,8 @@ import cat.xtec.ioc.domain.Activitats_dia;
 import cat.xtec.ioc.domain.Clientes;
 import cat.xtec.ioc.domain.ClientesDAO;
 import cat.xtec.ioc.domain.Perros;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 //import java.sql.Date;
 import java.util.List;
@@ -107,7 +109,7 @@ private ClientesDAO clientesDAO;
      */
     @RequestMapping(method = RequestMethod.GET, value = "/clientes")
     public @ResponseBody
-    List<Clientes> getAllClientes() {
+    List<Clientes> getAllClientes() throws SQLException, IOException {
         return this.clientesDAO.getAllClientes();
     }
 
@@ -141,7 +143,7 @@ private ClientesDAO clientesDAO;
     @RequestMapping(value = "/clientes/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Clientes getClienteById(@PathVariable int id) {
-        return this.clientesDAO.getClienteById(id);
+        return this.clientesDAO.getClientById(id);
     }         
                
 }
