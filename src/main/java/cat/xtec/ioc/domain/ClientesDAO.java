@@ -125,6 +125,54 @@ public class ClientesDAO {
         }
         return clientes;
     }
+     /**
+     * Consulta del detall d'un cñient per DNI:   https://localhost:8080/gosletic/clients/{dni}
+     * @param dni (String): dni del client
+     * @return Clientes (objecte)
+     */ 
+  public Clientes getClientByDni(String dni) {
+   
+        String qry = "SELECT ID, AES_DECRYPT(NOMBRE, 'AES') as nombre,AES_DECRYPT(APELLIDO1, 'AES') as apellido1, AES_DECRYPT(APELLIDO2, 'AES') as apellido2, FECHA_NACIMIENTO,"
+                 + " AES_DECRYPT(DNI, 'AES') as dni2, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
+                 + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
+                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE dni = AES_DECRYPT("+dni+", 'AES') ;";
+                        
+        
+        dbConnection dbConnection = new dbConnection();
+        Clientes clientes = null;
+       
+        try (
+                Connection conn = (Connection) dbConnection.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(qry);) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String apellido1 = rs.getString("apellido1");
+                String apellido2 = rs.getString("apellido2");
+                String fecha_nacimiento = rs.getString("fecha_nacimiento");
+                String dniCli = rs.getString("dni");
+                String email = rs.getString("email");
+                String calle = rs.getString("calle");
+                String numero = rs.getString("numero");
+                String piso = rs.getString("piso");
+                String cp = rs.getString("cp");
+                String poblacion = rs.getString("poblacion");
+                String pass = rs.getString("pass");
+                
+               // clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dniCli,email,calle,numero,piso,cp,poblacion,pass);
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return clientes;
+    }  
+    
+    
+    
+    
+    
     
     /* FUNCIÓ INSERTAR CLIENTS
     * @version TEA4
@@ -220,6 +268,7 @@ public class ClientesDAO {
         //Clientes clientBD =  getClientById (idClient); // extraiem l'objecte client a modificar amb idClient
         // agafem la resta dels camps del client del formulari
         id=client.getId();
+        System.out.println ("id : "+id);
         nombre=client.getNombre();
         apellido1=client.getApellido1();
         apellido2=client.getApellido2();
@@ -242,14 +291,14 @@ public class ClientesDAO {
                 + "SET nombre = aes_encrypt('"+nombre+"','AES'),"
                 + " apellido1 = aes_encrypt('"+apellido1+"','AES'),"
                 + " apellido2 = aes_encrypt('"+apellido2+"','AES'),"
-                + " fecha_nacimiento = aes_encrypt('"+fecha_nacimiento+"','AES'),"
+                + " fecha_nacimiento ='"+ fecha_nacimiento+"',"
                 + " dni = aes_encrypt('"+dni+"','AES'),"
                 + " email = aes_encrypt('"+email+"','AES'),"
                 + " calle = aes_encrypt('"+calle+"','AES'),"
                 + " numero = aes_encrypt('"+numero+"','AES'),"
                 + " piso = aes_encrypt('"+piso+"','AES'),"
                 + " cp = aes_encrypt('"+cp+"','AES'),"
-                + " poblacion = aes_encrypt('"+cp+"','AES'),"
+                + " poblacion = aes_encrypt('"+poblacion+"','AES'),"
                 + " pass = aes_encrypt('"+pass+"','AES')"
                 + " WHERE id = "+ id +";";
  
