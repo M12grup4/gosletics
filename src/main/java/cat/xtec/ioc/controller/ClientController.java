@@ -80,8 +80,8 @@ public ClientController(ClientesDAO clientesDAO) {
 
      */
     @RequestMapping(value = "/clients/modif/{idclient)", method = RequestMethod.PUT)
-    public ResponseEntity updateClientes(@RequestBody int idClient, @RequestBody Clientes client) throws SQLException, IOException{
-        clientesDAO.updateClients(idClient, client);
+    public ResponseEntity updateClientes(@RequestBody Clientes client) throws SQLException, IOException{
+        clientesDAO.updateClients(client);
         return new ResponseEntity("Clientes modif successfully", HttpStatus.OK);
     }
              
