@@ -86,7 +86,7 @@ function createClient() {
     };
 
     //Si falta algun camp obligatori, no enviar
-    if (clientData.nombre == "" || clientData.apellido1 == "" || clientData.dni == "" || clientData.fecha_nacimiento == "" || clientData.email == "" || clientData.pass == "") {
+    if (clientData.nombre == "" || clientData.apellido1 == "" || clientData.dni == "" || clientData.fecha_nacimiento == "" || clientData.email == "" || clientData.calle == "" || clientData.numero == "" || clientData.piso == "" || clientData.cp == "" || clientData.poblacion == "" || clientData.pass == "") {
         showNotification(new Response(null, { status: 418 }), { "418": "Cal omplir tots els camps obligatoris. Operació no finalitzada" });
         return;
     }
@@ -109,7 +109,7 @@ function createClient() {
             $("#inputStreetCode").val("");
             $("#inputTown").val("");
             $("#inputPass").val("");
-            showNotification(jqxhr, { "200": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!" });
+            showNotification(jqxhr, { "200": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!", "201": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!", "204": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!" });
         },
         error: (error) => {
             console.log(error);
@@ -152,6 +152,7 @@ function updateClient(id) {
     let actualitza = $('<button type="button"    class="contactButton"    id="actualitzaButton">Actualitza</button>');
     actualitza.click(() => {
         let updatedClient = {
+            "id": id,
             "nombre": $("#inputName").val(),
             "apellido1": $("#inputSurnameFirst").val(),
             "apellido2": $("#inputSurnameSecond").val(),
