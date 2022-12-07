@@ -232,51 +232,26 @@ public class ClientesDAO {
         cp=client.getCp();
         poblacion=client.getPoblacion();
         pass=client.getPass();
-        // i modifiquem el client de la BBDD amb els nous valors del formulari
-       /* clientBD.setNombre(nombre);
-        clientBD.setApellido1(apellido1);
-        clientBD.setApellido2(apellido2);
-        clientBD.setFecha_nacimiento(fecha_nacimiento);
-        clientBD.setDni(dni);
-        clientBD.setEmail(email);
-        clientBD.setCalle(calle);
-        clientBD.setNumero(numero);
-        clientBD.setPiso(piso);
-        clientBD.setCp(cp);
-        clientBD.setPoblacion(poblacion);
-        clientBD.setPass(pass);*/
+       
         //connectem amb la BBDD
         int rs;
         Connection conn;
         Statement stmt;
-       /* String qry = "UPDATE GL_CLIENTES "
-                + "SET nombre = '" + clientBD.getNombre()+"',"
-                + " apellido1 = '" + clientBD.getApellido1() +"',"
-                + " apellido2 = '" + clientBD.getApellido2() +"',"
-                + " fecha_nacimiento = '" + clientBD.getFecha_nacimiento() +"',"
-                + " dni = '" + clientBD.getDni() +"',"
-                + " email = '" + clientBD.getEmail() +"',"
-                + " calle = '" + clientBD.getCalle() +"',"
-                + " numero = '" + clientBD.getNumero() +"',"
-                + " piso = '" + clientBD.getPiso() +"',"
-                + " poblacion = '" + clientBD.getPoblacion() +"',"
-                + " pass = '" + clientBD.getPass() +"',"
-                + "WHERE id = " + id + ";";
-          */
+       
        String qry = "UPDATE GL_CLIENTES "
-                + "SET nombre = aes_encrypt('"+nombre+",'AES'),"
-                + " apellido1 = aes_encrypt('"+apellido1+",'AES'),"
-                + " apellido2 = aes_encrypt('"+apellido2+",'AES'),"
-                + " fecha_nacimiento = aes_encrypt('"+fecha_nacimiento+",'AES'),"
-                + " dni = aes_encrypt('"+dni+",'AES'),"
-                + " email = aes_encrypt('"+email+",'AES'),"
-                + " calle = aes_encrypt('"+calle+",'AES'),"
-                + " numero = aes_encrypt('"+numero+",'AES'),"
-                + " piso = aes_encrypt('"+piso+",'AES'),"
-                + " cp = aes_encrypt('"+cp+",'AES'),"
-                + " poblacion = aes_encrypt('"+cp+",'AES'),"
-                + " pass = aes_encrypt('"+pass+",'AES'),"
-                + "WHERE id = " + id + ";";
+                + "SET nombre = aes_encrypt('"+nombre+"','AES'),"
+                + " apellido1 = aes_encrypt('"+apellido1+"','AES'),"
+                + " apellido2 = aes_encrypt('"+apellido2+"','AES'),"
+                + " fecha_nacimiento = aes_encrypt('"+fecha_nacimiento+"','AES'),"
+                + " dni = aes_encrypt('"+dni+"','AES'),"
+                + " email = aes_encrypt('"+email+"','AES'),"
+                + " calle = aes_encrypt('"+calle+"','AES'),"
+                + " numero = aes_encrypt('"+numero+"','AES'),"
+                + " piso = aes_encrypt('"+piso+"','AES'),"
+                + " cp = aes_encrypt('"+cp+"','AES'),"
+                + " poblacion = aes_encrypt('"+cp+"','AES'),"
+                + " pass = aes_encrypt('"+pass+"','AES')"
+                + " WHERE id = "+ id +";";
  
        
         dbConnection dbConnection = new dbConnection();      
