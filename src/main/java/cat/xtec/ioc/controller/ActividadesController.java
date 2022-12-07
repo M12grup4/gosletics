@@ -5,9 +5,11 @@ import cat.xtec.ioc.domain.ActividadesDAO;
 import cat.xtec.ioc.domain.PerrosDAO;
 import cat.xtec.ioc.domain.ActividadesDisponiblesDAO;
 import cat.xtec.ioc.domain.Activitats_dia;
-import cat.xtec.ioc.domain.Clientes;
-import cat.xtec.ioc.domain.ClientesDAO;
+//import cat.xtec.ioc.domain.Clientes;
+//import cat.xtec.ioc.domain.ClientesDAO;
 import cat.xtec.ioc.domain.Perros;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 //import java.sql.Date;
 import java.util.List;
@@ -36,8 +38,8 @@ private ActividadesDAO actividadesDAO;
 @Autowired
 private ActividadesDisponiblesDAO actividadesDisponiblesDAO;
 
-@Autowired
-private ClientesDAO clientesDAO;
+/*@Autowired
+private ClientesDAO clientesDAO;*/
 
     /**
      *
@@ -100,48 +102,4 @@ private ClientesDAO clientesDAO;
          return this.actividadesDisponiblesDAO.getReservasByDate(data);
     }
 
-     /**
-     * @return List<Clientes>
-     * @return Retorna una llista de tots els clients
-     * http://localhost:8080/gosletics/clientes
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/clientes")
-    public @ResponseBody
-    List<Clientes> getAllClientes() {
-        return this.clientesDAO.getAllClientes();
-    }
-
-    /**
-     * @return Clientes
-     * @return Retorna objecte Clientes per [idClient}
-     * @RequestMapping http://localhost:8080/gosletics/clientes/{idClient}
-     *         
-     *  gl_clientes
-        +------------------+--------------+------+-----+---------------------+----------------+
-        | Field            | Type         | Null | Key | Default             | Extra          |
-        +------------------+--------------+------+-----+---------------------+----------------+
-        | ID               | int(11)      | NO   | PRI | NULL                | auto_increment |
-        | NOMBRE           | varchar(256) | NO   |     | NULL                |                |
-        | APELLIDO1        | varchar(256) | NO   |     | NULL                |                |
-        | APELLIDO2        | varchar(256) | YES  |     | NULL                |                |
-        | FECHA_NACIMIENTO | date         | NO   |     | NULL                |                |
-        | DNI              | varchar(256) | NO   |     | NULL                |                |
-        | EMAIL            | varchar(256) | NO   | UNI | NULL                |                |
-        | CALLE            | varchar(256) | NO   |     | NULL                |                |
-        | NUMERO           | varchar(256) | NO   |     | NULL                |                |
-        | PISO             | varchar(256) | NO   |     | NULL                |                |
-        | CP               | varchar(256) | NO   |     | NULL                |                |
-        | POBLACION        | varchar(256) | NO   |     | NULL                |                |
-        | PASS             | varchar(256) | NO   |     | NULL                |                |
-        | FX_INSERT        | timestamp    | NO   |     | current_timestamp() |                |
-        | FX_PROC_INFO     | timestamp    | YES  |     | NULL                |                |
-        +------------------+--------------+------+-----+---------------------+----------------+
-     * 
-     */
-    @RequestMapping(value = "/clientes/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    Clientes getClienteById(@PathVariable int id) {
-        return this.clientesDAO.getClienteById(id);
-    }         
-               
-}
+ }
