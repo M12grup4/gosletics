@@ -14,7 +14,6 @@
 
 package cat.xtec.ioc.domain;
 
-
 import java.util.List;
 import cat.xtec.ioc.db.dbConnection;
 import java.io.IOException;
@@ -34,28 +33,28 @@ public class ClientesDAO {
     }
 
     /**
-     * Consulta de tots els clients:   https://localhost:8080/gosletic/clients  
+     * Consulta de tots els clients: https://localhost:8080/gosletic/clients
+     * 
      * @return List llista de tots els clients
      */
 
     public List<Clientes> getAllClientes() throws SQLException, IOException {
-        //String qry = "select * from GL_CLIENTES";
-       
+        // String qry = "select * from GL_CLIENTES";
+
         String qry = "SELECT ID, AES_DECRYPT(NOMBRE, 'AES') as nombre,AES_DECRYPT(APELLIDO1, 'AES') as apellido1, AES_DECRYPT(APELLIDO2, 'AES') as apellido2, FECHA_NACIMIENTO,"
                 + " AES_DECRYPT(DNI, 'AES') as dni, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
                 + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES;";
-        
-        dbConnection dbConnection = new dbConnection();      
-        
-        List<Clientes> clientes_list= new ArrayList<>();
+
+        dbConnection dbConnection = new dbConnection();
+
+        List<Clientes> clientes_list = new ArrayList<>();
         try (
-               Connection conn =  dbConnection.getConnection();
-               Statement stmt = conn.createStatement();
-               ResultSet rs = stmt.executeQuery(qry);
-                
-            ) 
-        {
+                Connection conn = dbConnection.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(qry);
+
+        ) {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
@@ -70,40 +69,43 @@ public class ClientesDAO {
                 String cp = rs.getString("cp");
                 String poblacion = rs.getString("poblacion");
                 String pass = rs.getString("pass");
-                Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
-                  //Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                Clientes clientes = new Clientes(id, nombre, apellido1, apellido2, fecha_nacimiento, dni, email, calle,
+                        numero, piso, cp, poblacion, pass);
+                // Clientes clientes = new
+                // Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
                 clientes_list.add(clientes);
             }
-            
+
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return clientes_list;
     }
-    
+
     /**
-     * Consulta del detall d'un cñient per {id}:   https://localhost:8080/gosletic/clients/{idClient}
+     * Consulta del detall d'un cñient per {id}:
+     * https://localhost:8080/gosletic/clients/{idClient}
+     * 
      * @param idparam (int): id del client
      * @return Clientes (objecte)
      */
-    
-    public Clientes getClientById (int idparam) {
-   
+
+    public Clientes getClientById(int idparam) {
+
         String qry = "SELECT ID, AES_DECRYPT(NOMBRE, 'AES') as nombre,AES_DECRYPT(APELLIDO1, 'AES') as apellido1, AES_DECRYPT(APELLIDO2, 'AES') as apellido2, FECHA_NACIMIENTO,"
-                 + " AES_DECRYPT(DNI, 'AES') as dni, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
-                 + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
-                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE ID= " + idparam +";";
-                        
-        
+                + " AES_DECRYPT(DNI, 'AES') as dni, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
+                + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
+                + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE ID= " + idparam + ";";
+
         dbConnection dbConnection = new dbConnection();
         Clientes clientes = null;
-       
+
         try (
                 Connection conn = (Connection) dbConnection.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(qry);) {
             while (rs.next()) {
-                //  int id = rs.getInt("id");
+                // int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 String apellido1 = rs.getString("apellido1");
                 String apellido2 = rs.getString("apellido2");
@@ -116,71 +118,65 @@ public class ClientesDAO {
                 String cp = rs.getString("cp");
                 String poblacion = rs.getString("poblacion");
                 String pass = rs.getString("pass");
-                
-               // clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
-                clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+
+                // clientes = new
+                // Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                clientes = new Clientes(nombre, apellido1, apellido2, fecha_nacimiento, dni, email, calle, numero, piso,
+                        cp, poblacion, pass);
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return clientes;
     }
-     /**
-     * Consulta del detall d'un cñient per DNI:   https://localhost:8080/gosletic/clients/{dni}
+
+    /**
+     * Consulta del detall d'un cñient per DNI:
+     * https://localhost:8080/gosletic/clients/{dni}
+     * 
      * @param dni (String): dni del client
      * @return Clientes (objecte)
-     */ 
-  public Clientes getClientByDni(String dni) {
-   
-        String qry = "SELECT ID, AES_DECRYPT(NOMBRE, 'AES') as nombre,AES_DECRYPT(APELLIDO1, 'AES') as apellido1, AES_DECRYPT(APELLIDO2, 'AES') as apellido2, FECHA_NACIMIENTO,"
-                 + " AES_DECRYPT(DNI, 'AES') as dni2, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
-                 + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
-                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE dni = AES_ENCRYPT("+dni+", 'AES') ;";
-                        
-        
-        dbConnection dbConnection = new dbConnection();
-        Clientes clientes = null;
-       
-        try (
-                Connection conn = (Connection) dbConnection.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(qry);) {
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String nombre = rs.getString("nombre");
-                String apellido1 = rs.getString("apellido1");
-                String apellido2 = rs.getString("apellido2");
-                String fecha_nacimiento = rs.getString("fecha_nacimiento");
-                String dniCli = rs.getString("dni");
-                String email = rs.getString("email");
-                String calle = rs.getString("calle");
-                String numero = rs.getString("numero");
-                String piso = rs.getString("piso");
-                String cp = rs.getString("cp");
-                String poblacion = rs.getString("poblacion");
-                String pass = rs.getString("pass");
-                
-               // clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
-                clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dniCli,email,calle,numero,piso,cp,poblacion,pass);
+     * @throws IOException
+     * @throws SQLException
+     */
+    public List<Clientes> getClientByDni(String dni) throws SQLException, IOException {
+
+        List<Clientes> clientes = this.getAllClientes();
+        List<Clientes> filter_clientes = new ArrayList<>();
+
+        for (int i = 0; i < clientes.size(); i++){
+            if (filtraPerDni(clientes.get(i), dni)){
+                filter_clientes.add(clientes.get(i));
             }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
         }
-        return clientes;
-    }  
-    
-    
-    
-    
-    
-    
-    /* FUNCIÓ INSERTAR CLIENTS
-    * @version TEA4
-    * @autor Conxi
-    * @param client.json String
-    */
-    public String addClient (Clientes client) throws SQLException, IOException {
-        
+
+        return filter_clientes;
+    }
+
+    /**
+     * Compara el camp DNI d'un client amb el passat per paràmetre.
+     * @param client Client a comparar
+     * @param dni   DNI a comparar
+     * @return  true si coincideix, false si no coincideix
+     */
+    private boolean filtraPerDni(Clientes client, String dni){
+        if (client.getDni().equals(dni)){
+            return true;
+        }
+        return false;
+    }
+
+    /*
+     * FUNCIÓ INSERTAR CLIENTS
+     * 
+     * @version TEA4
+     * 
+     * @autor Conxi
+     * 
+     * @param client.json String
+     */
+    public String addClient(Clientes client) throws SQLException, IOException {
+
         String nombre;
         String apellido1;
         String apellido2;
@@ -193,65 +189,71 @@ public class ClientesDAO {
         String cp;
         String poblacion;
         String pass;
-        
-        //id=client.getId();
-        nombre=client.getNombre();
-        apellido1=client.getApellido1();
-        apellido2=client.getApellido2();
-        fecha_nacimiento=client.getFecha_nacimiento();
-        dni=client.getDni();
-        email=client.getEmail();
-        calle=client.getCalle();
-        numero=client.getNumero();
-        piso=client.getPiso();
-        cp=client.getCp();
-        poblacion=client.getPoblacion();
-        pass=client.getPass();
+
+        // id=client.getId();
+        nombre = client.getNombre();
+        apellido1 = client.getApellido1();
+        apellido2 = client.getApellido2();
+        fecha_nacimiento = client.getFecha_nacimiento();
+        dni = client.getDni();
+        email = client.getEmail();
+        calle = client.getCalle();
+        numero = client.getNumero();
+        piso = client.getPiso();
+        cp = client.getCp();
+        poblacion = client.getPoblacion();
+        pass = client.getPass();
         int rs;
         Connection conn;
         Statement stmt;
         String qry = "INSERT INTO GL_CLIENTES( NOMBRE,APELLIDO1,APELLIDO2,FECHA_NACIMIENTO,DNI,"
                 + " EMAIL,CALLE,NUMERO,PISO,CP,POBLACION,PASS)"
-                + " VALUES (aes_encrypt('"+nombre+"','AES'),aes_encrypt('"+apellido1+"','AES'),"
-                + " aes_encrypt('"+apellido2+"','AES'),'"+fecha_nacimiento+"', aes_encrypt('"+dni+"','AES'),"
-                + " aes_encrypt('"+email+"','AES'), aes_encrypt('"+calle+"','AES'), aes_encrypt('"+numero+"','AES'),"
-                + " aes_encrypt('"+piso+"','AES'),aes_encrypt('"+cp+"','AES'),aes_encrypt('"+poblacion+"','AES'),"
-                + " aes_encrypt('"+pass+"','AES'));";
-          
-        dbConnection dbConnection = new dbConnection();      
-        conn =  dbConnection.getConnection();
+                + " VALUES (aes_encrypt('" + nombre + "','AES'),aes_encrypt('" + apellido1 + "','AES'),"
+                + " aes_encrypt('" + apellido2 + "','AES'),'" + fecha_nacimiento + "', aes_encrypt('" + dni
+                + "','AES'),"
+                + " aes_encrypt('" + email + "','AES'), aes_encrypt('" + calle + "','AES'), aes_encrypt('" + numero
+                + "','AES'),"
+                + " aes_encrypt('" + piso + "','AES'),aes_encrypt('" + cp + "','AES'),aes_encrypt('" + poblacion
+                + "','AES'),"
+                + " aes_encrypt('" + pass + "','AES'));";
+
+        dbConnection dbConnection = new dbConnection();
+        conn = dbConnection.getConnection();
         stmt = conn.createStatement();
         rs = stmt.executeUpdate(qry);
         String resultat = "OK";
         return resultat;
     }
-    
-    
-    /* FUNCIÓ ESBORRAR CLIENTS
-    * @version TEA4
-    * @autor Conxi
-    * @param client.json String
-    */
-    public String deleteClients (int idClient) throws SQLException, IOException {
+
+    /*
+     * FUNCIÓ ESBORRAR CLIENTS
+     * 
+     * @version TEA4
+     * 
+     * @autor Conxi
+     * 
+     * @param client.json String
+     */
+    public String deleteClients(int idClient) throws SQLException, IOException {
         int id;
-        //Clientes client =  getClientById(idClient);
-        //id=client.getId();
-        id=idClient;
+        // Clientes client = getClientById(idClient);
+        // id=client.getId();
+        id = idClient;
         System.out.println("id lin. 191: " + idClient);
         int rs;
         Connection conn;
         Statement stmt;
-        String qry = "DELETE FROM GL_CLIENTES WHERE id="+id;
-          
-        dbConnection dbConnection = new dbConnection();      
-        conn =  dbConnection.getConnection();
+        String qry = "DELETE FROM GL_CLIENTES WHERE id=" + id;
+
+        dbConnection dbConnection = new dbConnection();
+        conn = dbConnection.getConnection();
         stmt = conn.createStatement();
         rs = stmt.executeUpdate(qry);
         String resultat = "OK";
         return resultat;
     }
-    
-     public String updateClients (Clientes client) throws SQLException, IOException {
+
+    public String updateClients(Clientes client) throws SQLException, IOException {
         int id;
         String nombre;
         String apellido1;
@@ -265,74 +267,74 @@ public class ClientesDAO {
         String cp;
         String poblacion;
         String pass;
-        //Clientes clientBD =  getClientById (idClient); // extraiem l'objecte client a modificar amb idClient
+        // Clientes clientBD = getClientById (idClient); // extraiem l'objecte client a
+        // modificar amb idClient
         // agafem la resta dels camps del client del formulari
-        id=client.getId();
-        System.out.println ("id : "+id);
-        nombre=client.getNombre();
-        apellido1=client.getApellido1();
-        apellido2=client.getApellido2();
-        fecha_nacimiento=client.getFecha_nacimiento();
-        dni=client.getDni();
-        email=client.getEmail();
-        calle=client.getCalle();
-        numero=client.getNumero();
-        piso=client.getPiso();
-        cp=client.getCp();
-        poblacion=client.getPoblacion();
-        pass=client.getPass();
-       
-        //connectem amb la BBDD
+        id = client.getId();
+        System.out.println("id : " + id);
+        nombre = client.getNombre();
+        apellido1 = client.getApellido1();
+        apellido2 = client.getApellido2();
+        fecha_nacimiento = client.getFecha_nacimiento();
+        dni = client.getDni();
+        email = client.getEmail();
+        calle = client.getCalle();
+        numero = client.getNumero();
+        piso = client.getPiso();
+        cp = client.getCp();
+        poblacion = client.getPoblacion();
+        pass = client.getPass();
+
+        // connectem amb la BBDD
         int rs;
         Connection conn;
         Statement stmt;
-       
-       String qry = "UPDATE GL_CLIENTES "
-                + "SET nombre = aes_encrypt('"+nombre+"','AES'),"
-                + " apellido1 = aes_encrypt('"+apellido1+"','AES'),"
-                + " apellido2 = aes_encrypt('"+apellido2+"','AES'),"
-                + " fecha_nacimiento ='"+ fecha_nacimiento+"',"
-                + " dni = aes_encrypt('"+dni+"','AES'),"
-                + " email = aes_encrypt('"+email+"','AES'),"
-                + " calle = aes_encrypt('"+calle+"','AES'),"
-                + " numero = aes_encrypt('"+numero+"','AES'),"
-                + " piso = aes_encrypt('"+piso+"','AES'),"
-                + " cp = aes_encrypt('"+cp+"','AES'),"
-                + " poblacion = aes_encrypt('"+poblacion+"','AES'),"
-                + " pass = aes_encrypt('"+pass+"','AES')"
-                + " WHERE id = "+ id +";";
- 
-       
-        dbConnection dbConnection = new dbConnection();      
-        conn =  dbConnection.getConnection();
+
+        String qry = "UPDATE GL_CLIENTES "
+                + "SET nombre = aes_encrypt('" + nombre + "','AES'),"
+                + " apellido1 = aes_encrypt('" + apellido1 + "','AES'),"
+                + " apellido2 = aes_encrypt('" + apellido2 + "','AES'),"
+                + " fecha_nacimiento ='" + fecha_nacimiento + "',"
+                + " dni = aes_encrypt('" + dni + "','AES'),"
+                + " email = aes_encrypt('" + email + "','AES'),"
+                + " calle = aes_encrypt('" + calle + "','AES'),"
+                + " numero = aes_encrypt('" + numero + "','AES'),"
+                + " piso = aes_encrypt('" + piso + "','AES'),"
+                + " cp = aes_encrypt('" + cp + "','AES'),"
+                + " poblacion = aes_encrypt('" + poblacion + "','AES'),"
+                + " pass = aes_encrypt('" + pass + "','AES')"
+                + " WHERE id = " + id + ";";
+
+        dbConnection dbConnection = new dbConnection();
+        conn = dbConnection.getConnection();
         stmt = conn.createStatement();
         rs = stmt.executeUpdate(qry);
         String resultat = "OK";
         return resultat;
     }
-    
-    
-    
-    
-}
-/*+------------------+--------------+------+-----+---------------------+----------------+
-| Field            | Type         | Null | Key | Default             | Extra          |
-+------------------+--------------+------+-----+---------------------+----------------+
-| ID               | int(11)      | NO   | PRI | NULL                | auto_increment |
-| NOMBRE           | varchar(256) | NO   |     | NULL                |                |
-| APELLIDO1        | varchar(256) | NO   |     | NULL                |                |
-| APELLIDO2        | varchar(256) | YES  |     | NULL                |                |
-| FECHA_NACIMIENTO | date         | NO   |     | NULL                |                |
-| DNI              | varchar(256) | NO   |     | NULL                |                |
-| EMAIL            | varchar(256) | NO   | UNI | NULL                |                |
-| CALLE            | varchar(256) | NO   |     | NULL                |                |
-| NUMERO           | varchar(256) | NO   |     | NULL                |                |
-| PISO             | varchar(256) | NO   |     | NULL                |                |
-| CP               | varchar(256) | NO   |     | NULL                |                |
-| POBLACION        | varchar(256) | NO   |     | NULL                |                |
-| PASS             | varchar(256) | NO   |     | NULL                |                |
-| FX_INSERT        | timestamp    | NO   |     | current_timestamp() |                |
-| FX_PROC_INFO     | timestamp    | YES  |     | NULL                |                |
-+------------------+--------------+------+-----+---------------------+----------------+*/
 
-    
+}
+/*
+ * +------------------+--------------+------+-----+---------------------+-------
+ * ---------+
+ * | Field | Type | Null | Key | Default | Extra |
+ * +------------------+--------------+------+-----+---------------------+-------
+ * ---------+
+ * | ID | int(11) | NO | PRI | NULL | auto_increment |
+ * | NOMBRE | varchar(256) | NO | | NULL | |
+ * | APELLIDO1 | varchar(256) | NO | | NULL | |
+ * | APELLIDO2 | varchar(256) | YES | | NULL | |
+ * | FECHA_NACIMIENTO | date | NO | | NULL | |
+ * | DNI | varchar(256) | NO | | NULL | |
+ * | EMAIL | varchar(256) | NO | UNI | NULL | |
+ * | CALLE | varchar(256) | NO | | NULL | |
+ * | NUMERO | varchar(256) | NO | | NULL | |
+ * | PISO | varchar(256) | NO | | NULL | |
+ * | CP | varchar(256) | NO | | NULL | |
+ * | POBLACION | varchar(256) | NO | | NULL | |
+ * | PASS | varchar(256) | NO | | NULL | |
+ * | FX_INSERT | timestamp | NO | | current_timestamp() | |
+ * | FX_PROC_INFO | timestamp | YES | | NULL | |
+ * +------------------+--------------+------+-----+---------------------+-------
+ * ---------+
+ */

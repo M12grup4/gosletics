@@ -129,7 +129,7 @@ public ClientController(ClientesDAO clientesDAO) {
      * CONSULTA DE CLIENTS PER DNI client
      */
     @RequestMapping(value = "/clients/dni/{dniCli}", method = RequestMethod.GET)
-    public @ResponseBody Clientes getClientByDni(@PathVariable String dniCli) {
+    public @ResponseBody List<Clientes> getClientByDni(@PathVariable String dniCli) throws SQLException, IOException {
       
         return this.clientesDAO.getClientByDni(dniCli);
     }
