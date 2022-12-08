@@ -79,7 +79,7 @@ public ClientController(ClientesDAO clientesDAO) {
         * Mostra missatge de confirmació en funció de la resposta obtinguda pel servidor mitjançant la funció {@link showNotification}.
 
      */
-    @RequestMapping(value = "/clients/modif/{idclient}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/clients/modif", method = RequestMethod.PUT)
     public ResponseEntity updateClientes(@RequestBody Clientes client) throws SQLException, IOException{
         clientesDAO.updateClients(client);
         return new ResponseEntity("Clientes modif successfully", HttpStatus.OK);
@@ -121,7 +121,18 @@ public ClientController(ClientesDAO clientesDAO) {
         return this.clientesDAO.getClientById(idClientes);
     }
     
-     
+      /**
+     *
+     * @param {dni}
+     * @version TEA4
+     * @autor Conxi Galvez
+     * CONSULTA DE CLIENTS PER DNI client
+     */
+    @RequestMapping(value = "/clients/dni/{dniCli}", method = RequestMethod.GET)
+    public @ResponseBody Clientes getClientByDni(@PathVariable String dniCli) {
+      
+        return this.clientesDAO.getClientByDni(dniCli);
+    }
             
     
      /**

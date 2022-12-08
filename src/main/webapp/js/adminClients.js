@@ -7,7 +7,7 @@
  * POST /clients/alta
  * 
  * Modificació de client:
- * PUT /clients/modif/{idClient}
+ * PUT /clients/modif/
  * 
  * Baixa de client:
  * DELETE /clients/baixa/{idClient}
@@ -16,7 +16,7 @@
  * GET /clients/{idClient}
  * 
  * Executa cerca de clients:
- * GET /clients/nomClient/{nomClient}
+ * GET /clients/dni/{dni}
  * 
  * @author Albert Garcia Llorca
  */
