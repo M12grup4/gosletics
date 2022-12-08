@@ -43,7 +43,8 @@
     <script src="./js/adminClients.js" type="module" ></script>
     <script src="./js/logUser.js" type="module"></script>
         <script>
-            redirect(localStorage.getItem("isAdmin"));
+            const LEVEL = "admin";
+            checkPermission();
         </script>
 </head>
 

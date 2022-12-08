@@ -46,6 +46,16 @@ function redirect(isAdmin) {
 }
 
 /**
+ * @function checkPermission
+ * Aquesta funció comprova per a quin nivell d'usuari està especificada la pàgina que s'intenta visualitzar.
+ */
+function checkPermission(){
+    if (LEVEL == "admin" && (localStorage.getItem("isAdmin") == "false" || localStorage.getItem("isAdmin") ==undefined)){
+        window.location.replace(RED_HOME);
+    }
+}
+
+/**
  * @function sendLogin
  * Envia dades introduïdes per l'usuari al servidor per autenticar-se a l'aplicació.
  * Desa dades mínimes retornades pel servidor al local storage per poder referir-se
