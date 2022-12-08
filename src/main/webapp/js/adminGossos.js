@@ -22,7 +22,7 @@
  */
 
 import { showNotification, WEBROOT } from './tools.js';
-import { logout } from './logUser.js';
+import { logout, checkPermission } from './logUser.js';
 
 /**
  * Variable que recull el contenidor a on aniran els gossos resultat de la consulta.
@@ -31,6 +31,10 @@ let resultatConsulta = null;
 
 //Botó alta gos
 const botoAlta = $("#contactButtonAlta");
+
+//Comprova permisos
+const LEVEL = "admin";
+checkPermission(LEVEL);
 
 /**
  * Accions a realitzar quan el DOM s'hagi carregat.

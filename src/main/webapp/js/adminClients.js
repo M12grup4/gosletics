@@ -22,7 +22,7 @@
  */
 
 import { showNotification, WEBROOT } from './tools.js';
-import { logout } from './logUser.js';
+import { logout, checkPermission } from './logUser.js';
 
 /**
  * Variable que recull el contenidor a on aniran els clients resultat de la consulta.
@@ -31,6 +31,11 @@ let resultatConsulta = null;
 
 //Botó alta client
 const botoAlta = $("#contactButtonAlta");
+
+//Comprova nivell de permisos
+const LEVEL = "admin";
+checkPermission(LEVEL);
+
 
 /**
  * Accions a realitzar quan el DOM s'hagi carregat.
@@ -60,7 +65,7 @@ const POST_ALTA = WEBROOT + "/clients/alta";
 const PUT_MODIF = WEBROOT + "/clients/modif";
 const DELETE_BAIXA = WEBROOT + "/clients/baixa/";
 const GET_CLIENT = WEBROOT + "/clients/";
-const GET_CLIENT_NOM = WEBROOT + "/clients/nomClient/";
+const GET_CLIENT_NOM = WEBROOT + "/clients/dni/";
 
 /**
  * @function createClient
@@ -81,7 +86,7 @@ function createClient() {
         "numero": $("#inputStreetNumber").val(),
         "piso": $("#inputStreetFloor").val(),
         "cp": $("#inputStreetCode").val(),
-        "poblacion": $("#inputTown").val(),
+        "poblacion": $("#inputStreetTown").val(),
         "pass": $("#inputPass").val(),
     };
 
@@ -107,7 +112,7 @@ function createClient() {
             $("#inputStreetNumber").val("");
             $("#inputStreetFloor").val("");
             $("#inputStreetCode").val("");
-            $("#inputTown").val("");
+            $("#inputStreetTown").val("");
             $("#inputPass").val("");
             showNotification(jqxhr, { "200": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!", "201": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!", "204": "Client " + clientData.nombre + " " + clientData.apellido1 + " creat correctament!" });
         },
@@ -138,12 +143,12 @@ function updateClient(id) {
             $("#inputSurnameSecond").val(results.apellido2);
             $("#inputBirth").val(results.fecha_nacimiento);
             $("#inputDNI").val(results.dni);
-            $("#inputMail").val(results.mail);
+            $("#inputMail").val(results.email);
             $("#inputStreet").val(results.calle);
             $("#inputStreetNumber").val(results.numero);
             $("#inputStreetFloor").val(results.piso);
             $("#inputStreetCode").val(results.cp);
-            $("#inputTown").val(results.poblacion);
+            $("#inputStreetTown").val(results.poblacion);
             $("#inputPass").val(results.pass);
         },
     );
@@ -163,7 +168,7 @@ function updateClient(id) {
             "numero": $("#inputStreetNumber").val(),
             "piso": $("#inputStreetFloor").val(),
             "cp": $("#inputStreetCode").val(),
-            "poblacion": $("#inputTown").val(),
+            "poblacion": $("#inputStreetTown").val(),
             "pass": $("#inputPass").val(),
         };
         $.ajax({
@@ -182,7 +187,7 @@ function updateClient(id) {
                 $("#inputStreetNumber").val("");
                 $("#inputStreetFloor").val("");
                 $("#inputStreetCode").val("");
-                $("#inputTown").val("");
+                $("#inputStreetTown").val("");
                 $("#inputPass").val("");
                 showNotification(jqxhr, { "201": "Client " + updatedClient.dni + " modificat correctament!", "204": "Client " + updatedClient.dni + " modificat correctament!", "200": "Client " + updatedClient.dni + " modificat correctament!" });
                 $('#actualitzaButton').remove();

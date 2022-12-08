@@ -35,7 +35,7 @@ $().ready(() => {
  * Aquesta funció redirigeix l'usuari en funció dels seus privilegis.
  * @param {String} isAdmin String de control true o false
  */
-function redirect(isAdmin) {
+export function redirect(isAdmin) {
     if (isAdmin == "true") {
         window.location.replace(RED_ADMIN);
     } else if (isAdmin == "false") {
@@ -48,9 +48,13 @@ function redirect(isAdmin) {
 /**
  * @function checkPermission
  * Aquesta funció comprova per a quin nivell d'usuari està especificada la pàgina que s'intenta visualitzar.
+ * @param {String} level nivell establert
  */
-function checkPermission(){
-    if (LEVEL == "admin" && (localStorage.getItem("isAdmin") == "false" || localStorage.getItem("isAdmin") ==undefined)){
+export function checkPermission(level){
+    if (level == "admin" && (localStorage.getItem("isAdmin") == "false" || localStorage.getItem("isAdmin") == undefined)){
+        window.location.replace(RED_HOME);
+    }
+    if (level == "user" && localStorage.getItem("isAdmin") == undefined){
         window.location.replace(RED_HOME);
     }
 }

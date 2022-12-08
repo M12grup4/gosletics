@@ -14,12 +14,16 @@
 
 import formatTime from './horari.js';
 import { modal, showModal, showNotification, WEBROOT } from './tools.js';
-import { logout } from './logUser.js';
+import { logout, checkPermission, redirect } from './logUser.js';
 
 /**
  * Gossos de l'usuari
  */
 let gossos_usuari = null;
+
+//Comprova permisos
+const LEVEL = "user";
+checkPermission(LEVEL);
 
 /**
  * Establim la data actual segons el client que ha realitzat la petició.
