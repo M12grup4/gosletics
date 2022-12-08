@@ -14,7 +14,7 @@
 
 import formatTime from './horari.js';
 import { modal, showModal, showNotification, WEBROOT } from './tools.js';
-import { logout, checkPermission, redirect } from './logUser.js';
+import { logout, checkPermission } from './logUser.js';
 
 /**
  * Gossos de l'usuari

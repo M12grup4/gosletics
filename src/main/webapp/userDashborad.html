@@ -23,7 +23,7 @@
         crossorigin="anonymous">
     <!-- CSS Costum -->
     <link href="./css/style.css" rel="stylesheet">
-  
+
     <!-- Scripts -->
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -40,71 +40,96 @@
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
         crossorigin="anonymous"></script>
     <!--Custom JS-->
-
+    <script defer>
+        import { logout } from './js/logUser.js';
+        $('#signout').click(() => {
+            logout();
+        });
+        $('#loggedUser').html(localStorage.getItem('mail'));
+        $('#greeting').html("Hola, " + localStorage.getItem('mail'));
+    </script>
 </head>
 
 <body>
     <section class="dashborad" id="sidebar">
         <div class="container-fluid">
             <div class="row flex-nowrap">
-                
+
                 <!-- Sidebar Start -->
-                <div class="content col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <div
+                    class="content col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                    <div
+                        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                         <!-- Menu -->
-                        <a href="userDashborad.html" class="menu d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <a href="userDashborad.html"
+                            class="menu d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                             <i class="fa-solid fa-bars fa-fw"></i>
                             <span class="ms-1 d-none d-sm-inline">MENU</span>
                             <br>
                             <br>
                         </a>
                         <!-- Action links -->
-                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
                             <!-- User control link -->
                             <li>
                                 <hr>
-                                <a href="userManagement.html" class="nav-link px-0 align-middle text-white">
+                                <a href="userManagement.html"
+                                    class="nav-link px-0 align-middle text-white">
                                     <i class="fa-solid fa-user fa-xl fa-fw"></i>
-                                    <span class="ms-1 d-none d-sm-inline">Gestió d'usuaris</span>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió
+                                        d'usuaris</span>
                                 </a>
                             </li>
                             <!-- Dog control link -->
                             <li>
                                 <hr>
-                                <a href="dogManagement.html" class="nav-link px-0 align-middle text-white">
+                                <a href="dogManagement.html"
+                                    class="nav-link px-0 align-middle text-white">
                                     <i class="fa-solid fa-dog fa-xl fa-fw"></i>
-                                    <span class="ms-1 d-none d-sm-inline">Gestió de gossos</span>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió
+                                        de gossos</span>
                                 </a>
                             </li>
                             <!-- Activities control link -->
                             <li>
                                 <hr>
-                                <a href="bookingManagement.html" class="nav-link px-0 align-middle text-white">
-                                    <i class="fa-solid fa-calendar-days fa-xl fa-fw"></i>
-                                    <span class="ms-1 d-none d-sm-inline">Gestió d'activitats</span>
+                                <a href="bookingManagement.html"
+                                    class="nav-link px-0 align-middle text-white">
+                                    <i
+                                        class="fa-solid fa-calendar-days fa-xl fa-fw"></i>
+                                    <span class="ms-1 d-none d-sm-inline">Gestió
+                                        d'activitats</span>
                                 </a>
                                 <hr>
                             </li>
                         </ul>
                         <!-- User settings -->
                         <div class="dropdown pb-4">
-                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <i class="fa-solid fa-circle-u fa-xl fa-fw"></i>
-                                <span class="d-none d-sm-inline mx-1" id="loggedUser">Admin</span>
+                                <span class="d-none d-sm-inline mx-1"
+                                    id="loggedUser">Admin</span>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" href="#" id="signout">Sign out</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+                                aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="#"
+                                        id="signout">Sign out</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- Sidebar Ends -->
-                
+
                 <!-- Content Start -->
                 <div class="content container-fluid col">
                     <!-- Topbar -->
                     <div class="top container-fluid bg-dark">
-                       <img class="dashborad-logo" src="assets/Navbar-logo.png">
+                        <img class="dashborad-logo"
+                            src="assets/Navbar-logo.png">
                     </div>
                     <!-- Dashboard panel -->
                     <div class="options container-fluid ">
@@ -117,7 +142,8 @@
                                 <div class="buttoncard">
                                     <a href="userManagement.html">
                                         <div class="boton-icon">
-                                            <i class="fa-solid fa-user fa-3x"></i>
+                                            <i
+                                                class="fa-solid fa-user fa-3x"></i>
                                         </div>
                                         <h3>Gestió d'Usuaris</h3>
                                     </a>
@@ -127,7 +153,8 @@
                                 <div class="buttoncard">
                                     <a href="dogManagement.html">
                                         <div class="boton-icon">
-                                            <i class="fa-solid fa-dog fa-3x"></i>
+                                            <i
+                                                class="fa-solid fa-dog fa-3x"></i>
                                         </div>
                                         <h3>Gestió de gossos</h3>
                                     </a>
@@ -137,7 +164,8 @@
                                 <div class="buttoncard">
                                     <a href="bookingManagement.html">
                                         <div class="boton-icon">
-                                            <i class="fa-solid fa-calendar-days fa-3x"></i>
+                                            <i
+                                                class="fa-solid fa-calendar-days fa-3x"></i>
                                         </div>
                                         <h3>Gestió d'activitats</h3>
                                     </a>
@@ -151,12 +179,15 @@
         </div>
     </section>
     <!-- Modal -->
-    <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal fade " id="modal" tabindex="-1"
+        aria-labelledby="modalLabel" aria-hidden="true">
+        <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Contingut
@@ -169,4 +200,5 @@
     </div>
     <!--End modal-->
 </body>
+
 </html>
