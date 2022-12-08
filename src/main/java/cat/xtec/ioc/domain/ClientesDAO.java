@@ -135,7 +135,7 @@ public class ClientesDAO {
         String qry = "SELECT ID, AES_DECRYPT(NOMBRE, 'AES') as nombre,AES_DECRYPT(APELLIDO1, 'AES') as apellido1, AES_DECRYPT(APELLIDO2, 'AES') as apellido2, FECHA_NACIMIENTO,"
                  + " AES_DECRYPT(DNI, 'AES') as dni2, AES_DECRYPT(EMAIL, 'AES') as email, AES_DECRYPT(CALLE, 'AES') as calle, AES_DECRYPT(NUMERO, 'AES') as numero,"
                  + " AES_DECRYPT(PISO, 'AES') as piso, AES_DECRYPT(CP, 'AES') as cp, AES_DECRYPT(POBLACION, 'AES') as poblacion, AES_DECRYPT(PASS, 'AES') as pass,"
-                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE dni = AES_DECRYPT("+dni+", 'AES') ;";
+                 + " FX_INSERT, FX_PROC_INFO FROM GL_CLIENTES  WHERE dni = AES_ENCRYPT("+dni+", 'AES') ;";
                         
         
         dbConnection dbConnection = new dbConnection();
