@@ -70,7 +70,7 @@ public class ClientesDAO {
                 String cp = rs.getString("cp");
                 String poblacion = rs.getString("poblacion");
                 String pass = rs.getString("pass");
-                Clientes clientes = new Clientes(nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
+                Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
                   //Clientes clientes = new Clientes(id,nombre,apellido1,apellido2,fecha_nacimiento,dni,email,calle,numero,piso,cp,poblacion,pass);
                 clientes_list.add(clientes);
             }

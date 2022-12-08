@@ -72,6 +72,23 @@ public class Clientes {
         this.pass = pass;
     }
 
+    public Clientes(int id, String nombre, String apellido1, String apellido2, String fecha_nacimiento, String dni, String email, String calle, String numero, String piso, String cp, String poblacion, String pass) {
+        this.id = id;
+          this.nombre = nombre;
+          this.apellido1 = apellido1;
+          this.apellido2 = apellido2;
+          this.fecha_nacimiento = fecha_nacimiento;
+          this.dni = dni;
+          this.email = email;
+          this.calle = calle;
+          this.numero = numero;
+          this.piso = piso;
+          this.cp = cp;
+          this.poblacion = poblacion;
+          this.pass = pass;
+      }
+  
+
     public Clientes() {
     }
 
