@@ -153,10 +153,10 @@ function showBookableActivities(results) {
  */
 function createAccordionItem(data, activitiesData, id) {
     //Capçalera
-    $('<a href="#' + id + '" data-bs-toggle="collapse" data-bs-target="#' + id + '" class="nav-link px-0 align-middle"> <i class="fa-solid fa-square-caret-down"></i>    <span class="ms-1 d-none d-sm-inline">' + determineDay(data) + ' ' + data.getDate() + '/' + (data.getMonth() + 1) + '</span></a>').appendTo(calendari);
+    $('<a href="#' + id + '" data-bs-toggle="collapse" data-bs-target="#' + id + '" class="nav-link px-0 align-middle"> <i class="fa-solid fa-square-caret-down"></i>' + determineDay(data) + ' ' + data.getDate() + '/' + (data.getMonth() + 1) + '</a>').appendTo(calendari);
 
     //Top llista
-    $('<ul class="collapse nav flex-column ms-1" id="' + id + '">    <li class="w-100"> <div class="headers row container"><div class="col-2">HORA</div>    <div class="col-2">DURADADA</div>    <div class="col-3">ACTIVITAT</div>    <div class="col-3">DISPONIBILITAT</div></div></li> </ul>').appendTo(calendari);
+    $('<div class="scrollmenu"><ul class="collapse nav flex-column ms-1" id="' + id + '">    <li class="w-100"> <div class="headers"><table><tr><td>HORA</td>    <td>DURADADA</td>    <td>ACTIVITAT</td>    <td>DISPONIBILITAT</td>    <td>RESERVAR</td>    <td>ANUL·LAR</tr></div></li> </ul></div>').appendTo(calendari);
 
     //Genera continguts
     if (activitiesData.length > 0) {
@@ -181,12 +181,12 @@ function createAccordionItem(data, activitiesData, id) {
 function createBookable(activityData, data, id) {
     data = data.valueOf();
     //Capçalera llista
-    $('<li class="w-100">    <div class="row container" id="act' + data + activityData.a_id + '"> </div>   </li>').appendTo("#" + id);
+    $('<li class="w-100">    <div class="output" id="act' + data + activityData.a_id + '"> </div>   </li>').appendTo("#" + id);
     //Info activitat
-    let activitat = $("<div class=\"col-2\">" + formatTime(activityData.h_hora) + "</div> <div class=\"col-2\">" + activityData.h_tiempo_actividad + " min.</div> <div class=\"activity col-3\">" + activityData.a_nombre + "</div> <div class=\"col-3\">" + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</div> ").appendTo("#act" + data + activityData.a_id);
+    let activitat = $("<td>" + formatTime(activityData.h_hora) + "</td> <td>" + activityData.h_tiempo_actividad + " min.</td> <td>" + activityData.a_nombre + "</td> <td>" + activityData.h_plazas_ocupadas + "\/" + activityData.n_participantes_max + "</td> ").appendTo("#act" + data + activityData.a_id);
     //Accions
-    let botoReservar = $("<div class=\"col-1\"> Reservar </div>").appendTo("#act" + data + activityData.a_id);
-    let botoAnular = $("<div class=\"col-1\"> Anul·lar </div>").appendTo("#act" + data + activityData.a_id);
+    let botoReservar = $("<td class=\"acction\"> Reservar </td>").appendTo("#act" + data + activityData.a_id);
+    let botoAnular = $("<td class=\"acction\"> Anul·lar </td>").appendTo("#act" + data + activityData.a_id);
 
     botoReservar.click(() => {
         let contingut = "<p>Selecciona gos per reservar</p>";//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma

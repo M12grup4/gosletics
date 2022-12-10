@@ -1894,7 +1894,7 @@
     padding-top     : 10px;
 }
 
-.dashborad .bookingContent .headers .col-2 {
+.dashborad .headers td{
     background-color: #222529;
     border          : 5px 
                       solid 
@@ -1904,21 +1904,10 @@
     font-size       : 14px;
     font-weight     : 600;
     text-align      : center;
+    min-width           : 200px;
 }
 
-.dashborad .bookingContent .headers .col-3 {
-    background-color: #222529;
-    border          : 5px 
-                      solid 
-                      #F6F6F6;
-    color           : #222529;
-    color           : #edf2f4;
-    font-size       : 14px;
-    font-weight     : 600;
-    text-align      : center;
-}
-
-.dashborad .bookingContent .col-1, .col-2, .col-3 {
+.dashborad .output td  {
     background-color: #ffffff;
     border          : 5px 
                       solid 
@@ -1927,14 +1916,45 @@
     font-size       : 14px;
     font-weight     : 300;
     text-align      : center;
+    min-width           : 200px;
 }
 
-.dashborad .bookingContent .col-1:hover {
+.dashborad .bookingContent .acction:hover {
     font-weight: 600;
 }
 
 .dashborad .bookingContent i {
     padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+/* Home XSmall screen */
+@media only screen and  (max-width: 575px) {
+    .dashborad .bookingContent .spacerContent {
+        font-size: 18px;
+    }
+    .dashborad .bookingContent h1 {
+        font-size: 18px;
+    }
+
+    .dashborad .bookingContent h2 {
+        font-size: 15px;
+    }
+
+    .dashborad .bookingContent .nav-link {
+        font-size: 15px;
+    }
+}
+
+
+/* Home Small screen */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .dashborad .bookingContent td {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
 }
 
 /* Home XSmall screen */
@@ -1954,19 +1974,17 @@
         font-size: 15px;
     }
 
-    .dashborad .bookingContent label {
-        font-size: 13px;
+    .dashborad .bookingContent td {
+        width: 120px;
+        min-width: 110px;
+        max-width: 110px;
     }
 
-    .dashborad .bookingContent #contactButton {
-        font-size: 13px;
+    .dashborad .bookingContent .headers td{
+        font-size: 12px;
     }
-
-    .dashborad .bookingContent input {
-        font-size: 13px;
-    }
-
-    .dashborad .bookingContent textarea {
-        font-size: 13px;
+    
+    .dashborad .bookingContent .output td{
+        font-size: 12px;
     }
 }
