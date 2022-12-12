@@ -62,7 +62,7 @@ function showActivitiesOnDate(selectedDate) {
                 llistat.push(createActivity(element));
             });
         } else {
-            //TODO test
+            
             llistat = [$("<p>No hay actividades para este día</p>")];
         }
     })
@@ -100,7 +100,6 @@ function showActivityDetail(selectedActivity) {
             .done(() => {
                 //Afegeix els resultats al DOM
                 detall.html("");
-                //$("<a>Tancar</a>").click(() => {/*TODO*/}).appendTo(detall);
                 info.appendTo(detall);
             });
 

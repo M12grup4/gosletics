@@ -189,7 +189,7 @@ function createBookable(activityData, data, id) {
     let botoAnular = $("<td class=\"acction\"> Anul·lar </td>").appendTo("#act" + data + activityData.a_id);
 
     botoReservar.click(() => {
-        let contingut = "<p>Selecciona gos per reservar</p>";//TODO llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
+        let contingut = "<p>Selecciona gos per reservar</p>";//Llista dels gossos de l'usuari loginat que esta reservant. Selecciona els que vol i confirma
         let peu = $("<button>Reservar</button>");
         let gossos = createDogList(gossos_usuari);
         contingut += gossos;
@@ -198,13 +198,11 @@ function createBookable(activityData, data, id) {
         showModal($(contingut), peu, titol);
     });
     botoAnular.click(() => {
-        //TODO test API call
-        let contingut = $("<p>Aquesta acció és irreversible.</p> <p>Selecciona els gossos pels quals eliminar la reserva existent: </p> <p id='holdmsg'>Espera, sisplau...</p>");//TODO llista de les reserves existents per a aquesta activitat dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
+        let contingut = $("<p>Aquesta acció és irreversible.</p> <p>Selecciona els gossos pels quals eliminar la reserva existent: </p> <p id='holdmsg'>Espera, sisplau...</p>");//Llista de les reserves existents per a aquesta activitat (una per cada gos reservat a l'activitat) dels gossos de l'usuari loginat que vol anular. Selecciona els que vol i confirma
         let peu = $("<button>Anular</button>");
         peu.click(() => deleteBooking([$(':checked')]));//Els checks haurien de ser els gossos pels quals cal eliminar la reserva
         let titol = "ATENCIÓ!";
         showModal($(contingut), peu, titol);
-        //Exemple TODO obtenir les reserves de l'usuari loginat
         loadBookings(activityData.a_id, localStorage.getItem('id'));
     });
 }
