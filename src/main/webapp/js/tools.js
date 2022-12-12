@@ -37,6 +37,8 @@ export function showNotification(resposta, missatges) {
     }
 
     let cosNotificacio = catalegMissatges[resposta.status];
+    //Elimina notificacions anteriors
+    $('.toast-container').remove();
     //Crear notificació
     $('<div class="toast-container position-fixed bottom-0 end-0 p-3">     <div id="notificacio" class="toast" role="alert" aria-live="assertive" aria-atomic="true">     <div class="toast-header">        <i class="fa-solid fa-circle-info p-1"></i>        <strong class="me-auto">Notificació</strong>        <small></small>        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Tanca"></button>      </div>      <div class="toast-body">       '+ cosNotificacio +'      </div>    </div>  </div>').appendTo("body");
     //Inicialitzar la notificació al JS de Bootstrap

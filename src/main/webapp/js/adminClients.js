@@ -235,7 +235,7 @@ function deleteClient(id) {
  */
 function createClientItem(clients) {
     clients.forEach((element) => {
-        let client = $('<tr class="output" id="' + element.id + '">        <td>' + element.id + '</td>        <td>' + element.nombre + '</td>        <td>' + element.apellido1 + '</td>    <td>' + element.apellido2 + '</td>    <td>' + element.fecha_nacimiento + '</td>  <td>' + element.dni + '</td>  <td>' + element.email + '</td>  <td>' + element.calle + '</td> <td>' + element.numero + '</td><td>' + element.piso + '</td> <td>' + element.cp + '</td><td class="action" id="updateButton' + element.id + '">Modifica</td>        <td class="action" id="bajaButton' + element.id + '">Baja</td>    </tr>');
+        let client = $('<tr class="output" id="' + element.id + '">        <td>' + element.id + '</td>        <td>' + element.nombre + '</td>        <td>' + element.apellido1 + '</td>    <td>' + element.apellido2 + '</td>    <td>' + element.fecha_nacimiento + '</td>  <td>' + element.dni + '</td>  <td>' + element.email + '</td>  <td>' + element.calle + '</td> <td>' + element.numero + '</td><td>' + element.piso + '</td> <td>' + element.cp + '</td><td>' + element.poblacion + '</td><td class="action" id="updateButton' + element.id + '">Modifica</td>        <td class="action" id="bajaButton' + element.id + '">Baja</td>    </tr>');
         client.appendTo(resultatConsulta);
 
         $("#updateButton" + element.id + "").click(() => {
